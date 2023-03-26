@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+/* RESET BROWSER STYLES */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* COLORS */
+  --blackColor: #000000;
+  --mainNavyColor: #14213d;
+  --mainGoldColor: #fca311;
+  --mainGrayColor: #e5e5e5;
+  --whiteColor: #ffffff;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  color: var(--blackColor);
+  background-color: var(--whiteColor);
+}
+
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+
+/* OVERRIDES */
+
+/* TOASTR */
+.toast-container .ngx-toastr {
+  box-shadow: none !important;
+}
+
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+/* ---------------------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
