@@ -107,6 +107,15 @@
   overflow: hidden;
 }
 
+.container .row .title {
+  margin-top: 10px;
+}
+
+.container .row .col-md-5 {
+  display: flex;
+  align-items: center;
+}
+
 .container .row .col-md-5 .img {
   background-position: center;
   background-size: cover;
@@ -145,22 +154,47 @@
   .container .row .col-md-5 .img {
     width: 100%;
     height: 100%;
-    background-image: url("../../../../assets/images/attractions1.jpeg");
     background-position: center;
     background-size: cover;
     border-radius: 3px;
   }
+}
 
+@media only screen and (max-width: 768px) {
+  .col-md-7 {
+    order: 2;
+  }
+
+  .col-md-5 {
+    order: 1;
+  }
+
+  .container .row .col-md-5 .img {
+    width: 100%;
+    height: 220px;
+  }
+
+  .container .row .col-md-7 .text {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
   .container .row .col-md-7 .text {
     border-top: none;
     border-bottom: none;
+  }
+
+  .container .row .title {
+    width: fit-content;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   }
 
   .first .container .row::before,
   .third .container .row::before {
     content: "";
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 10px;
     height: 170px;
     width: 3px;
@@ -173,7 +207,7 @@
   .third .container .row::after {
     content: "";
     position: absolute;
-    top: 10px;
+    bottom: 10px;
     left: 0;
     height: 3px;
     width: 170px;
@@ -204,24 +238,5 @@
     background-color: var(--mainGoldColor);
     border-radius: 3px;
     animation: slide-in-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .col-md-7 {
-    order: 2;
-  }
-
-  .col-md-5 {
-    order: 1;
-  }
-
-  .container .row .col-md-5 .img {
-    width: 100%;
-    height: 220px;
-  }
-
-  .container .row .col-md-7 .text {
-    margin-top: 10px;
   }
 }
