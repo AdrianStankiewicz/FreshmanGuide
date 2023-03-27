@@ -1,0 +1,18 @@
+<header class="header navbar">
+    <div class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">
+      <img class="logo" src="../../../../favicon.ico" alt="Logo">
+      <h3 class="name">FreshmanGuide</h3>
+    </div>
+    <div class="burger" (click)="toggleMenu()">
+      <mat-icon class="burgerIcon">{{toggleIcon}}</mat-icon>
+    </div>
+    <nav class="navigation" #toggle>
+      <h4 class="nav_item">Item1</h4>
+      <h4 class="nav_item">Item2</h4>
+      <h4 class="nav_item">Item3</h4>
+      <h4 class="nav_item">Item4</h4>
+      <h4 class="nav_item">Item5</h4>
+      <h4 class="nav_item">Item6</h4>
+      <h4 class="nav_item" (click)="changeMotive()"><mat-icon>tonality</mat-icon></h4>
+    </nav>
+</header>

@@ -1,1 +1,7 @@
+:host {
+  height: 100%;
+}
 
+.outlet {
+  margin-top: 30px;
+}

@@ -11,8 +11,11 @@
   /* COLORS */
   --blackColor: #000000;
   --mainNavyColor: #14213d;
+  --mainNavyColorDarker: #0d1528;
   --mainGoldColor: #fca311;
+  --mainGoldColorBorder: #fca2116b;
   --mainGrayColor: #e5e5e5;
+  --mainGrayColorActive: #e5e5e521;
   --whiteColor: #ffffff;
 }
 
@@ -23,6 +26,9 @@ html {
 
 body {
   min-height: 100%;
+  font-family: "Lato", sans-serif !important;
+  font-size: 1rem;
+  letter-spacing: 0.4px;
   color: var(--blackColor);
   background-color: var(--whiteColor);
 }
@@ -32,6 +38,11 @@ body {
 /* ---------------------------------------------------------------- */
 
 /* OVERRIDES */
+.mdc-button {
+  font-family: "Lato", sans-serif !important;
+  letter-spacing: 0.4px !important;
+  font-size: 1rem !important;
+}
 
 /* TOASTR */
 .toast-container .ngx-toastr {
