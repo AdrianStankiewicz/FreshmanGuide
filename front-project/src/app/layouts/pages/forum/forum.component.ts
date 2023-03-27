@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-forum',
+  templateUrl: './forum.component.html',
+  styleUrls: ['./forum.component.css'],
 })
-export class HomeComponent {
+export class ForumComponent {
   loading!: boolean;
 
   constructor(private loadingS: LoadingService) {}

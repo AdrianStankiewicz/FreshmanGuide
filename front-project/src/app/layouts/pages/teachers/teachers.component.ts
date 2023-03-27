@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-teachers',
+  templateUrl: './teachers.component.html',
+  styleUrls: ['./teachers.component.css'],
 })
-export class HomeComponent {
+export class TeachersComponent {
   loading!: boolean;
 
   constructor(private loadingS: LoadingService) {}

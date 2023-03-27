@@ -7,7 +7,6 @@
   left: 0;
   width: 100%;
   height: 70px;
-  font-weight: lighter;
   color: var(--mainGoldColor);
   background-color: var(--mainNavyColorDarker);
   z-index: 100;
@@ -68,17 +67,21 @@
     left: 0;
     width: 100%;
     height: 0;
+    max-height: 100vh;
     background-color: var(--mainNavyColor);
-    transition: height 1s, padding 1s;
-    overflow: hidden;
+    transition: height 1s;
+    overflow: auto;
   }
 
   .header .navigation .nav_item {
-    display: block;
-    width: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     margin: 0px auto;
-    padding: 20px 100px;
-    font-size: 1rem;
+    padding: 20px 30px;
+    width: 200px;
+    font-size: 0.8rem;
     font-weight: lighter;
     text-align: center;
     border-top: 0.5px solid var(--mainGoldColorBorder);
@@ -88,6 +91,10 @@
 
   .header .navigation .nav_item:active {
     background-color: var(--mainGrayColorActive);
+  }
+
+  .header .navigation .nav_item:first-child {
+    border-top: 0;
   }
 
   .header .navigation .nav_item:last-child {
@@ -141,14 +148,7 @@
     cursor: pointer;
   }
 
-  .header .navigation .nav_item mat-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 1.4rem;
-  }
-
-  .header .navigation .nav_item:before {
+  .header .navigation .nav_item::before {
     content: "";
     position: absolute;
     left: 50%;

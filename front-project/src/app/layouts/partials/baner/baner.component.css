@@ -1,3 +1,14 @@
+@keyframes slide-in {
+  0% {
+    transform: translateZ(-1400px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+}
+
 .baner {
   position: relative;
   margin-top: 70px;
@@ -28,22 +39,22 @@
   position: absolute;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
   z-index: 10;
 }
 
 .baner .baner-photo .text {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   margin: 0 20px;
-  max-width: 600px;
+  width: 280px;
   color: var(--whiteColor);
   z-index: 10;
+  animation: slide-in 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .baner .baner-photo .text h3 {
-  font-weight: bold;
   font-size: 1.3rem;
   color: var(--mainGoldColor);
 }
@@ -60,6 +71,7 @@
   }
 
   .baner .baner-photo .text p {
+    text-align: left;
     font-size: 1rem;
   }
 }
@@ -72,6 +84,12 @@
 
 @media only screen and (min-width: 768px) {
   .baner {
-    height: 320px;
+    height: 360px;
   }
+
+.baner .baner-photo .text {
+  align-items: center;
+  width: 600px;
 }
+}
+

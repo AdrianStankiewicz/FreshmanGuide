@@ -13,6 +13,15 @@ import { HomeComponent } from './layouts/pages/home/home.component';
 import { NavigationComponent } from './layouts/partials/navigation/navigation.component';
 import { FooterComponent } from './layouts/partials/footer/footer.component';
 import { BanerComponent } from './layouts/partials/baner/baner.component';
+import { AttractionsComponent } from './layouts/pages/attractions/attractions.component';
+import { TeachersComponent } from './layouts/pages/teachers/teachers.component';
+import { FindRoomComponent } from './layouts/pages/find-room/find-room.component';
+import { MapComponent } from './layouts/partials/map/map.component';
+import { FormalitiesComponent } from './layouts/pages/formalities/formalities.component';
+import { DictionaryComponent } from './layouts/pages/dictionary/dictionary.component';
+import { CanteenComponent } from './layouts/pages/canteen/canteen.component';
+import { InternshipComponent } from './layouts/pages/internship/internship.component';
+import { ForumComponent } from './layouts/pages/forum/forum.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +30,15 @@ import { BanerComponent } from './layouts/partials/baner/baner.component';
     NavigationComponent,
     FooterComponent,
     BanerComponent,
+    AttractionsComponent,
+    TeachersComponent,
+    FindRoomComponent,
+    MapComponent,
+    FormalitiesComponent,
+    DictionaryComponent,
+    CanteenComponent,
+    InternshipComponent,
+    ForumComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,9 +49,10 @@ import { BanerComponent } from './layouts/partials/baner/baner.component';
       primaryColour: '#FCA311',
       secondaryColour: '#FCA311',
       tertiaryColour: '#FCA311',
+      backdropBackgroundColour: 'transparent',
     }),
     ToastrModule.forRoot(),
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

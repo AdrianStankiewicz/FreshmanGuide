@@ -1,0 +1,203 @@
+@keyframes tilt-in-top {
+  0% {
+    transform: rotateY(30deg) translateY(-300px) skewY(-30deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateY(0deg) translateY(0) skewY(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateY(-600px) rotateX(-30deg) scale(0);
+    transform-origin: 50% 100%;
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotateX(0) scale(1);
+    transform-origin: 50% 1400px;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-top {
+  0% {
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 6px solid var(--mainGrayColor);
+  background-color: var(--mainNavyColor);
+  border-radius: 3px;
+}
+
+.first,
+.third {
+  position: relative;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.second {
+  padding: 10px 0;
+  width: 100%;
+  background-color: var(--whiteColor);
+}
+
+.second ::-webkit-scrollbar-thumb {
+  border: 6px solid var(--whiteColor);
+}
+
+.container .row {
+  position: relative;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  padding: 22px 10px;
+  overflow: hidden;
+}
+
+.container .row .col-md-5 .img {
+  background-image: url("../../../../assets/images/attractions1.jpeg");
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
+}
+
+.container .row .col-md-5 .img:first-child {
+  animation: tilt-in-top 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.container .row .col-md-7 .text {
+  max-height: 250px;
+  text-align: justify;
+  overflow: auto;
+}
+
+.container .row .col-md-7 .text:first-child {
+  animation: slide-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@media only screen and (min-width: 768px) {
+  .container .row .col-md-5 .img {
+    width: 100%;
+    height: 100%;
+    background-image: url("../../../../assets/images/attractions1.jpeg");
+    background-position: center;
+    background-size: cover;
+    border-radius: 3px;
+  }
+
+  .first .container .row::before,
+  .third .container .row::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 170px;
+    width: 3px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-top 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .first .container .row::after,
+  .third .container .row::after {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 0;
+    height: 3px;
+    width: 170px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .second .container .row::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    height: 170px;
+    width: 3px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-bottom 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+
+  .second .container .row::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    height: 3px;
+    width: 170px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .col-md-7 {
+    order: 2;
+  }
+
+  .col-md-5 {
+    order: 1;
+  }
+
+  .container .row .col-md-5 .img {
+    width: 100%;
+    height: 220px;
+  }
+
+  .container .row .col-md-7 .text {
+    margin-top: 10px;
+  }
+}

@@ -10,18 +10,27 @@ export class NavigationComponent {
 
   @ViewChild('toggle') menu!: ElementRef;
 
-  public toggleMenu(): void {
+  toggleMenu(): void {
     if (this.toggleIcon == 'menu') {
       this.toggleIcon = 'close';
-      this.menu.nativeElement.style.height = '100vh';
-      this.menu.nativeElement.style.paddingTop = '50px';
+      if (screen.width < 576) {
+        this.menu.nativeElement.style.height = '100vh';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+      } else {
+        this.menu.nativeElement.style.height = 'auto';
+      }
     } else {
       this.toggleIcon = 'menu';
       this.menu.nativeElement.style.height = '0';
-      this.menu.nativeElement.style.paddingTop = '0';
+      document.body.style.position = 'static';
     }
   }
 
-  changeMotive():void {
+  closeNav(): void {
+    window.scrollTo(0, 0);
+    this.toggleIcon = 'menu';
+    this.menu.nativeElement.style.height = '0';
+    document.body.style.position = 'static';
   }
 }
