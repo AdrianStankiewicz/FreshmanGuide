@@ -93,19 +93,36 @@
   border: 6px solid var(--whiteColor);
 }
 
+.container {
+  display: flex;
+  justify-content: center;
+}
+
 .container .row {
   position: relative;
   margin-top: 60px;
   margin-bottom: 60px;
-  padding: 22px 10px;
+  padding: 20px;
+  max-width: 1000px;
   overflow: hidden;
 }
 
 .container .row .col-md-5 .img {
-  background-image: url("../../../../assets/images/attractions1.jpeg");
   background-position: center;
   background-size: cover;
   border-radius: 3px;
+}
+
+.container .row .col-md-5 #img1 {
+  background-image: url("../../../../assets/images/attractions1.jpeg");
+}
+
+.container .row .col-md-5 #img2 {
+  background-image: url("../../../../assets/images/sea1.jpeg");
+}
+
+.container .row .col-md-5 #img3 {
+  background-image: url("../../../../assets/images/forum1.jpeg");
 }
 
 .container .row .col-md-5 .img:first-child {
@@ -113,8 +130,10 @@
 }
 
 .container .row .col-md-7 .text {
-  max-height: 250px;
+  height: 250px;
   text-align: justify;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   overflow: auto;
 }
 
@@ -130,6 +149,11 @@
     background-position: center;
     background-size: cover;
     border-radius: 3px;
+  }
+
+  .container .row .col-md-7 .text {
+    border-top: none;
+    border-bottom: none;
   }
 
   .first .container .row::before,
