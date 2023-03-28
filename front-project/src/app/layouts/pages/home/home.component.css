@@ -227,6 +227,11 @@
     border-top: none;
     border-bottom: none;
   }
+
+  .container .row .title {
+    width: fit-content;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -245,12 +250,5 @@
 
   .container .row .col-md-7 .text {
     margin-top: 10px;
-  }
-}
-
-@media only screen and (min-width: 992px) {
-  .container .row .title {
-    width: fit-content;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   }
 }
