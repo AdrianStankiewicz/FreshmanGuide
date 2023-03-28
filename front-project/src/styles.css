@@ -25,7 +25,7 @@ html {
 }
 
 body {
-  min-height: 100%;
+  min-height: 100vh;
   font-family: "Lato", sans-serif !important;
   font-size: 1rem;
   letter-spacing: 0.4px;

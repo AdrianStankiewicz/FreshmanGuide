@@ -3,7 +3,6 @@
 .baner {
   position: relative;
   margin-top: 70px;
-  width: 100%;
   height: 220px;
   animation: fade-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
@@ -54,9 +53,6 @@
   margin-bottom: 0;
   font-size: 0.7rem;
   opacity: 0.92;
-}
-
-@media only screen and (min-width: 576px) {
 }
 
 @media only screen and (min-width: 576px) and (max-width: 768px) {
