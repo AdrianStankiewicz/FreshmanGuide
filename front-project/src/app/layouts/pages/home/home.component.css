@@ -139,7 +139,7 @@
 }
 
 .container .row .col-md-7 .text {
-  height: 250px;
+  height: 200px;
   text-align: justify;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -148,6 +148,12 @@
 
 .container .row .col-md-7 .text {
   animation: slide-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@media only screen and (max-width: 420px) {
+.container .row .col-md-7 .text {
+  text-align: left;
+}
 }
 
 @media only screen and (min-width: 768px) {

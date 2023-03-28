@@ -51,7 +51,7 @@
   width: 280px;
   color: var(--whiteColor);
   z-index: 10;
-  animation: slide-in 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slide-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .baner .baner-photo .text h3 {
@@ -66,6 +66,38 @@
 }
 
 @media only screen and (min-width: 576px) {
+}
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .baner {
+    height: 260px;
+  }
+
+  .baner .baner-photo .text {
+    align-items: center;
+    width: 500px;
+  }
+
+  .baner .baner-photo .text h3 {
+    font-size: 1.6rem;
+  }
+
+  .baner .baner-photo .text p {
+    text-align: left;
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .baner {
+    height: 360px;
+  }
+
+  .baner .baner-photo .text {
+    align-items: center;
+    width: 600px;
+  }
+
   .baner .baner-photo .text h3 {
     font-size: 1.8rem;
   }
@@ -75,21 +107,3 @@
     font-size: 1rem;
   }
 }
-
-@media only screen and (min-width: 576px) and (max-width: 768px) {
-  .baner {
-    height: 260px;
-  }
-}
-
-@media only screen and (min-width: 768px) {
-  .baner {
-    height: 360px;
-  }
-
-.baner .baner-photo .text {
-  align-items: center;
-  width: 600px;
-}
-}
-
