@@ -32,8 +32,13 @@
   display: flex;
   align-items: center;
   margin-bottom: 0;
-  font-weight: lighter;
-  font-size: 1.2rem;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.header .navigation .nav_item {
+  text-decoration: none;
+  color: var(--mainGoldColor);
 }
 
 .header .burger {
@@ -41,7 +46,7 @@
   align-items: center;
   position: relative;
   padding: 10px;
-  font-size: 1.8rem;
+  font-size: 3rem;
   cursor: pointer;
 }
 
@@ -92,7 +97,7 @@
     margin: 0px auto;
     padding: 20px 30px;
     width: 200px;
-    font-size: 0.8rem;
+    font-size: 1.4rem;
     font-weight: lighter;
     text-align: center;
     border-top: 0.5px solid var(--mainGoldColorBorder);
@@ -109,7 +114,7 @@
   }
 
   .header .navigation .nav_item:last-child {
-    border-bottom: 0.5px solid var(--mainGoldColorBorder);
+    border-bottom: none;
   }
 }
 
@@ -120,7 +125,7 @@
   }
 
   .header .navbar-brand .name {
-    font-size: 1.2rem;
+    font-size: 2rem;
   }
 
   .header .navbar-brand .name::before {
@@ -162,7 +167,7 @@
     display: block;
     margin-bottom: 0;
     padding: 10px;
-    font-size: 1rem;
+    font-size: 1.6rem;
     font-weight: lighter;
     cursor: pointer;
   }
