@@ -13,36 +13,36 @@ export class BanerComponent {
 
   banerTitleHome: string = 'Dlaczego warto studiować?';
   banerTextHome: string = 'Kilka powodów dlaczego warto studiować';
-  banerImageHome: string = `url('../../../../assets/images/umg1.jpeg')`;
+  banerImageHome: string = `url('/assets/images/umg1.jpeg')`;
   banerTitleAttractions: string = 'Atrakcje w Gdyni';
   banerTextAttractions: string = 'Kilka pomysłów na spędzenie wolnego czasu';
-  banerImageAttractions: string = `url('../../../../assets/images/attractions1.jpeg')`;
+  banerImageAttractions: string = `url('/assets/images/attractions1.jpeg')`;
   banerTitleteachers: string = 'Prowadzący';
   banerTextteachers: string =
     'Informacje o prowadzących pracujących na naszej uczelni';
-  banerImageteachers: string = `url('../../../../assets/images/teacher1.jpeg')`;
+  banerImageteachers: string = `url('/assets/images/teacher1.jpeg')`;
   banerTitleMap: string = 'Znajdź salę';
   banerTextMap: string =
     'Sprawdź, w którym miejscu znajduje się sala, której szukasz';
-  banerImageMap: string = `url('../../../../assets/images/map1.jpeg')`;
+  banerImageMap: string = `url('/assets/images/map1.jpeg')`;
   banerTitleFormalities: string = 'Sprawy studenckie';
   banerTextFormalities: string =
     'Przeczytaj informacje na temat formalności i kół naukowych';
-  banerImageFormalities: string = `url('../../../../assets/images/students1.jpeg')`;
+  banerImageFormalities: string = `url('/assets/images/students1.jpeg')`;
   banerTitleDictionary: string = 'Słownik studenckiego slangu';
   banerTextDictionary: string =
     'Znajdziesz tu pojęcia, którymi posługują się starsi studenci';
-  banerImageDictionary: string = `url('../../../../assets/images/dictionary1.jpeg')`;
+  banerImageDictionary: string = `url('/assets/images/dictionary1.jpeg')`;
   banerTitleCanteen: string = 'Menu uczelnianej stołówki';
   banerTextCanteen: string = 'Sprawdź co możesz zjeść na uczelnianej stołówce';
-  banerImageCanteen: string = `url('../../../../assets/images/canteen1.jpeg')`;
+  banerImageCanteen: string = `url('/assets/images/canteen1.jpeg')`;
   banerTitleInternship: string = 'Lista praktyk';
   banerTextInternship: string =
     'Znajdziesz tu praktyki polecane przez starszych studentów';
-  banerImageInternship: string = `url('../../../../assets/images/internship1.jpeg')`;
+  banerImageInternship: string = `url('/assets/images/internship1.jpeg')`;
   banerTitleForum: string = 'Forum';
   banerTextForum: string = 'Zadaj pytanie starszym studentom';
-  banerImageForum: string = `url('../../../../assets/images/forum1.jpeg')`;
+  banerImageForum: string = `url('/assets/images/forum1.jpeg')`;
 
   @ViewChild('banerImage') banerImage!: ElementRef;
 

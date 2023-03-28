@@ -49,7 +49,7 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
       primaryColour: '#FCA311',
       secondaryColour: '#FCA311',
       tertiaryColour: '#FCA311',
-      backdropBackgroundColour: 'rgba(0,0,0,0.2)',
+      backdropBackgroundColour: 'rgba(0,0,0,0.3)',
       fullScreenBackdrop: true,
     }),
     ToastrModule.forRoot(),
