@@ -14,7 +14,9 @@ export class NavigationComponent {
     if (this.toggleIcon == 'menu') {
       this.toggleIcon = 'close';
       this.menu.nativeElement.style.height = '500px';
-      document.body.style.position = 'fixed';
+      if (screen.width < 992) {
+        document.body.style.position = 'fixed';
+      }
       document.body.style.width = '100%';
     } else {
       this.toggleIcon = 'menu';

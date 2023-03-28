@@ -142,6 +142,10 @@
 
 @media only screen and (min-width: 992px) {
   .header .navigation {
+    height: 0 !important;
+  }
+
+  .header .navigation {
     display: flex;
     align-items: center;
     top: auto;
