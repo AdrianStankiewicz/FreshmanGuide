@@ -141,6 +141,10 @@
 }
 
 @media only screen and (min-width: 992px) {
+  body {
+    position: static !important;
+  }
+
   .header .navigation {
     height: 0 !important;
   }
