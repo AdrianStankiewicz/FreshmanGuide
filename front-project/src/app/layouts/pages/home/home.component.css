@@ -6,12 +6,12 @@
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--mainNavyColor);
-  border: 6px solid var(--mainGrayColor);
+  border: calc(0.46vw) solid var(--mainGrayColor);
   border-radius: 3px;
 }
 
 .second ::-webkit-scrollbar-thumb {
-  border: 6px solid var(--whiteColor);
+  border: calc(0.46vw) solid var(--whiteColor);
 }
 
 .second {
