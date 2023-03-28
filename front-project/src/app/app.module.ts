@@ -50,6 +50,7 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
       secondaryColour: '#FCA311',
       tertiaryColour: '#FCA311',
       backdropBackgroundColour: 'transparent',
+      fullScreenBackdrop: true
     }),
     ToastrModule.forRoot(),
     MatIconModule,
