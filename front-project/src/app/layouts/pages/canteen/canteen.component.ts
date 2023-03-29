@@ -15,7 +15,7 @@ export class CanteenComponent {
     this.loading = this.loadingS.startLoading();
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     setTimeout(() => {
       this.loading = this.loadingS.stopLoading();
     }, 800);
