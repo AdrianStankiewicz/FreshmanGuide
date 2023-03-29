@@ -48,7 +48,7 @@
   background-position: center;
   background-size: cover;
   border-radius: 3px;
-  box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
   transition: filter 0.4s;
   animation: swing-in 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s both;
 }

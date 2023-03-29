@@ -50,7 +50,7 @@ export class BanerComponent {
 
   ngDoCheck(): void {
     this.router.events
-      .pipe(filter((event) => event instanceof NavigationEnd))
+      .pipe(filter((event: any) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         switch (event.url) {
           case '/atrakcje':
