@@ -1,0 +1,209 @@
+@import "./home.animations.css";
+
+::-webkit-scrollbar {
+  background: none;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--mainNavyColor);
+  border: calc(0.8vw) solid var(--mainGrayColor);
+  border-radius: 3px;
+}
+
+.second ::-webkit-scrollbar-thumb {
+  border: calc(0.8vw) solid var(--whiteColor);
+}
+
+.second {
+  padding: 10px 0;
+  width: 100%;
+  background-color: var(--whiteColor);
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.container .row {
+  position: relative;
+  margin: 20px 0;
+  padding: 20px;
+  max-width: 1000px;
+  overflow: hidden;
+}
+
+.container .row .title {
+  margin: 7px 0;
+  font-size: 2.2rem;
+  font-weight: bold;
+  animation: slide-in-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+.container .row #title2 {
+  animation: slide-in-right 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+.container .row .col-md-5 .img {
+  background-position: center;
+  background-size: cover;
+  border-radius: 3px;
+  box-shadow: 5px 8px 5px rgba(0, 0, 0, 0.2);
+  transition: filter 0.4s;
+  animation: swing-in 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s both;
+}
+
+.container .row .col-md-5 #img1 {
+  background-image: url("/assets/images/attractions1.jpeg");
+}
+
+.container .row .col-md-5 #img2 {
+  background-image: url("/assets/images/sea1.jpeg");
+}
+
+.container .row .col-md-5 #img3 {
+  background-image: url("/assets/images/forum1.jpeg");
+}
+
+.container .row .col-md-7 .text {
+  height: 200px;
+  text-align: justify;
+  font-size: 1.6rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  animation: flip-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s both;
+}
+
+@media only screen and (max-width: 365px) {
+  .container .row {
+    padding: 20px 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .container .row .col-md-7 .text {
+    text-align: left;
+  }
+
+  .container .row .title {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container .row .col-md-5 .img {
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    border-radius: 3px;
+  }
+
+  .container .row .col-md-5 .img:hover {
+    filter: grayscale(0.4);
+  }
+
+  .container .row {
+    margin: 60px 0;
+  }
+
+  .first .container .row::before,
+  .third .container .row::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 3px;
+    height: 170px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-top 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+  }
+
+  .first .container .row::after,
+  .third .container .row::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 170px;
+    height: 3px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-left 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+  }
+
+  .second .container .row::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 3px;
+    height: 170px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-bottom 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+  }
+
+  .second .container .row::after {
+    content: "";
+    position: absolute;
+    bottom: 10px;
+    right: 0;
+    width: 170px;
+    height: 3px;
+    background-color: var(--mainGoldColor);
+    border-radius: 3px;
+    animation: slide-in-right 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+  }
+
+  .container .row .col-md-7 .text {
+    height: 195px;
+    border: none;
+  }
+
+  .container .row .title {
+    width: fit-content;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .col-md-7 {
+    order: 1;
+  }
+
+  .col-md-5 {
+    order: 2;
+  }
+
+  .container .row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .container .row .col-md-7 .text {
+    height: 170px;
+  }
+
+  .container .row .col-md-5 .img {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--mainNavyColor);
+    border: calc(0.47vw) solid var(--mainGrayColor);
+    border-radius: 3px;
+  }
+
+  .second ::-webkit-scrollbar-thumb {
+    border: calc(0.47vw) solid var(--whiteColor);
+  }
+}

@@ -1,0 +1,29 @@
+<header class="header navbar">
+  <div class="container">
+    <div (click)="closeNav()" class="navbar-brand" [routerLink]="['/']" routerLinkActive="router-link-active">
+      <img class="logo" src="../../../../favicon.ico" alt="Logo">
+      <h3 class="name">FreshmanGuide</h3>
+    </div>
+    <div class="burger" (click)="toggleMenu()">
+      <mat-icon class="burgerIcon">{{toggleIcon}}</mat-icon>
+    </div>
+    <nav class="navigation" #toggle>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/atrakcje']" routerLinkActive="router-link-active">
+        Atrakcje</a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/prowadzacy']" routerLinkActive="router-link-active">
+        Prowadzący</a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/znajdz-sale']"
+        routerLinkActive="router-link-active">Mapa
+      </a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/sprawy-studenckie']"
+        routerLinkActive="router-link-active">Sprawy studenckie</a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/slownik']" routerLinkActive="router-link-active">
+        Słowniczek</a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/stolowka']" routerLinkActive="router-link-active">
+        Stołówka</a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/praktyki']" routerLinkActive="router-link-active">
+        Praktyki</a>
+      <a (click)="closeNav()" class="nav_item" [routerLink]="['/forum']" routerLinkActive="router-link-active">Forum</a>
+    </nav>
+  </div>
+</header>

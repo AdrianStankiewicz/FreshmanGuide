@@ -1,0 +1,194 @@
+.header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 2000px;
+  height: 70px;
+  color: var(--mainGoldColor);
+  background-color: var(--mainNavyColorDarker);
+  z-index: 100;
+}
+
+.header .navbar-brand {
+  display: flex;
+  color: var(--mainGoldColor);
+  cursor: pointer;
+}
+
+.header .navbar-brand .logo {
+  margin-right: 10px;
+  height: 35px;
+  width: 32px;
+  border-radius: 50%;
+}
+
+.header .navbar-brand .name {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.header .navigation .nav_item {
+  text-decoration: none;
+  color: var(--mainGoldColor);
+}
+
+.header .burger {
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 10px;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+.header .burger::before {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  content: "";
+  width: 44px;
+  height: 44px;
+  background-color: var(--mainGrayColor);
+  opacity: 0;
+  border-radius: 50%;
+  transition: opacity 0.2s;
+}
+
+.header .burger:active::before {
+  opacity: 0.2;
+}
+
+.header .navigation::-webkit-scrollbar {
+  background: none;
+}
+
+.header .navigation::-webkit-scrollbar-thumb {
+  border: 6px solid var(--mainNavyColor);
+  background-color: var(--mainGoldColor);
+  border-radius: 3px;
+}
+
+@media only screen and (max-width: 991px) {
+  .header .navigation {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--mainNavyColor);
+    transition: height 1s;
+    overflow: auto;
+  }
+
+  .header .navigation .nav_item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0px auto;
+    padding: 20px 30px;
+    width: 200px;
+    font-size: 1.4rem;
+    font-weight: lighter;
+    text-align: center;
+    border-top: 0.5px solid var(--mainGoldColorBorder);
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+
+  .header .navigation .nav_item:active {
+    background-color: var(--mainGrayColorActive);
+  }
+
+  .header .navigation .nav_item:first-child {
+    border-top: 0;
+  }
+
+  .header .navigation .nav_item:last-child {
+    border-bottom: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .header .navbar-brand .logo {
+    width: 32px;
+    height: 35px;
+  }
+
+  .header .navbar-brand .name {
+    font-size: 2rem;
+  }
+
+  .header .navbar-brand .name::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 2px;
+    width: 0;
+    height: 1px;
+    background-color: var(--mainGoldColorBorder);
+    transition: width 0.3s;
+  }
+
+  .header .navbar-brand:hover .name::before {
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    position: static !important;
+  }
+
+  .header .navigation {
+    height: 0 !important;
+  }
+
+  .header .navigation {
+    display: flex;
+    align-items: center;
+    top: auto;
+    left: auto;
+    height: 100%;
+  }
+
+  .header .navigation .nav_item {
+    position: relative;
+    display: block;
+    margin-bottom: 0;
+    padding: 10px;
+    font-size: 1.6rem;
+    font-weight: lighter;
+    cursor: pointer;
+  }
+
+  .header .navigation .nav_item::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 6px;
+    width: 0;
+    height: 1px;
+    background-color: var(--mainGoldColorBorder);
+    transition: width 0.3s;
+  }
+
+  .header .navigation .nav_item:hover::before {
+    width: 80%;
+  }
+
+  .header .burger {
+    display: none;
+  }
+}

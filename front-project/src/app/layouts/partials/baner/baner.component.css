@@ -1,0 +1,112 @@
+.baner {
+  position: relative;
+  margin-top: 70px;
+  height: 220px;
+}
+
+.baner::before {
+  content: "";
+  position: absolute;
+  top: -100px;
+  width: 100%;
+  height: 100px;
+  background-color: var(--mainNavyColorDarker);
+}
+
+.baner .baner-photo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-image: url("/assets/images/umg1.jpeg");
+  background-size: cover;
+}
+
+.baner .baner-shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+.baner .baner-photo .text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0 20px;
+  color: var(--whiteColor);
+  z-index: 10;
+}
+
+.baner .baner-photo .text h1 {
+  font-size: 2.2rem;
+  color: var(--mainGoldColor);
+}
+
+.baner .baner-photo .text p {
+  margin-bottom: 0;
+  font-size: 1.6rem;
+  opacity: 0.92;
+}
+
+@media only screen and (min-width:300px) and (max-width: 366px) {
+  .baner .baner-photo .text {
+    margin-left: 0;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .baner .baner-photo {
+    padding: 24px;
+  }
+
+  .baner .baner-photo .text h1 {
+    font-size: 2.8rem;
+  }
+
+  .baner .baner-photo .text p {
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 576px) and (max-width: 768px) {
+  .baner {
+    height: 260px;
+  }
+
+  .baner .baner-photo .text {
+    align-items: center;
+    width: 500px;
+  }
+
+  .baner .baner-photo .text h1 {
+    font-size: 2.6rem;
+  }
+
+  .baner .baner-photo .text p {
+    text-align: left;
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .baner {
+    height: 360px;
+  }
+
+  .baner .baner-photo .text {
+    align-items: center;
+    width: 600px;
+  }
+
+  .baner .baner-photo .text h1 {
+    font-size: 3.2rem;
+  }
+
+  .baner .baner-photo .text p {
+    text-align: left;
+    font-size: 1.8rem;
+  }
+}
