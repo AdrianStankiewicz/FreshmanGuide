@@ -15,7 +15,7 @@ export class AttractionsComponent {
     this.loading = this.loadingS.startLoading();
   }
 
-  ngAfterContentInit(): void {
+  ngAfterViewInit(): void {
     setTimeout(() => {
       this.loading = this.loadingS.stopLoading();
     }, 800);

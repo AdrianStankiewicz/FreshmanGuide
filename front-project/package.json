@@ -22,6 +22,7 @@
     "@angular/router": "^15.2.0",
     "bootstrap": "^5.3.0-alpha2",
     "ngx-loading": "^15.0.0",
+    "ngx-scrollbar": "^11.0.0",
     "ngx-toastr": "^16.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
