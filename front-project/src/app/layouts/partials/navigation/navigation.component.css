@@ -4,7 +4,6 @@
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 2000px;
   height: 70px;
   color: var(--mainGoldColor);
   background-color: var(--mainNavyColorDarker);
