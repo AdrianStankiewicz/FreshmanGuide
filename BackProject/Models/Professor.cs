@@ -9,11 +9,11 @@ namespace BackProject.Models
         public String Name { get; set; }
         public String Room { get; set; }
         public String Email { get; set; }
-        public String Best_contact { get; set; }
-        public String TypeOfPass { get; set; }
+        public String HowToContact { get; set; }
+        public String TypeOfExamination { get; set; }
         public String AvailabilityOfMaterials { get; set; }
         public String Note { get; set; }
 
-        public ICollection<Consultation> Consultation { get; set; }
+        public List<Consultation> Consultation { get; set; }
     }
 }

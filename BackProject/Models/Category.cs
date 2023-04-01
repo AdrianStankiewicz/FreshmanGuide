@@ -1,9 +1,12 @@
 ﻿using System;
 
-public class Category
+namespace BackProject.Models
 {
-    public int Id { get; set; }
-    public String Name { get; set; }
+    public class Category
+    {
+        public int Id { get; set; }
+        public String Name { get; set; }
 
-    public ICollection<Post> Post { get; set; }
+        public List<Post> Post { get; set; }
+    }
 }
