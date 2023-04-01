@@ -2,7 +2,7 @@
 
 namespace BackProject.Models
 {
-    public class Consultation
+    public class Consultations
     {
         public int Id { get; set; }
         public Professor ProfessorId { get; set; }

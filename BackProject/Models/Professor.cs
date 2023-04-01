@@ -14,6 +14,6 @@ namespace BackProject.Models
         public String AvailabilityOfMaterials { get; set; }
         public String Note { get; set; }
 
-        public List<Consultation> Consultation { get; set; }
+        public List<Consultations> Consultations { get; set; }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace BackProject.Models
 {
-	public class Reply
+	public class Replies
 	{
 		public int Id { get; set; }
 		public String Nick { get; set; }
