@@ -9,6 +9,15 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+// Config CORS Policy
+app.UseCors(builder =>
+{
+    builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader();
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
