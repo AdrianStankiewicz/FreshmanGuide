@@ -35,9 +35,9 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 20px;
-  width: 100px;
-  height: 100px;
-  font-size: 1.2rem;
+  width: 120px;
+  height: 120px;
+  font-size: 1.6rem;
   font-weight: bold;
   color: var(--mainGoldColor);
   background-color: var(--mainNavyColor);
@@ -125,7 +125,7 @@
 @media only screen and (min-width: 576px) {
   .second .container .circles {
     flex-direction: row;
-    width: 70%;
+    width: 90%;
   }
 
   .second .container .circles .circle {
@@ -214,6 +214,10 @@
   .container .row .title {
     width: fit-content;
     border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  }
+
+  .second .container .circles {
+    width: 80%;
   }
 
   .second .container .circles .circle {
