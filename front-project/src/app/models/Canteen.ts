@@ -1,4 +1,4 @@
-export interface Cantine {
+export interface Canteen {
   id: number;
   name: string;
   price: number;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { Observable, catchError, retry, throwError } from 'rxjs';
-import { Cantine } from '../models/Cantine';
+import { Canteen } from '../models/Canteen';
 import { Constants } from '../constants';
 
 @Injectable({
@@ -11,8 +11,8 @@ export class BasicReadingService {
 
   constructor(private http: HttpClient) { }
 
-  getMenuFromCantine(): Observable<Cantine[]>{
-    return this.http.get<Cantine[]>(`${Constants.backendApiUrl}Main/GetAllCantines`).pipe(retry(1), catchError(this.handleError));
+  getMenuFromCantine(): Observable<Canteen[]>{
+    return this.http.get<Canteen[]>(`${Constants.backendApiUrl}Main/GetAllCantines`).pipe(retry(1), catchError(this.handleError));
   }
 
   private handleError(error: any): Observable<any> {
