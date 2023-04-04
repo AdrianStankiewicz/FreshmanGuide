@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
 import { NgxLoadingModule } from 'ngx-loading';
@@ -54,6 +55,7 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
     }),
     ToastrModule.forRoot(),
     MatIconModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

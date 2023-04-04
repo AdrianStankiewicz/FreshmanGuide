@@ -2,7 +2,7 @@
 
 namespace BackProject.Models
 {
-    public class Cantine
+    public class Canteen
     {
         public int Id { get; set; }
         public String Name { get; set; }
