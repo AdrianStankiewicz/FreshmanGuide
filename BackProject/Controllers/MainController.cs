@@ -8,7 +8,7 @@ namespace BackProject.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        public static List<Cantine> _cantines;
+        public static List<Canteen> _canteens;
         public static List<Category> _categories;
         public static List<Consultations> _consultations;
         public static List<Dictionary> _dictionaries;
@@ -20,7 +20,7 @@ namespace BackProject.Controllers
 
         public MainController()
         {
-            _cantines = new List<Cantine>(){
+            _canteens = new List<Canteen>(){
             new() { Id = 1, Name = "Zupa", Price = 5.5f, Review = "Dobra nawet taka" },
             new() { Id = 2, Name = "Ziemniaki", Price = 2.5f, Review = "Ziemniak jak ziemniak" },
             new() { Id = 3, Name = "Naleśniki", Price = 7.5f, Review = "Słodkie i syte" }
@@ -81,16 +81,16 @@ namespace BackProject.Controllers
                 };
         }
 
-        [HttpGet("GetAllCantines")]
-        public List<Cantine> GetAllCantines()
+        [HttpGet("GetAllCanteens")]
+        public List<Canteen> GetAllCanteens()
         {
-            return _cantines;
+            return _canteens;
         }
 
-        [HttpGet("GetCantine/{id}")] 
-        public Cantine GetCantine(int id)
+        [HttpGet("GetCanteen/{id}")] 
+        public Canteen GetCanteen(int id)
         {
-            return _cantines[id];
+            return _canteens[id];
         }
 
         [HttpGet("GetAllCategories")]
