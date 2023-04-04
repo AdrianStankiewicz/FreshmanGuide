@@ -11,8 +11,8 @@ export class BasicReadingService {
 
   constructor(private http: HttpClient) { }
 
-  getMenuFromCantine(): Observable<Canteen[]>{
-    return this.http.get<Canteen[]>(`${Constants.backendApiUrl}Main/GetAllCantines`).pipe(retry(1), catchError(this.handleError));
+  getMenuFromCanteen(): Observable<Canteen[]>{
+    return this.http.get<Canteen[]>(`${Constants.backendApiUrl}Main/GetAllCanteens`).pipe(retry(1), catchError(this.handleError));
   }
 
   private handleError(error: any): Observable<any> {
