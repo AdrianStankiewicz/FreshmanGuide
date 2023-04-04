@@ -4,7 +4,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 @Component({
   selector: 'app-canteen',
   templateUrl: './canteen.component.html',
-  styleUrls: ['./canteen.component.css']
+  styleUrls: ['./canteen.component.css'],
 })
 export class CanteenComponent {
   loading!: boolean;
