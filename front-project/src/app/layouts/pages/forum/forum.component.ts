@@ -50,23 +50,6 @@ export class ForumComponent {
       .subscribe((categories: Category[]): void => {
         this.categoriesArr = categories;
       });
-
-    //test item to delete
-    this.categoriesS
-      .getOneFromCategories(1)
-      .subscribe((item: Category): void => {
-        console.log(item);
-      });
-
-    //test item to delete
-    this.postsS.getOneFromPosts(1).subscribe((item: Post): void => {
-      console.log(item);
-    });
-
-    //test item to delete
-    this.repliesS.getOneFromReplies(1).subscribe((item: Reply): void => {
-      console.log(item);
-    });
   }
 
   ngAfterViewInit(): void {

@@ -28,11 +28,6 @@ export class CanteenComponent {
       .subscribe((menu: Canteen[]): void => {
         this.canteenArr = menu;
       });
-
-    //test item to delete
-    this.canteenS.getOneFromCanteen(1).subscribe((item: Canteen): void => {
-      console.log(item);
-    });
   }
 
   ngAfterViewInit(): void {

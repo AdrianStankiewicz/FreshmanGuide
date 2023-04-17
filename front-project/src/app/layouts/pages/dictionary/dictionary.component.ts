@@ -28,13 +28,6 @@ export class DictionaryComponent {
       .subscribe((words: Dictionary[]): void => {
         this.dictionaryArr = words;
       });
-
-    //test item to delete
-    this.dictionaryS
-      .getOneFromDictionary(1)
-      .subscribe((item: Dictionary): void => {
-        console.log(item);
-      });
   }
 
   ngAfterViewInit(): void {

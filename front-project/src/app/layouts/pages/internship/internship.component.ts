@@ -28,13 +28,6 @@ export class InternshipComponent {
       .subscribe((internships: Internship[]): void => {
         this.internshipsArr = internships;
       });
-
-    //test item to delete
-    this.internshipsS
-      .getOneFromInternships(1)
-      .subscribe((item: Internship): void => {
-        console.log(item);
-      });
   }
 
   ngAfterViewInit(): void {

@@ -39,20 +39,6 @@ export class TeachersComponent {
       .subscribe((consultations: Consultation[]): void => {
         this.consultationsArr = consultations;
       });
-
-    //test item to delete
-    this.professorsS
-      .getOneFromProfessors(1)
-      .subscribe((item: Professor): void => {
-        console.log(item);
-      });
-
-    //test item to delete
-    this.consultationsS
-      .getOneFromConsultations(1)
-      .subscribe((item: Consultation): void => {
-        console.log(item);
-      });
   }
 
   ngAfterViewInit(): void {

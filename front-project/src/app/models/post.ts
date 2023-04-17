@@ -1,4 +1,5 @@
 import { Category } from './category';
+import { Reply } from './reply';
 
 export interface Post {
   id: number;
@@ -7,5 +8,5 @@ export interface Post {
   body: string;
   createdAt: Date;
   verified: boolean;
-  replies: any[];
+  replies: Reply[];
 }
