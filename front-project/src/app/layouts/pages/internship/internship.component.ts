@@ -1,18 +1,40 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Internship } from 'src/app/models/internship';
+import { InternshipsService } from 'src/app/services/http/internships.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-internship',
   templateUrl: './internship.component.html',
-  styleUrls: ['./internship.component.css']
+  styleUrls: ['./internship.component.css'],
 })
 export class InternshipComponent {
   loading!: boolean;
+  internshipsArr: Internship[] = [];
 
-  constructor(private loadingS: LoadingService) {}
+  getAllFromInternshipsSub!: Subscription;
+
+  constructor(
+    private loadingS: LoadingService,
+    private internshipsS: InternshipsService
+  ) {}
 
   ngOnInit(): void {
     this.loading = this.loadingS.startLoading();
+
+    this.getAllFromInternshipsSub = this.internshipsS
+      .getAllFromInternships()
+      .subscribe((internships: Internship[]): void => {
+        this.internshipsArr = internships;
+      });
+
+    //test item to delete
+    this.internshipsS
+      .getOneFromInternships(1)
+      .subscribe((item: Internship): void => {
+        console.log(item);
+      });
   }
 
   ngAfterViewInit(): void {

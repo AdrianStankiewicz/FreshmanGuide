@@ -1,4 +1,7 @@
 <div class="container">
   <p>internship works!</p>
+  <ul>
+    <li *ngFor="let internship of internshipsArr">{{internship.name}}</li>
+  </ul>
 </div>
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

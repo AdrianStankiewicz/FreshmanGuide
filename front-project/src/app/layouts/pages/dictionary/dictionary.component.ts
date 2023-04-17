@@ -1,18 +1,40 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Dictionary } from 'src/app/models/dictionary';
+import { DictionaryService } from 'src/app/services/http/dictionary.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-dictionary',
   templateUrl: './dictionary.component.html',
-  styleUrls: ['./dictionary.component.css']
+  styleUrls: ['./dictionary.component.css'],
 })
 export class DictionaryComponent {
   loading!: boolean;
+  dictionaryArr: Dictionary[] = [];
 
-  constructor(private loadingS: LoadingService) {}
+  getAllFromDictionarySub!: Subscription;
+
+  constructor(
+    private loadingS: LoadingService,
+    private dictionaryS: DictionaryService
+  ) {}
 
   ngOnInit(): void {
     this.loading = this.loadingS.startLoading();
+
+    this.getAllFromDictionarySub = this.dictionaryS
+      .getAllFromDictionary()
+      .subscribe((words: Dictionary[]): void => {
+        this.dictionaryArr = words;
+      });
+
+    //test item to delete
+    this.dictionaryS
+      .getOneFromDictionary(1)
+      .subscribe((item: Dictionary): void => {
+        console.log(item);
+      });
   }
 
   ngAfterViewInit(): void {

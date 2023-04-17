@@ -1,4 +1,9 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Consultation } from 'src/app/models/consultation';
+import { Professor } from 'src/app/models/professor';
+import { ConsultationsService } from 'src/app/services/http/consultations.service';
+import { ProfessorsService } from 'src/app/services/http/professors.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -8,11 +13,46 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TeachersComponent {
   loading!: boolean;
+  professorsArr: Professor[] = [];
+  consultationsArr: Consultation[] = [];
 
-  constructor(private loadingS: LoadingService) {}
+  getAllFromProfessorsSub!: Subscription;
+  getAllFromConsulatitionsSub!: Subscription;
+
+  constructor(
+    private loadingS: LoadingService,
+    private professorsS: ProfessorsService,
+    private consultationsS: ConsultationsService
+  ) {}
 
   ngOnInit(): void {
     this.loading = this.loadingS.startLoading();
+
+    this.getAllFromProfessorsSub = this.professorsS
+      .getAllFromProfessors()
+      .subscribe((professors: Professor[]): void => {
+        this.professorsArr = professors;
+      });
+
+    this.getAllFromConsulatitionsSub = this.consultationsS
+      .getAllFromConsultations()
+      .subscribe((consultations: Consultation[]): void => {
+        this.consultationsArr = consultations;
+      });
+
+    //test item to delete
+    this.professorsS
+      .getOneFromProfessors(1)
+      .subscribe((item: Professor): void => {
+        console.log(item);
+      });
+
+    //test item to delete
+    this.consultationsS
+      .getOneFromConsultations(1)
+      .subscribe((item: Consultation): void => {
+        console.log(item);
+      });
   }
 
   ngAfterViewInit(): void {

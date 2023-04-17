@@ -55,7 +55,7 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
     }),
     ToastrModule.forRoot(),
     MatIconModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

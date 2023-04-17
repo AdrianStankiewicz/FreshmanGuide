@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Canteen } from 'src/app/models/canteen';
+import { CanteenService } from 'src/app/services/http/canteen.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
@@ -8,11 +11,28 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class CanteenComponent {
   loading!: boolean;
+  canteenArr: Canteen[] = [];
 
-  constructor(private loadingS: LoadingService) {}
+  getAllFromCanteenSub!: Subscription;
+
+  constructor(
+    private loadingS: LoadingService,
+    private canteenS: CanteenService
+  ) {}
 
   ngOnInit(): void {
     this.loading = this.loadingS.startLoading();
+
+    this.getAllFromCanteenSub = this.canteenS
+      .getAllFromCanteen()
+      .subscribe((menu: Canteen[]): void => {
+        this.canteenArr = menu;
+      });
+
+    //test item to delete
+    this.canteenS.getOneFromCanteen(1).subscribe((item: Canteen): void => {
+      console.log(item);
+    });
   }
 
   ngAfterViewInit(): void {

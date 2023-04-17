@@ -83,7 +83,7 @@
     height: 0;
     background-color: var(--mainNavyColor);
     transition: height 1s;
-    overflow: auto;
+    overflow: hidden;
   }
 
   .header .navigation .nav_item {
