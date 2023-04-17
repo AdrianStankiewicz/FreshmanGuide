@@ -101,7 +101,7 @@
 }
 
 .container .row .col-md-7 .text {
-  min-height: 200px;
+  height: 200px;
   text-align: left;
   font-size: 1.6rem;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
