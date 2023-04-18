@@ -11,32 +11,32 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class DictionaryComponent {
   loading!: boolean;
-  dictionaryArr: Dictionary[] = [];
+  words: Dictionary[] = [];
 
   getAllFromDictionarySub!: Subscription;
 
   constructor(
-    private loadingS: LoadingService,
-    private dictionaryS: DictionaryService
+    private loadingService: LoadingService,
+    private dictionaryService: DictionaryService
   ) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
 
-    this.getAllFromDictionarySub = this.dictionaryS
+    this.getAllFromDictionarySub = this.dictionaryService
       .getAllFromDictionary()
       .subscribe((words: Dictionary[]): void => {
-        this.dictionaryArr = words;
+        this.words = words;
       });
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.loading = this.loadingS.stopLoading();
+      this.loading = this.loadingService.stopLoading();
     }, 800);
   }
 
   ngOnDestroy(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
   }
 }

@@ -13,41 +13,41 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class TeachersComponent {
   loading!: boolean;
-  professorsArr: Professor[] = [];
-  consultationsArr: Consultation[] = [];
+  professors: Professor[] = [];
+  consultations: Consultation[] = [];
 
   getAllFromProfessorsSub!: Subscription;
   getAllFromConsulatitionsSub!: Subscription;
 
   constructor(
-    private loadingS: LoadingService,
-    private professorsS: ProfessorsService,
-    private consultationsS: ConsultationsService
+    private loadingService: LoadingService,
+    private professorsService: ProfessorsService,
+    private consultationsService: ConsultationsService
   ) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
 
-    this.getAllFromProfessorsSub = this.professorsS
+    this.getAllFromProfessorsSub = this.professorsService
       .getAllFromProfessors()
       .subscribe((professors: Professor[]): void => {
-        this.professorsArr = professors;
+        this.professors = professors;
       });
 
-    this.getAllFromConsulatitionsSub = this.consultationsS
+    this.getAllFromConsulatitionsSub = this.consultationsService
       .getAllFromConsultations()
       .subscribe((consultations: Consultation[]): void => {
-        this.consultationsArr = consultations;
+        this.consultations = consultations;
       });
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.loading = this.loadingS.stopLoading();
+      this.loading = this.loadingService.stopLoading();
     }, 800);
   }
 
   ngOnDestroy(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
   }
 }

@@ -11,32 +11,32 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class CanteenComponent {
   loading!: boolean;
-  canteenArr: Canteen[] = [];
+  dishes: Canteen[] = [];
 
   getAllFromCanteenSub!: Subscription;
 
   constructor(
-    private loadingS: LoadingService,
-    private canteenS: CanteenService
+    private loadingService: LoadingService,
+    private canteenService: CanteenService
   ) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
 
-    this.getAllFromCanteenSub = this.canteenS
+    this.getAllFromCanteenSub = this.canteenService
       .getAllFromCanteen()
-      .subscribe((menu: Canteen[]): void => {
-        this.canteenArr = menu;
+      .subscribe((dishes: Canteen[]): void => {
+        this.dishes = dishes;
       });
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.loading = this.loadingS.stopLoading();
+      this.loading = this.loadingService.stopLoading();
     }, 800);
   }
 
   ngOnDestroy(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
   }
 }

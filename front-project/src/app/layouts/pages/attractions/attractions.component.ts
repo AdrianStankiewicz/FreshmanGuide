@@ -9,19 +9,19 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class AttractionsComponent {
   loading!: boolean;
 
-  constructor(private loadingS: LoadingService) {}
+  constructor(private loadingService: LoadingService) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.loading = this.loadingS.stopLoading();
+      this.loading = this.loadingService.stopLoading();
     }, 800);
   }
 
   ngOnDestroy(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
   }
 }

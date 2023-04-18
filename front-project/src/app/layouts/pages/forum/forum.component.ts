@@ -15,50 +15,50 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class ForumComponent {
   loading!: boolean;
-  postsArr: Post[] = [];
-  repliesArr: Reply[] = [];
-  categoriesArr: Category[] = [];
+  posts: Post[] = [];
+  replies: Reply[] = [];
+  categories: Category[] = [];
 
   getAllFromPostsSub!: Subscription;
   getAllFromRepliesSub!: Subscription;
   getAllFromCategoriesSub!: Subscription;
 
   constructor(
-    private loadingS: LoadingService,
-    private postsS: PostsService,
-    private repliesS: RepliesService,
-    private categoriesS: CategoriesService
+    private loadingService: LoadingService,
+    private postsService: PostsService,
+    private repliesService: RepliesService,
+    private categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
 
-    this.getAllFromPostsSub = this.postsS
+    this.getAllFromPostsSub = this.postsService
       .getAllFromPosts()
       .subscribe((posts: Post[]): void => {
-        this.postsArr = posts;
+        this.posts = posts;
       });
 
-    this.getAllFromRepliesSub = this.repliesS
+    this.getAllFromRepliesSub = this.repliesService
       .getAllFromReplies()
       .subscribe((replies: Reply[]): void => {
-        this.repliesArr = replies;
+        this.replies = replies;
       });
 
-    this.getAllFromCategoriesSub = this.categoriesS
+    this.getAllFromCategoriesSub = this.categoriesService
       .getAllFromCategories()
       .subscribe((categories: Category[]): void => {
-        this.categoriesArr = categories;
+        this.categories = categories;
       });
   }
 
   ngAfterViewInit(): void {
     setTimeout(() => {
-      this.loading = this.loadingS.stopLoading();
+      this.loading = this.loadingService.stopLoading();
     }, 800);
   }
 
   ngOnDestroy(): void {
-    this.loading = this.loadingS.startLoading();
+    this.loading = this.loadingService.startLoading();
   }
 }

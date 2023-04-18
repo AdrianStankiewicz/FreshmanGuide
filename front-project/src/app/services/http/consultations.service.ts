@@ -3,38 +3,28 @@ import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { Constants } from 'src/app/constants';
 import { Consultation } from 'src/app/models/consultation';
+import { HandleErrorService } from '../handle-error.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConsultationsService {
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private handleErrorService: HandleErrorService
+  ) {}
 
   getAllFromConsultations(): Observable<Consultation[]> {
     return this.http
       .get<Consultation[]>(`${Constants.backendApiUrl}Main/GetAllConsultations`)
-      .pipe(retry(1), catchError(this.handleError));
+      .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
   getOneFromConsultations(consultationID: number): Observable<Consultation> {
     return this.http
       .get<Consultation>(
-        `${Constants.backendApiUrl}Main/GetConsultations/${consultationID - 1}`
+        `${Constants.backendApiUrl}Main/GetConsultations/${consultationID}`
       )
-      .pipe(retry(1), catchError(this.handleError));
-  }
-
-  private handleError(error: any): Observable<any> {
-    let errorMessage = '';
-    if (error.error instanceof ErrorEvent) {
-      //Client side error
-      errorMessage = error.error.message;
-    } else {
-      //Server side error
-      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return throwError(() => {
-      return errorMessage;
-    });
+      .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 }
