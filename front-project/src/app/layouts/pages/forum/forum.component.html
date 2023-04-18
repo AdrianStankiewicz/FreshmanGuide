@@ -1,4 +1,13 @@
 <div class="container">
   <p>forum works!</p>
+  <ul>
+    <li *ngFor="let post of posts">{{post.body}}</li>
+  </ul>
+  <ul>
+    <li *ngFor="let category of categories">{{category.name}}</li>
+  </ul>
+  <ul>
+    <li *ngFor="let reply of replies">{{reply.body}}</li>
+  </ul>
 </div>
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

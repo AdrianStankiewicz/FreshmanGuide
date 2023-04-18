@@ -1,5 +1,8 @@
 <div class="container">
   <p>dictionary works!</p>
+  <ul>
+    <li *ngFor="let word of words">{{word.word}}</li>
+  </ul>
 </div>
 
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
