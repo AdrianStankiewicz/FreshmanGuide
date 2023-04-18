@@ -1,3 +1,5 @@
+import { Consultation } from "./consultation";
+
 export interface Professor {
   id: number;
   organisation: string;
@@ -8,4 +10,5 @@ export interface Professor {
   typeOfExamination: string;
   availabilityOfMaterials: string;
   note: string;
+  consultations: Consultation[];
 }
