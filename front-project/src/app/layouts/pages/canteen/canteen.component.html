@@ -1,4 +1,8 @@
 <div class="container">
   <p>canteen works!</p>
+  <ul>
+    <li *ngFor="let dish of dishes">{{dish.name}}</li>
+  </ul>
 </div>
+
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
