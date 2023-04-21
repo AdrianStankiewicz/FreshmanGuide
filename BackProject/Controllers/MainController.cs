@@ -1,5 +1,4 @@
 ﻿using BackProject.Models;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackProject.Controllers
@@ -15,7 +14,7 @@ namespace BackProject.Controllers
         public static List<Internship> _internships;
         public static List<Post> _posts;
         public static List<Professor> _professors;
-        public static List<Replies> _replies;
+        public static List<Reply> _replies;
         public static List<Shop> _shops;
 
         public MainController()
@@ -44,34 +43,34 @@ namespace BackProject.Controllers
              new() { Id = 3, Name = "Rafineria Gdańska Sp. z o.o.", Link = "https://rafineriagdanska.pl/3487/kariera/oferty_pracy" }
                 };
 
+            _replies = new List<Reply> {
+             new() { Id = 1, Nick = "Karabin", Body = "Hej wystarczy isc do Shredder?", CreatedAt = DateTime.Now, Verified = true},
+             new() { Id = 2, Nick = "Gocha", Body = "Nie działa ostatnio", CreatedAt = DateTime.Now, Verified = false},
+             new() { Id = 3, Nick = "Kaszub", Body = "Chłopie naprzeciw MC", CreatedAt = DateTime.Now, Verified = false },
+             new() { Id = 4, Nick = "Ratownik", Body = "W piątki o 20:30", CreatedAt = DateTime.Now, Verified = true },
+             new() { Id = 5, Nick = "Leonard", Body = "Siemaa poszukaj sobie Harem i Sfinks kox naprawde", CreatedAt = DateTime.Now, Verified = false }
+                };
+
             _posts = new List<Post> {
-            new() { Id = 1, Nick = "Kanciak", CategoryId = _categories[0], Body = "Hej nie wiem jak załatwic internet w akademiku?", CreatedAt = DateTime.Now, Verified = true},
-            new() { Id = 2, Nick = "Warszawiak", CategoryId = _categories[1], Body = "Siema nie moge znaleść uczelni!?!??!", CreatedAt = DateTime.Now, Verified = false},
-            new() { Id = 3, Nick = "Pływanciak", CategoryId = _categories[2], Body = "Hej kiedy jest darmowy basen?", CreatedAt = DateTime.Now, Verified = true },
-            new() { Id = 4, Nick = "Kwadraciak", CategoryId = _categories[0], Body = "Siemanooo gdzie są spoko kluby???", CreatedAt = DateTime.Now, Verified = false },
-            new() { Id = 5, Nick = "Stiven", CategoryId = _categories[2], Body = "Hej co potrzebuje żeby iść na statek?", CreatedAt = DateTime.Now, Verified = true }
+            new() { Id = 1, Nick = "Kanciak", CategoryId = _categories[0], Body = "Hej nie wiem jak załatwic internet w akademiku?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[0], _replies[1] } },
+            new() { Id = 2, Nick = "Warszawiak", CategoryId = _categories[1], Body = "Siema nie moge znaleść uczelni!?!??!", CreatedAt = DateTime.Now, Verified = false, Replies = new List<Reply>{_replies[0], _replies[1] }},
+            new() { Id = 3, Nick = "Pływanciak", CategoryId = _categories[2], Body = "Hej kiedy jest darmowy basen?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[2] } },
+            new() { Id = 4, Nick = "Kwadraciak", CategoryId = _categories[0], Body = "Siemanooo gdzie są spoko kluby???", CreatedAt = DateTime.Now, Verified = false, Replies = new List<Reply>{_replies[0], _replies[1], _replies[3] } },
+            new() { Id = 5, Nick = "Stiven", CategoryId = _categories[2], Body = "Hej co potrzebuje żeby iść na statek?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[3], _replies[4] }}
+                };
+
+            _consultations = new List<Consultations> {
+             new() { Id = 1, Data = "środa 11:00-13:00"},
+             new() { Id = 2, Data = "poniedziałek 11:00-12:00"},
+             new() { Id = 3, Data = "czwartek 08:00-09:00"},
+             new() { Id = 4, Data = "piątek 08:00-10:00"}
                 };
 
             _professors = new List<Professor> {
-             new() { Id = 1, Organisation = "ksi", Name = "dr inż. Marcin Forkiewicz", Room = "F-216", Email = "m.forkiewicz@wznj.umg.edu.pl", HowToContact = "Email", TypeOfExamination = "Otwarte", AvailabilityOfMaterials = "Bardzo dobre Teams", Note = "Bardzo miła osoba"},
-             new() { Id = 2, Organisation = "ksi", Name = "dr hab. inż. Ireneusz Czarnowski", Room = "F-204", Email = "i.czarnowski@umg.edu.pl", HowToContact = "Teams", TypeOfExamination = "Otwarte i zamknięte", AvailabilityOfMaterials = "Bardzo dobre Teams", Note = "Bardzo miła osoba"},
-             new() { Id = 3, Organisation = "ksi", Name = "dr hab. Dariusz Barbucha", Room = "F-204", Email = "d.barbucha@wznj.umg.edu.pl", HowToContact = "Email", TypeOfExamination = "Zamknięte", AvailabilityOfMaterials = "Bardzo Dobre Ilias", Note = "Bardzo miła osoba"}
+             new() { Id = 1, Organisation = "ksi", Name = "dr inż. Marcin Forkiewicz", Room = "F-216", Email = "m.forkiewicz@wznj.umg.edu.pl", HowToContact = "Email", TypeOfExamination = "Otwarte", AvailabilityOfMaterials = "Bardzo dobre Teams", Note = "Bardzo miła osoba", Consultations = new List<Consultations>{ _consultations[0], _consultations[1] } },
+             new() { Id = 2, Organisation = "ksi", Name = "dr hab. inż. Ireneusz Czarnowski", Room = "F-204", Email = "i.czarnowski@umg.edu.pl", HowToContact = "Teams", TypeOfExamination = "Otwarte i zamknięte", AvailabilityOfMaterials = "Bardzo dobre Teams", Note = "Bardzo miła osoba", Consultations = new List<Consultations>{ _consultations[0], _consultations[1], _consultations[2] } },
+             new() { Id = 3, Organisation = "ksi", Name = "dr hab. Dariusz Barbucha", Room = "F-204", Email = "d.barbucha@wznj.umg.edu.pl", HowToContact = "Email", TypeOfExamination = "Zamknięte", AvailabilityOfMaterials = "Bardzo Dobre Ilias", Note = "Bardzo miła osoba", Consultations = new List<Consultations>{ _consultations[3]} }
                  };
-
-            _consultations = new List<Consultations> {
-             new() { Id = 1, ProfessorId = _professors[0], Data = "środa 11:00-13:00"},
-             new() { Id = 2, ProfessorId = _professors[1], Data = "poniedziałek 11:00-12:00"},
-             new() { Id = 3, ProfessorId = _professors[1], Data = "czwartek 08:00-09:00"},
-             new() { Id = 4, ProfessorId = _professors[2], Data = "piątek 08:00-10:00"}
-                };
-
-            _replies = new List<Replies> {
-             new() { Id = 1, Nick = "Karabin", PostId = _posts[0], Body = "Hej wystarczy isc do Shredder?", CreatedAt = DateTime.Now, Verified = true},
-             new() { Id = 2, Nick = "Gocha", PostId = _posts[0], Body = "Nie działa ostatnio", CreatedAt = DateTime.Now, Verified = false},
-             new() { Id = 3, Nick = "Kaszub", PostId = _posts[1], Body = "Chłopie naprzeciw MC", CreatedAt = DateTime.Now, Verified = false },
-             new() { Id = 4, Nick = "Ratownik", PostId = _posts[2], Body = "W piątki o 20:30", CreatedAt = DateTime.Now, Verified = true },
-             new() { Id = 5, Nick = "Leonard", PostId = _posts[3], Body = "Siemaa poszukaj sobie Harem i Sfinks kox naprawde", CreatedAt = DateTime.Now, Verified = false }
-                };
 
             _shops = new List<Shop> {
              new() { Id = 1, ItemName = "Bluza", Price = 210f},
@@ -90,7 +89,7 @@ namespace BackProject.Controllers
         [HttpGet("GetCanteen/{id}")] 
         public Canteen GetCanteen(int id)
         {
-            return _canteens[id];
+            return _canteens.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllCategories")]
@@ -102,7 +101,7 @@ namespace BackProject.Controllers
         [HttpGet("GetCategory/{id}")]
          public Category GetCategory(int id)
          {
-             return _categories[id];
+             return _categories.Where(x => x.Id == id).FirstOrDefault();
          }
 
         [HttpGet("GetAllConsultations")]
@@ -114,7 +113,7 @@ namespace BackProject.Controllers
         [HttpGet("GetConsultations/{id}")]
         public Consultations GetConsultations(int id)
         {
-            return _consultations[id];
+            return _consultations.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllDictionaries")]
@@ -126,7 +125,7 @@ namespace BackProject.Controllers
         [HttpGet("GetDictionary/{id}")]
         public Dictionary GetDictionary(int id)
         {
-            return _dictionaries[id];
+            return _dictionaries.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllInternships")]
@@ -138,7 +137,7 @@ namespace BackProject.Controllers
         [HttpGet("GetInternship/{id}")]
         public Internship GetInternship(int id)
         {
-            return _internships[id];
+            return _internships.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllPosts")]
@@ -150,7 +149,7 @@ namespace BackProject.Controllers
         [HttpGet("GetPost/{id}")]
         public Post GetPost(int id)
         {
-            return _posts[id];
+            return _posts.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllProfessors")]
@@ -162,19 +161,19 @@ namespace BackProject.Controllers
         [HttpGet("GetProfessor/{id}")]
         public Professor GetProfessor(int id)
         {
-            return _professors[id];
+            return _professors.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllReplies")]
-        public List<Replies> GetAllReplies()
+        public List<Reply> GetAllReplies()
         {
             return _replies;
         }
 
         [HttpGet("GetReply/{id}")]
-        public Replies GetReply(int id)
+        public Reply GetReply(int id)
         {
-            return _replies[id];
+            return _replies.Where(x => x.Id == id).FirstOrDefault();
         }
 
         [HttpGet("GetAllShops")]
@@ -186,7 +185,7 @@ namespace BackProject.Controllers
         [HttpGet("GetShop/{id}")]
         public Shop GetShop(int id)
         {
-            return _shops[id];
+            return _shops.Where(x => x.Id == id).FirstOrDefault();
         }
     }
 }
