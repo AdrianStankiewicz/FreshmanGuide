@@ -11,6 +11,6 @@ namespace BackProject.Models
         public DateTime CreatedAt { get; set; }
         public Boolean Verified { get; set; }
 
-        public List<Replies> Replies { get; set; }
+        public List<Reply> Replies { get; set; }
     }
 }
