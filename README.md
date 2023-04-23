@@ -1,12 +1,15 @@
-﻿# FreshmanGuide
+## 🚀 FreshmanForce: Unleash Your University Potential
 
 **Topic:**
 
-We are creating a program for the University. We are focusing on freshmen who have problems adapting to the new situation.
+Embarking on a groundbreaking mission to revolutionize the University experience for freshmen! 🎓🌟
 
+Focusing on tackling the challenges new students face while adapting to university life, our group project aims to boost confidence and success in their academic journey.
 
-**Problem I:** Adaptation problem.
+**Challenge I:** Overcoming Adaptation Obstacles 🌉
 
-**Problem II:** Students are discouraged by the university and drop out of studies (problem with finding documents, information, etc.)
+**Challenge II:** Combatting Dropout Dilemmas 💪
 
-**Application idea:** An application run by seniors for freshmen. :)
+📱 **App Concept:** Introducing _FreshmanForce_, an innovative and interactive app designed by seasoned seniors, exclusively for freshman empowerment! 💡
+
+Join us in transforming the university experience for freshmen and helping them conquer the challenges ahead! 🌠
