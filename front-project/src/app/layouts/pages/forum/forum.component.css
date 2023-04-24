@@ -21,7 +21,7 @@
   background-color: var(--mainNavyColorDarker);
   border-radius: 3px;
   box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
-  animation: slide-in-top 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
 }
 
 .container .search-box .search-box__addQuestion {
