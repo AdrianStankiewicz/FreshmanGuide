@@ -27,11 +27,9 @@ export class ForumComponent {
 
   //selectCategory
   selectedCategory: string = '';
-  categoryPosts: Post[] = [];
 
   //selectVerified
   selectedVerified: string = '';
-  verifiedPosts: Post[] = [];
 
   //sort
   selectedSort: string = '';
@@ -84,9 +82,6 @@ export class ForumComponent {
 
   onSearchChange(): void {
     this.searchedPosts = this.filteredPosts;
-    if (this.searchKeyword.trim() !== '') {
-      this.applyFilters();
-    }
     this.applyFilters();
   }
 
@@ -102,18 +97,6 @@ export class ForumComponent {
 
   onSort(event: any): any {
     this.selectedSort = event.target.value;
-
-    if (this.selectedSort === 'Popularność') {
-      return this.filteredPosts.sort(
-        (a: Post, b: Post): number => b.replies.length - a.replies.length
-      );
-    } else if (this.selectedSort === 'Najnowsze') {
-      return this.filteredPosts.sort(
-        (a: Post, b: Post): number =>
-          b.createdAt.getDate() - a.createdAt.getDate()
-      );
-    }
-
     this.applyFilters();
   }
 
@@ -136,6 +119,16 @@ export class ForumComponent {
       filteredPosts = filteredPosts.filter((post) =>
         post.body.toLowerCase().includes(this.searchKeyword.toLowerCase())
       );
+    }
+
+    if (this.selectedSort === 'Popularność') {
+      filteredPosts = filteredPosts.sort((a: Post, b: Post): number => {
+        return b.replies.length - a.replies.length;
+      });
+    } else if (this.selectedSort === 'Najnowsze') {
+      filteredPosts = filteredPosts.sort((a: Post, b: Post): number => {
+        return b.createdAt.getDate() - a.createdAt.getDate();
+      });
     }
 
     this.filteredPosts = filteredPosts;

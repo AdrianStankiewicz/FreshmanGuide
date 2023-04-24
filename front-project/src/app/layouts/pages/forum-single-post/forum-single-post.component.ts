@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute, RouterFeatures } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/http/posts.service';
