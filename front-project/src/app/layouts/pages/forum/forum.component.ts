@@ -54,6 +54,7 @@ export class ForumComponent {
   //lifecycle hooks
   ngOnInit(): void {
     this.loading = this.loadingService.startLoading();
+    window.scrollTo(0, 0);
 
     this.getAllFromPostsSub = this.postsService
       .getAllFromPosts()
