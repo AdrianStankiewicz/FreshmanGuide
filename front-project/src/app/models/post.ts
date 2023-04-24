@@ -4,7 +4,7 @@ import { Reply } from './reply';
 export interface Post {
   id: number;
   nick: string;
-  categoryID: Category;
+  categoryId: Category;
   body: string;
   createdAt: Date;
   verified: boolean;

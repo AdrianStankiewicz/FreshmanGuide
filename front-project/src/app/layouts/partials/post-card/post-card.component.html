@@ -1,0 +1,16 @@
+<div class="card" [routerLink]="['/forum/post', postData.id]" *ngIf="postData" routerLinkActive="router-link-active">
+  <div class="first-row">
+    <span class="nick">{{postData.nick}}</span>
+    <mat-icon class="star" [ngClass]="{'gold': postData.verified == true}">star</mat-icon>
+  </div>
+  <div class="content">
+    {{postData.body}}
+  </div>
+  <div class="last-row">
+    <div class="info">
+      <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
+      <span class="comments">Komentarze ({{postData.replies.length}})</span>
+    </div>
+    <span class="category">#{{postData.categoryId.name}}</span>
+  </div>
+</div>

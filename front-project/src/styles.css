@@ -13,6 +13,7 @@
   --mainNavyColor: #14213d;
   --mainNavyColorDarker: #0d1528;
   --mainGoldColor: #fca311;
+  --mainGoldColorHover: #ce850f;
   --mainGoldColorBorder: #fca21175;
   --mainGrayColor: #e5e5e5;
   --mainGrayColorActive: #e5e5e521;
@@ -28,7 +29,7 @@ body {
   min-height: 100vh;
   font-family: "Lato", sans-serif !important;
   font-size: 1.6rem;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
   color: var(--blackColor);
   background-color: var(--mainGrayColor);
 }
@@ -42,6 +43,19 @@ body {
   font-family: "Lato", sans-serif !important;
   letter-spacing: 0.4px !important;
   font-size: 1rem !important;
+}
+
+mat-paginator {
+  font-family: "Lato", sans-serif !important;
+}
+
+.mdc-text-field {
+  border-radius: 3px !important;
+}
+
+.mdc-list-item--selected .mdc-list-item__primary-text,
+.mdc-list-item--activated .mdc-list-item__primary-text {
+  color: var(--mainNavyColorDarker);
 }
 
 /* TOASTR */

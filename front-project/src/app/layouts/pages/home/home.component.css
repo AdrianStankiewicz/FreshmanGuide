@@ -256,7 +256,7 @@
 }
 
 @media only screen and (min-width: 992px) {
-  ::-webkit-scrollbar-thumb {
+  /* ::-webkit-scrollbar-thumb {
     background-color: var(--mainNavyColor);
     border: calc(0.47vw) solid var(--mainGrayColor);
     border-radius: 3px;
@@ -264,7 +264,7 @@
 
   .second ::-webkit-scrollbar-thumb {
     border: calc(0.47vw) solid var(--whiteColor);
-  }
+  } */
 
   .second .container .circles {
     width: 50%;

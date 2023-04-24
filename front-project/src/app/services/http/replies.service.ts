@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { Observable, catchError, map, retry, throwError } from 'rxjs';
 import { Constants } from 'src/app/constants';
 import { Reply } from 'src/app/models/reply';
 import { HandleErrorService } from '../handle-error.service';

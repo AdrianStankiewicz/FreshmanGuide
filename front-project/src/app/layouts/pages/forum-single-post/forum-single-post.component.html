@@ -1,0 +1,15 @@
+<div class="container">
+  <p>id: {{postData.id}}</p>
+  <p>nick: {{postData.nick}}</p>
+  <p>body: {{postData.body}}</p>
+  <p>createdAt: {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</p>
+  <p>Verified: {{postData.verified}}</p>
+  <div>
+    <p>Replies:</p>
+    <ul>
+      <li *ngFor="let reply of postData.replies">{{reply.body}}</li>
+    </ul>
+  </div>
+</div>
+
+<ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
