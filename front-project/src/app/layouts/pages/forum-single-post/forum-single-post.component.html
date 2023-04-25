@@ -22,7 +22,17 @@
     <div class="title">
       <h3>Komentarze ({{postData.replies.length}})</h3>
       <hr>
-      <div class="reply-box" *ngFor="let reply of postData.replies">
+      <div class="filters">
+        <div class="filters--filter">
+          <label for="verified">Tylko zweryfikowane</label>
+          <select (change)="onVerifiedChange($event)" name="verified" id="verified" #verifiedSelectElement>
+            <option disabled selected value="">--wybierz--</option>
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+          </select>
+        </div>
+      </div>
+      <div class="reply-box" *ngFor="let reply of filteredReplies">
         <div class="first-row">
           <span class="nick">{{reply.nick}}</span>
           <mat-icon class="star" [ngClass]="{'gold': reply.verified === true}">star</mat-icon>

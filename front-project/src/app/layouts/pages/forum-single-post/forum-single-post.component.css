@@ -116,6 +116,29 @@
   color: var(--mainGrayColor);
 }
 
+.replies .filters .filters--filter {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  width: 180px;
+}
+
+.replies .filters .filters--filter label {
+  font-size: 1.4rem;
+  color: var(--mainGoldColor);
+}
+
+.replies .filters .filters--filter select {
+  margin: 5px 0 10px 0;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: var(--mainNavyColorDarker);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 .replies .reply-box {
   margin-top: 15px;
   padding: 10px;

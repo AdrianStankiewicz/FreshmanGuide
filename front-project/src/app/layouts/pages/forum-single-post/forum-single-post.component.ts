@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
+import { Reply } from 'src/app/models/reply';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -16,6 +17,11 @@ export class ForumSinglePostComponent {
   postData!: Post;
   postID!: number;
 
+  filteredReplies: Reply[] = [];
+  numberOfReplies: number = 0;
+
+  selectedVerified: string = '';
+
   constructor(
     private loadingService: LoadingService,
     private route: ActivatedRoute,
@@ -29,6 +35,7 @@ export class ForumSinglePostComponent {
     this.routerParamsSub = this.route.params.subscribe((data: any) => {
       this.postsService.getOneFromPosts(data['id']).subscribe((post: Post) => {
         this.postData = post;
+        this.filteredReplies = this.postData.replies;
       });
     });
 
@@ -46,5 +53,23 @@ export class ForumSinglePostComponent {
 
   ngOnDestroy(): void {
     this.loading = this.loadingService.startLoading();
+  }
+
+  applyFilters(): void {
+    let filteredReplies = this.postData.replies;
+
+    if (this.selectedVerified === 'yes') {
+      filteredReplies = filteredReplies.filter((reply: Reply) => {
+        return reply.verified === true;
+      });
+    }
+
+    this.filteredReplies = filteredReplies;
+    this.numberOfReplies = this.filteredReplies.length;
+  }
+
+  onVerifiedChange(event: any): void {
+    this.selectedVerified = event.target.value;
+    this.applyFilters();
   }
 }
