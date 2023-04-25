@@ -1,15 +1,40 @@
 <div class="container">
-  <p>id: {{postID}}</p>
-  <p>nick: {{postData.nick}}</p>
-  <p>body: {{postData.body}}</p>
-  <p>createdAt: {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</p>
-  <p>Verified: {{postData.verified}}</p>
-  <div>
-    <p>Replies:</p>
-    <ul>
-      <li *ngFor="let reply of postData.replies">{{reply.body}}</li>
-    </ul>
+  <div class="card" *ngIf="postData">
+    <div class="first-row">
+      <span class="nick">{{postData.nick}}</span>
+      <mat-icon class="star" [ngClass]="{'gold': postData.verified === true}">star</mat-icon>
+    </div>
+    <div class="content">
+      {{postData.body}}
+    </div>
+    <div class="last-row">
+      <div class="info">
+        <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
+      </div>
+      <span class="category">#{{postData.categoryId.name}}</span>
+    </div>
+  </div>
+
+  <div class="replies" *ngIf="postData">
+    <div class="title">
+      <h3>Komentarze ({{postData.replies.length}})</h3>
+      <hr>
+      <div class="reply-box" *ngFor="let reply of postData.replies">
+        <div class="first-row">
+          <span class="nick">{{reply.nick}}</span>
+          <mat-icon class="star" [ngClass]="{'gold': reply.verified === true}">star</mat-icon>
+        </div>
+        <div class="content">
+          {{reply.body}}
+        </div>
+        <div class="info">
+          <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
 
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
