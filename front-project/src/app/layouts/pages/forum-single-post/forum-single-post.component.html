@@ -1,4 +1,7 @@
 <div class="container">
+  <button class="return" [routerLink]="['/forum']" routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
+    Wszystkie posty</button>
+
   <div class="card" *ngIf="postData">
     <div class="first-row">
       <span class="nick">{{postData.nick}}</span>

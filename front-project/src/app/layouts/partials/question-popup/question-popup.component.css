@@ -8,11 +8,22 @@
   background: var(--mainNavyColorDarker);
 }
 
+.popup .up {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.popup .up h3 {
+  margin-bottom: 0;
+  font-size: 1.8rem;
+}
+
 .popup .close {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 30px;
   width: 30px;
   height: 30px;
   background: var(--mainGoldColor);

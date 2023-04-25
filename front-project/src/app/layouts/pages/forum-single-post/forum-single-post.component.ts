@@ -24,6 +24,7 @@ export class ForumSinglePostComponent {
 
   ngOnInit(): void {
     this.loading = this.loadingService.startLoading();
+    window.scrollTo(0, 0);
 
     this.routerParamsSub = this.route.params.subscribe((data: any) => {
       this.postsService.getOneFromPosts(data['id']).subscribe((post: Post) => {
