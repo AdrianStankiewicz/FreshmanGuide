@@ -32,7 +32,7 @@
       </div>
       <div class="search-box__addQuestion">
         <button class="reset" type="button" (click)="onReset()">Resetuj</button>
-        <button type="button">Zadaj pytanie</button>
+        <button type="button" (click)="openDialog()">Zadaj pytanie</button>
       </div>
     </div>
   </div>
@@ -48,4 +48,5 @@
     </div>
   </div>
 </div>
+
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

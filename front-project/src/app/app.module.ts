@@ -7,6 +7,8 @@ import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -27,6 +29,7 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
 import { PostCardComponent } from './layouts/partials/post-card/post-card.component';
 import { ForumSinglePostComponent } from './layouts/pages/forum-single-post/forum-single-post.component';
 import { FormsModule } from '@angular/forms';
+import { QuestionPopupComponent } from './layouts/partials/question-popup/question-popup.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,7 @@ import { FormsModule } from '@angular/forms';
     ForumComponent,
     PostCardComponent,
     ForumSinglePostComponent,
+    QuestionPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +67,9 @@ import { FormsModule } from '@angular/forms';
     MatIconModule,
     HttpClientModule,
     MatPaginatorModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

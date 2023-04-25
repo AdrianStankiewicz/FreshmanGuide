@@ -40,7 +40,6 @@
   background: var(--mainGoldColor);
   border: 1px solid var(--mainGoldColor);
   border-radius: 3px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
 .container .search-box .search-box__addQuestion .reset {

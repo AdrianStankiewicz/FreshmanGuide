@@ -1,0 +1,27 @@
+<div class="popup">
+  <button class="close" (click)="onClose()"><mat-icon>close</mat-icon></button>
+
+  <hr>
+
+  <form action="" [formGroup]="questionForm">
+    <div class="form-field">
+      <label for="">Kategoria</label>
+      <select matInput formControlName="category" name="category" id="category" #categorySelectElement>
+        <option disabled selected value="">--wybierz--</option>
+        <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label for="nick">Nick</label>
+      <input matInput formControlName="nick" type="text" name="nick" id="nick" #nickInputElement>
+    </div>
+    <div class="form-field">
+      <label for="question">Pytanie</label>
+      <textarea matInput formControlName="question" name="question" id="question" #questionTextAreaElement></textarea>
+    </div>
+
+    <div class="submit">
+      <button (click)="onSubmit()" type="button">Dodaj</button>
+    </div>
+  </form>
+</div>

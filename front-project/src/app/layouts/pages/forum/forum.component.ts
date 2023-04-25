@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Post } from 'src/app/models/post';
@@ -6,6 +7,7 @@ import { Reply } from 'src/app/models/reply';
 import { CategoriesService } from 'src/app/services/http/categories.service';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { QuestionPopupComponent } from '../../partials/question-popup/question-popup.component';
 
 @Component({
   selector: 'app-forum',
@@ -42,7 +44,8 @@ export class ForumComponent {
   constructor(
     private loadingService: LoadingService,
     private postsService: PostsService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private dialogRef: MatDialog
   ) {}
 
   @ViewChild('categorySelectElement') categorySelectElement!: ElementRef;
@@ -148,5 +151,14 @@ export class ForumComponent {
     this.categorySelectElement.nativeElement.value = '';
     this.verifiedSelectElement.nativeElement.value = '';
     this.sortSelectElement.nativeElement.value = '';
+  }
+
+  openDialog(): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.width = 'clamp(310px, 95%, 800px)';
+
+    this.dialogRef.open(QuestionPopupComponent, dialogConfig);
   }
 }
