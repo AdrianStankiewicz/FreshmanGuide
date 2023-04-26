@@ -8,12 +8,18 @@ import { CategoriesService } from 'src/app/services/http/categories.service';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { QuestionPopupComponent } from '../../partials/question-popup/question-popup.component';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import {
+  MatPaginator,
+  MatPaginatorIntl,
+  PageEvent,
+} from '@angular/material/paginator';
+import { CustomPaginator } from 'src/app/custom-paginator-configuration';
 
 @Component({
   selector: 'app-forum',
   templateUrl: './forum.component.html',
   styleUrls: ['./forum.component.css'],
+  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }],
 })
 export class ForumComponent {
   //variables
@@ -26,6 +32,8 @@ export class ForumComponent {
   postsCategories: string[] = [];
   pageSize: number = 3;
   slicedPosts: Post[] = [];
+
+  paginatorText!: any;
 
   //searchbar
   searchKeyword: string = '';

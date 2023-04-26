@@ -137,6 +137,7 @@
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+  font-family: 'Lato', sans-serif !important;
 }
 
 .container .posts-box .posts {
