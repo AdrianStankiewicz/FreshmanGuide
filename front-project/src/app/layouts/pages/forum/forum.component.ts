@@ -164,6 +164,9 @@ export class ForumComponent {
     this.filteredPosts.sort((a: Post, b: Post): number => a.id - b.id);
     this.numberOfPosts = this.filteredPosts.length;
 
+    this.paginator.pageSize = this.pageSize;
+    this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
+
     this.categorySelectElement.nativeElement.value = '';
     this.verifiedSelectElement.nativeElement.value = '';
     this.sortSelectElement.nativeElement.value = '';
