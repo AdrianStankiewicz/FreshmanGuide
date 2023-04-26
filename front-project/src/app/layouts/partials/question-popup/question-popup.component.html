@@ -7,20 +7,38 @@
   <hr>
 
   <form action="" [formGroup]="questionForm">
-    <div class="form-field">
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': questionForm.controls['category'].invalid && questionForm.controls['category'].touched}">
       <label for="">Kategoria</label>
-      <select matInput formControlName="category" name="category" id="category" #categorySelectElement>
+      <select
+        [ngClass]="{'invalid-input': questionForm.controls['category'].invalid && questionForm.controls['category'].touched}"
+        matInput formControlName="category" name="category" id="category" #categorySelectElement>
         <option disabled selected value="">--wybierz--</option>
         <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
       </select>
+      <div class="error" *ngIf="questionForm.controls['category'].invalid && questionForm.controls['category'].touched">
+        To pole jest wymagane!
+      </div>
     </div>
-    <div class="form-field">
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': questionForm.controls['nick'].invalid && questionForm.controls['nick'].touched}">
       <label for="nick">Nick</label>
-      <input matInput formControlName="nick" type="text" name="nick" id="nick" #nickInputElement>
+      <input
+        [ngClass]="{'invalid-input': questionForm.controls['nick'].invalid && questionForm.controls['nick'].touched}"
+        matInput formControlName="nick" type="text" name="nick" id="nick" #nickInputElement>
+      <div class="error" *ngIf="questionForm.controls['nick'].invalid && questionForm.controls['nick'].touched">
+        To pole jest wymagane!
+      </div>
     </div>
-    <div class="form-field">
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': questionForm.controls['question'].invalid && questionForm.controls['question'].touched}">
       <label for="question">Pytanie</label>
-      <textarea matInput formControlName="question" name="question" id="question" #questionTextAreaElement></textarea>
+      <textarea
+        [ngClass]="{'invalid-input': questionForm.controls['question'].invalid && questionForm.controls['question'].touched}"
+        matInput formControlName="question" name="question" id="question" #questionTextAreaElement></textarea>
+      <div class="error" *ngIf="questionForm.controls['question'].invalid && questionForm.controls['question'].touched">
+        To pole jest wymagane!
+      </div>
     </div>
 
     <div class="submit">

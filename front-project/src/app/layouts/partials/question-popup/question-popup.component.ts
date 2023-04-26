@@ -1,5 +1,10 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
@@ -51,7 +56,23 @@ export class QuestionPopupComponent {
     if (this.questionForm.valid) {
       console.log(questionData);
     } else {
-      console.log('invalid');
+      this.markInvalidInputs();
+    }
+  }
+
+  markInvalidInputs(): void {
+    for (const control in this.questionForm.controls) {
+      if (this.questionForm.controls.hasOwnProperty(control)) {
+        this.questionForm.controls[control].markAsTouched();
+        if (this.questionForm.controls[control].invalid) {
+          const invalidControl = document.querySelector(
+            `[formControlName="${control}"]`
+          );
+          if (invalidControl != null) {
+            invalidControl.classList.add('invalid-input');
+          }
+        }
+      }
     }
   }
 }

@@ -1,5 +1,9 @@
 .invalid-input {
-  border: 2px solid red;
+  border: 2px solid red !important;
+}
+
+.invalid-input-field {
+  margin-bottom: 0px !important;
 }
 
 .popup {
@@ -17,7 +21,7 @@
 
 .popup .up h3 {
   margin-bottom: 0;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
 }
 
 .popup .close {
@@ -43,18 +47,24 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.popup form .form-field .error {
+  font-size: 1.2rem;
+  color: red;
 }
 
 .popup form .form-field label {
   margin-bottom: 5px;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 }
 
 .popup form .form-field input,
 .popup form .form-field textarea {
   padding: 8px 10px;
   width: 100%;
+  font-size: 1.4rem;
   color: var(--mainNavyColorDarker);
   border: 1px solid var(--mainGoldColor);
   border-radius: 3px;
@@ -70,6 +80,7 @@
   padding: 8px 10px;
   width: clamp(200px, 30%, 500px);
   text-align: center;
+  font-size: 1.4rem;
   color: var(--mainNavyColorDarker);
   border: 1px solid var(--mainGoldColor);
   border-radius: 3px;
@@ -83,11 +94,11 @@
 
 .popup form .submit button {
   margin-top: 15px;
-  padding: 10px 15px;
+  padding: 10px;
   width: 45%;
   max-width: 170px;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--mainNavyColorDarker);
   background: var(--mainGoldColor);
   border: 1px solid var(--mainGoldColor);
@@ -97,7 +108,6 @@
 @media only screen and (min-width: 400px) {
   .popup form .submit button {
     padding: 10px 20px;
-    font-size: 1.4rem;
   }
 }
 
@@ -106,5 +116,22 @@
     height: 170px;
     min-height: 170px;
     max-height: 170px;
+  }
+
+  .popup form .form-field label {
+    font-size: 1.6rem;
+  }
+
+  .popup form .form-field input,
+  .popup form .form-field textarea {
+    font-size: 1.6rem;
+  }
+
+  .popup form .form-field select {
+    font-size: 1.6rem;
+  }
+
+  .popup .up h3 {
+    font-size: 1.8rem;
   }
 }

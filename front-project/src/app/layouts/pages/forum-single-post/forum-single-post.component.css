@@ -41,7 +41,7 @@
   margin: 20px 0;
   padding: 30px;
   width: 100%;
-  height: 250px;
+  min-height: 250px;
   background: var(--mainNavyColorDarker);
   border-radius: 3px;
   box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
@@ -65,8 +65,9 @@
 }
 
 .card .content {
+  min-height: 110px;
   height: 60%;
-  font-size: 1.4rem;
+  font-size: 1.6rem;
   font-weight: lighter;
   color: var(--mainGrayColor);
   overflow: auto;
@@ -140,10 +141,13 @@
 }
 
 .replies .reply-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   margin-top: 15px;
   padding: 10px;
   width: 100%;
-  height: 100px;
+  min-height: 130px;
   color: var(--mainGrayColor);
   background: var(--mainNavyColor);
   border-radius: 3px;
@@ -154,6 +158,12 @@
   justify-content: space-between;
   margin-bottom: 10px;
   height: 20%;
+}
+
+.replies .reply-box .first-row mat-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .replies .reply-box .first-row .nick {
@@ -167,8 +177,9 @@
 }
 
 .replies .reply-box .content {
+  min-height: 75px;
   height: 50%;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: lighter;
   color: var(--mainGrayColor);
   overflow: auto;
@@ -176,7 +187,7 @@
 
 .replies .reply-box .info {
   font-weight: lighter;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: var(--mainGoldColor);
 }
 
@@ -202,15 +213,7 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .card {
-    height: 200px;
-  }
-
   .card .last-row .info {
     flex-direction: row;
-  }
-
-  .replies .reply-box .content {
-    font-size: 1.4rem;
   }
 }
