@@ -56,7 +56,7 @@ export class ForumSinglePostComponent {
   }
 
   applyFilters(): void {
-    let filteredReplies = this.postData.replies;
+    let filteredReplies: Reply[] = this.postData.replies;
 
     if (this.selectedVerified === 'yes') {
       filteredReplies = filteredReplies.filter((reply: Reply) => {

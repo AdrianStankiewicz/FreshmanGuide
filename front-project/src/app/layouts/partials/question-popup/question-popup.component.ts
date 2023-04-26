@@ -65,10 +65,10 @@ export class QuestionPopupComponent {
       if (this.questionForm.controls.hasOwnProperty(control)) {
         this.questionForm.controls[control].markAsTouched();
         if (this.questionForm.controls[control].invalid) {
-          const invalidControl = document.querySelector(
+          const invalidControl: Element | null = document.querySelector(
             `[formControlName="${control}"]`
           );
-          if (invalidControl != null) {
+          if (invalidControl) {
             invalidControl.classList.add('invalid-input');
           }
         }

@@ -104,7 +104,7 @@ export class ForumComponent {
   }
 
   applyFilters(): void {
-    let filteredPosts = this.posts;
+    let filteredPosts: Post[] = this.posts;
 
     if (this.selectedCategory) {
       filteredPosts = filteredPosts.filter((post: Post) => {
@@ -154,7 +154,7 @@ export class ForumComponent {
   }
 
   openDialog(): void {
-    const dialogConfig = new MatDialogConfig();
+    const dialogConfig: MatDialogConfig<any> = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.hasBackdrop = true;
     dialogConfig.width = 'clamp(310px, 95%, 800px)';
