@@ -52,11 +52,11 @@ namespace BackProject.Controllers
                 };
 
             _posts = new List<Post> {
-            new() { Id = 1, Nick = "Kanciak", CategoryId = _categories[0], Body = "Hej nie wiem jak załatwic internet w akademiku?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[0], _replies[1] } },
-            new() { Id = 2, Nick = "Warszawiak", CategoryId = _categories[1], Body = "Siema nie moge znaleść uczelni!?!??!", CreatedAt = DateTime.Now, Verified = false, Replies = new List<Reply>{_replies[0], _replies[1] }},
-            new() { Id = 3, Nick = "Pływanciak", CategoryId = _categories[2], Body = "Hej kiedy jest darmowy basen?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[2] } },
-            new() { Id = 4, Nick = "Kwadraciak", CategoryId = _categories[0], Body = "Siemanooo gdzie są spoko kluby???", CreatedAt = DateTime.Now, Verified = false, Replies = new List<Reply>{_replies[0], _replies[1], _replies[3] } },
-            new() { Id = 5, Nick = "Stiven", CategoryId = _categories[2], Body = "Hej co potrzebuje żeby iść na statek?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[3], _replies[4] }}
+            new() { Id = 1, Nick = "Kanciak", CategoryId = 1, Body = "Hej nie wiem jak załatwic internet w akademiku?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[0], _replies[1] } },
+            new() { Id = 2, Nick = "Warszawiak", CategoryId = 2, Body = "Siema nie moge znaleść uczelni!?!??!", CreatedAt = DateTime.Now, Verified = false, Replies = new List<Reply>{_replies[0], _replies[1] }},
+            new() { Id = 3, Nick = "Pływanciak", CategoryId = 3, Body = "Hej kiedy jest darmowy basen?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[2] } },
+            new() { Id = 4, Nick = "Kwadraciak", CategoryId = 1, Body = "Siemanooo gdzie są spoko kluby???", CreatedAt = DateTime.Now, Verified = false, Replies = new List<Reply>{_replies[0], _replies[1], _replies[3] } },
+            new() { Id = 5, Nick = "Stiven", CategoryId = 2, Body = "Hej co potrzebuje żeby iść na statek?", CreatedAt = DateTime.Now, Verified = true, Replies = new List<Reply>{_replies[3], _replies[4] }}
                 };
 
             _consultations = new List<Consultations> {
