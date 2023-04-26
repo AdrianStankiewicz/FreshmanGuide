@@ -65,7 +65,7 @@ import { ReplyPopupComponent } from './layouts/partials/reply-popup/reply-popup.
       backdropBackgroundColour: 'rgba(0,0,0,0.3)',
       fullScreenBackdrop: true,
     }),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({}),
     MatIconModule,
     HttpClientModule,
     MatPaginatorModule,
