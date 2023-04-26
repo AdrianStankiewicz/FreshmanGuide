@@ -133,6 +133,12 @@
   animation: slide-in-left 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) 1s both;
 }
 
+.container .posts-box .paginator {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
 .container .posts-box .posts {
   display: flex;
   flex-direction: column;

@@ -10,7 +10,8 @@
           <label for="category">Wybierz kategorię</label>
           <select (change)="onCategoryChange($event)" name="category" id="category" #categorySelectElement>
             <option disabled selected value="">--wybierz--</option>
-            <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+            <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}
+            </option>
           </select>
         </div>
         <div class="search-box__filters--filter">
@@ -43,7 +44,12 @@
       <h3 class="posts-number">Wszystkich postów ({{numberOfPosts}})</h3>
       <hr>
       <div class="posts">
-        <app-post-card *ngFor="let post of filteredPosts" [postData]="post"></app-post-card>
+        <app-post-card *ngFor="let post of slicedPosts" [postData]="post"></app-post-card>
+      </div>
+      <div class="paginator">
+        <mat-paginator (page)="onPageChange($event)" [length]="filteredPosts.length" [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
+        </mat-paginator>
       </div>
     </div>
   </div>

@@ -8,6 +8,7 @@ import { CategoriesService } from 'src/app/services/http/categories.service';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { QuestionPopupComponent } from '../../partials/question-popup/question-popup.component';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-forum',
@@ -22,13 +23,16 @@ export class ForumComponent {
   categories: Category[] = [];
   filteredPosts: Post[] = [];
   numberOfPosts: number = 0;
+  postsCategories: string[] = [];
+  pageSize: number = 3;
+  slicedPosts: Post[] = [];
 
   //searchbar
   searchKeyword: string = '';
   searchedPosts: Post[] = [];
 
   //selectCategory
-  postCategory!: Category;
+  postCategory!: Category | undefined;
   selectedCategory: string = '';
 
   //selectVerified
@@ -53,6 +57,7 @@ export class ForumComponent {
   @ViewChild('categorySelectElement') categorySelectElement!: ElementRef;
   @ViewChild('verifiedSelectElement') verifiedSelectElement!: ElementRef;
   @ViewChild('sortSelectElement') sortSelectElement!: ElementRef;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   //lifecycle hooks
   ngOnInit(): void {
@@ -65,6 +70,7 @@ export class ForumComponent {
         this.posts = posts;
 
         this.filteredPosts = this.posts;
+        this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
         this.numberOfPosts = this.filteredPosts.length;
       });
 
@@ -105,29 +111,26 @@ export class ForumComponent {
     this.applyFilters();
   }
 
-  applyFilters(): void {
+  applyFilters(): any {
     let filteredPosts: Post[] = this.posts;
 
     if (this.selectedCategory) {
-      filteredPosts = filteredPosts.filter((post: Post) => {
-        this.getPostCategorySub = this.categoriesService
-          .getOneFromCategories(post.categoryId)
-          .subscribe((category: Category): void => {
-            this.postCategory = category;
-          });
-
-        return this.postCategory.name === this.selectedCategory;
+      filteredPosts = filteredPosts.filter((post: Post): boolean => {
+        this.postCategory = this.categories.find(
+          (category: Category): boolean => category.id === post.categoryId
+        );
+        return this.postCategory?.name === this.selectedCategory;
       });
     }
 
     if (this.selectedVerified === 'yes') {
-      filteredPosts = filteredPosts.filter((post: Post) => {
+      filteredPosts = filteredPosts.filter((post: Post): boolean => {
         return post.verified === true;
       });
     }
 
     if (this.searchKeyword.trim() !== '') {
-      filteredPosts = filteredPosts.filter((post) =>
+      filteredPosts = filteredPosts.filter((post): boolean =>
         post.body.toLowerCase().includes(this.searchKeyword.toLowerCase())
       );
     }
@@ -138,12 +141,17 @@ export class ForumComponent {
       });
     } else if (this.selectedSort === 'Najnowsze') {
       filteredPosts = filteredPosts.sort((a: Post, b: Post): number => {
-        return b.createdAt.getDate() - a.createdAt.getDate();
+        return (
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
       });
     }
 
     this.filteredPosts = filteredPosts;
     this.numberOfPosts = this.filteredPosts.length;
+    this.paginator.firstPage();
+    this.slicedPosts = this.filteredPosts;
+    this.paginator.length = this.numberOfPosts;
   }
 
   onReset(): void {
@@ -168,5 +176,14 @@ export class ForumComponent {
     dialogConfig.width = 'clamp(310px, 95%, 800px)';
 
     this.dialogRef.open(QuestionPopupComponent, dialogConfig);
+  }
+
+  onPageChange(event: PageEvent): void {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.filteredPosts.length) {
+      endIndex = this.filteredPosts.length;
+    }
+    this.slicedPosts = this.filteredPosts.slice(startIndex, endIndex);
   }
 }
