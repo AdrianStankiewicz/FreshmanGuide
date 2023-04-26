@@ -43,6 +43,7 @@
 }
 
 .container .search-box .search-box__addQuestion .reset {
+  padding: 10px 6px;
   color: var(--mainGoldColor);
   background: transparent;
   border: 1px solid var(--mainGoldColor);
