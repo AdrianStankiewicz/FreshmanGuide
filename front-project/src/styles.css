@@ -79,6 +79,14 @@ mat-paginator {
 .toast-container .ngx-toastr {
   position: fixed;
   top: 100px;
-  right: 30px;
+  right: 50%;
+  transform: translateX(50%);
   box-shadow: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .toast-container .ngx-toastr {
+    right: 30px;
+    transform: translateX(0);
+  }
 }
