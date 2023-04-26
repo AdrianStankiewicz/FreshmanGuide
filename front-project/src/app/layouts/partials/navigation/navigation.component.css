@@ -64,16 +64,6 @@
   opacity: 0.2;
 }
 
-/* .header .navigation::-webkit-scrollbar {
-  background: none;
-}
-
-.header .navigation::-webkit-scrollbar-thumb {
-  border: 6px solid var(--mainNavyColor);
-  background-color: var(--mainGoldColor);
-  border-radius: 3px;
-} */
-
 @media only screen and (max-width: 991px) {
   .header .navigation {
     position: absolute;

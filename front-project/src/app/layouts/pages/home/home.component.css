@@ -1,19 +1,5 @@
 @import "./home.animations.css";
 
-/* ::-webkit-scrollbar {
-  background: none;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--mainNavyColor);
-  border: calc(0.8vw) solid var(--mainGrayColor);
-  border-radius: 3px;
-}
-
-.second ::-webkit-scrollbar-thumb {
-  border: calc(0.8vw) solid var(--whiteColor);
-} */
-
 .second {
   padding: 10px 0;
   width: 100%;
