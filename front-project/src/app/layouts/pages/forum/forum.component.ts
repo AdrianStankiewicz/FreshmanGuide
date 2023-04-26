@@ -28,6 +28,7 @@ export class ForumComponent {
   searchedPosts: Post[] = [];
 
   //selectCategory
+  postCategory!: Category;
   selectedCategory: string = '';
 
   //selectVerified
@@ -40,6 +41,7 @@ export class ForumComponent {
   getAllFromPostsSub!: Subscription;
   getAllFromRepliesSub!: Subscription;
   getAllFromCategoriesSub!: Subscription;
+  getPostCategorySub!: Subscription;
 
   constructor(
     private loadingService: LoadingService,
@@ -108,7 +110,13 @@ export class ForumComponent {
 
     if (this.selectedCategory) {
       filteredPosts = filteredPosts.filter((post: Post) => {
-        return post.categoryId.name === this.selectedCategory;
+        this.getPostCategorySub = this.categoriesService
+          .getOneFromCategories(post.categoryId)
+          .subscribe((category: Category): void => {
+            this.postCategory = category;
+          });
+
+        return this.postCategory.name === this.selectedCategory;
       });
     }
 
