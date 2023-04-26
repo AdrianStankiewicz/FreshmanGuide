@@ -116,6 +116,7 @@
 }
 
 .card .last-row .category {
+  font-size: 1.4rem;
   order: 1;
 }
 
@@ -212,7 +213,7 @@
 
 .replies .reply-box .info {
   font-weight: lighter;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   color: var(--mainGoldColor);
 }
 
