@@ -75,6 +75,10 @@ mat-paginator {
   max-width: 100vw !important;
 }
 
+.mat-mdc-select-panel-above .mdc-menu-surface.mat-mdc-select-panel {
+  max-width: 100px !important;
+}
+
 /* TOASTR */
 .toast-container .ngx-toastr {
   position: fixed;
