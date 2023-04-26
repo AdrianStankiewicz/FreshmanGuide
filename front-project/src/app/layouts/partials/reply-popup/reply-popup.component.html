@@ -1,0 +1,34 @@
+<div class="popup">
+  <div class="up">
+    <button class="close" (click)="onClose()"><mat-icon>close</mat-icon></button>
+    <h3>Odpowiedz</h3>
+  </div>
+
+  <hr>
+
+  <form action="" [formGroup]="replyForm">
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': replyForm.controls['nick'].invalid && replyForm.controls['nick'].touched}">
+      <label for="nick">Nick</label>
+      <input [ngClass]="{'invalid-input': replyForm.controls['nick'].invalid && replyForm.controls['nick'].touched}"
+        matInput formControlName="nick" type="text" name="nick" id="nick" #nickInputElement>
+      <div class="error" *ngIf="replyForm.controls['nick'].invalid && replyForm.controls['nick'].touched">
+        To pole jest wymagane!
+      </div>
+    </div>
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': replyForm.controls['reply'].invalid && replyForm.controls['reply'].touched}">
+      <label for="reply">Odpowiedź</label>
+      <textarea
+        [ngClass]="{'invalid-input': replyForm.controls['reply'].invalid && replyForm.controls['reply'].touched}"
+        matInput formControlName="reply" name="reply" id="reply" #replyTextAreaElement></textarea>
+      <div class="error" *ngIf="replyForm.controls['reply'].invalid && replyForm.controls['reply'].touched">
+        To pole jest wymagane!
+      </div>
+    </div>
+
+    <div class="submit">
+      <button (click)="onSubmit()" type="button">Dodaj</button>
+    </div>
+  </form>
+</div>

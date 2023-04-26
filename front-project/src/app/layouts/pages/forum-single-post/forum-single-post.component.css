@@ -67,7 +67,7 @@
 .card .content {
   min-height: 110px;
   height: 60%;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: lighter;
   color: var(--mainGrayColor);
   overflow: auto;
@@ -88,6 +88,31 @@
   font-weight: lighter;
   font-size: 1.4rem;
   order: 2;
+}
+
+.card .last-row .info .add-reply {
+  position: relative;
+  margin-top: 10px;
+  width: 75px;
+  font-weight: bold;
+  color: var(--mainGrayColor);
+  cursor: pointer;
+}
+
+.card .last-row .info .add-reply::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background-color: var(--mainGrayColorBorder);
+  transition: width 0.3s;
+}
+
+.card .last-row .info .add-reply:hover::before {
+  width: 100%;
 }
 
 .card .last-row .category {
@@ -179,7 +204,7 @@
 .replies .reply-box .content {
   min-height: 75px;
   height: 50%;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   color: var(--mainGrayColor);
   overflow: auto;
@@ -215,5 +240,17 @@
 @media only screen and (min-width: 768px) {
   .card .last-row .info {
     flex-direction: row;
+  }
+
+  .card .last-row .info .add-reply {
+    margin-top: 0;
+  }
+
+  .replies .reply-box .content {
+    font-size: 1.4rem;
+  }
+
+  .card .content {
+    font-size: 1.6rem;
   }
 }

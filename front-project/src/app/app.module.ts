@@ -30,6 +30,7 @@ import { PostCardComponent } from './layouts/partials/post-card/post-card.compon
 import { ForumSinglePostComponent } from './layouts/pages/forum-single-post/forum-single-post.component';
 import { FormsModule } from '@angular/forms';
 import { QuestionPopupComponent } from './layouts/partials/question-popup/question-popup.component';
+import { ReplyPopupComponent } from './layouts/partials/reply-popup/reply-popup.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { QuestionPopupComponent } from './layouts/partials/question-popup/questi
     PostCardComponent,
     ForumSinglePostComponent,
     QuestionPopupComponent,
+    ReplyPopupComponent,
   ],
   imports: [
     BrowserModule,

@@ -8,7 +8,6 @@ import {
 import { MatDialogRef } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
-import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/http/categories.service';
 
 @Component({
@@ -51,7 +50,7 @@ export class QuestionPopupComponent {
   }
 
   onSubmit(): void {
-    let questionData = this.questionForm.value;
+    let questionData: any = this.questionForm.value;
 
     if (this.questionForm.valid) {
       console.log(questionData);

@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { Reply } from 'src/app/models/reply';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ReplyPopupComponent } from '../../partials/reply-popup/reply-popup.component';
 
 @Component({
   selector: 'app-forum-single-post',
@@ -25,7 +27,8 @@ export class ForumSinglePostComponent {
   constructor(
     private loadingService: LoadingService,
     private route: ActivatedRoute,
-    private postsService: PostsService
+    private postsService: PostsService,
+    private dialogRef: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -71,5 +74,14 @@ export class ForumSinglePostComponent {
   onVerifiedChange(event: any): void {
     this.selectedVerified = event.target.value;
     this.applyFilters();
+  }
+
+  openDialog(): void {
+    const dialogConfig: MatDialogConfig<any> = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.hasBackdrop = true;
+    dialogConfig.width = 'clamp(310px, 95%, 800px)';
+
+    this.dialogRef.open(ReplyPopupComponent, dialogConfig);
   }
 }
