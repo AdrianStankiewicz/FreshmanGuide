@@ -6,6 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/http/categories.service';
@@ -28,7 +29,8 @@ export class QuestionPopupComponent {
   constructor(
     private dialogRef: MatDialogRef<QuestionPopupComponent>,
     private formBuilder: FormBuilder,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +56,10 @@ export class QuestionPopupComponent {
 
     if (this.questionForm.valid) {
       console.log(questionData);
+      this.dialogRef.close();
+      setTimeout(() => {
+        this.toastr.success('Post został dodany', 'Sukces');
+      }, 1000);
     } else {
       this.markInvalidInputs();
     }

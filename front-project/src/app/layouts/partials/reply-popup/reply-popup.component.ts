@@ -1,6 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reply-popup',
@@ -15,7 +16,8 @@ export class ReplyPopupComponent {
 
   constructor(
     private dialogRef: MatDialogRef<ReplyPopupComponent>,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
@@ -34,6 +36,10 @@ export class ReplyPopupComponent {
 
     if (this.replyForm.valid) {
       console.log(replyData);
+      this.dialogRef.close();
+      setTimeout(() => {
+        this.toastr.success('Komentarz został dodany', 'Sukces');
+      }, 1000);
     } else {
       this.markInvalidInputs();
     }

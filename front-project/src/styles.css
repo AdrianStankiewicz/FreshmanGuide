@@ -77,5 +77,8 @@ mat-paginator {
 
 /* TOASTR */
 .toast-container .ngx-toastr {
+  position: fixed;
+  top: 100px;
+  right: 30px;
   box-shadow: none !important;
 }
