@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { Reply } from 'src/app/models/reply';
@@ -43,7 +43,7 @@ export class ForumSinglePostComponent {
     this.routerParamsSub = this.route.params.subscribe((data: any) => {
       this.postsService
         .getOneFromPosts(data['id'])
-        .subscribe(async (post: Post) => {
+        .subscribe(async (post: Post): Promise<void> => {
           this.postData = post;
           this.getPostCategorySub = this.categoriesService
             .getOneFromCategories(this.postData.categoryId)
@@ -55,7 +55,7 @@ export class ForumSinglePostComponent {
         });
     });
 
-    const params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     if (params && params['id']) {
       this.postID = params['id'];
     }
@@ -75,7 +75,7 @@ export class ForumSinglePostComponent {
     let filteredReplies: Reply[] = this.postData.replies;
 
     if (this.selectedVerified === 'yes') {
-      filteredReplies = filteredReplies.filter((reply: Reply) => {
+      filteredReplies = filteredReplies.filter((reply: Reply): boolean => {
         return reply.verified === true;
       });
     }
