@@ -114,7 +114,7 @@ export class ForumComponent {
     this.applyFilters();
   }
 
-  onSort(event: any): any {
+  onSort(event: any): void {
     this.selectedSort = event.target.value;
     this.applyFilters();
   }
