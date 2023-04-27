@@ -119,7 +119,7 @@ export class ForumComponent {
     this.applyFilters();
   }
 
-  applyFilters(): any {
+  applyFilters(): void {
     let filteredPosts: Post[] = this.posts;
 
     if (this.selectedCategory) {
