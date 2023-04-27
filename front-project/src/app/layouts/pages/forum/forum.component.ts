@@ -158,8 +158,10 @@ export class ForumComponent {
     this.filteredPosts = filteredPosts;
     this.numberOfPosts = this.filteredPosts.length;
     this.paginator.firstPage();
-    this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
+    this.slicedPosts = this.filteredPosts;
     this.paginator.length = this.numberOfPosts;
+    this.paginator.pageSize = this.pageSize;
+    this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
   }
 
   onReset(): void {
