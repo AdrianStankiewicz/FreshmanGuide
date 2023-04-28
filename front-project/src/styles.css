@@ -13,8 +13,10 @@
   --mainNavyColor: #14213d;
   --mainNavyColorDarker: #0d1528;
   --mainGoldColor: #fca311;
+  --mainGoldColorHover: #ce850f;
   --mainGoldColorBorder: #fca21175;
   --mainGrayColor: #e5e5e5;
+  --mainGrayColorBorder: #e5e5e575;
   --mainGrayColorActive: #e5e5e521;
   --whiteColor: #ffffff;
 }
@@ -28,7 +30,7 @@ body {
   min-height: 100vh;
   font-family: "Lato", sans-serif !important;
   font-size: 1.6rem;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.3px;
   color: var(--blackColor);
   background-color: var(--mainGrayColor);
 }
@@ -44,7 +46,47 @@ body {
   font-size: 1rem !important;
 }
 
+mat-paginator {
+  font-family: "Lato", sans-serif !important;
+}
+
+.mdc-text-field {
+  border-radius: 3px !important;
+}
+
+.mdc-list-item--selected .mdc-list-item__primary-text,
+.mdc-list-item--activated .mdc-list-item__primary-text {
+  color: var(--mainNavyColorDarker);
+}
+
+#cdk-overlay-2 {
+  max-width: none !important;
+}
+
+.cdk-overlay-pane {
+  width: clamp(310px, 95%, 800px) !important;
+}
+
+.cdk-overlay-dark-backdrop {
+  background: rgba(0, 0, 0, 0.85) !important;
+}
+
+#cdk-overlay-0 {
+  max-width: 100vw !important;
+}
+
 /* TOASTR */
 .toast-container .ngx-toastr {
+  position: fixed;
+  top: 100px;
+  right: 50%;
+  transform: translateX(50%);
   box-shadow: none !important;
+}
+
+@media only screen and (min-width: 768px) {
+  .toast-container .ngx-toastr {
+    right: 30px;
+    transform: translateX(0);
+  }
 }
