@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { Reply } from 'src/app/models/reply';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { ReplyPopupComponent } from '../../partials/reply-popup/reply-popup.component';
+import { CategoriesService } from 'src/app/services/http/categories.service';
+import { Category } from 'src/app/models/category';
 
 @Component({
   selector: 'app-forum-single-post',
@@ -16,8 +18,10 @@ import { ReplyPopupComponent } from '../../partials/reply-popup/reply-popup.comp
 export class ForumSinglePostComponent {
   loading!: boolean;
   routerParamsSub!: Subscription;
+  getPostCategorySub!: Subscription;
   postData!: Post;
   postID!: number;
+  postCategory!: Category;
 
   filteredReplies: Reply[] = [];
   numberOfReplies: number = 0;
@@ -28,7 +32,8 @@ export class ForumSinglePostComponent {
     private loadingService: LoadingService,
     private route: ActivatedRoute,
     private postsService: PostsService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private categoriesService: CategoriesService
   ) {}
 
   ngOnInit(): void {
@@ -36,13 +41,21 @@ export class ForumSinglePostComponent {
     window.scrollTo(0, 0);
 
     this.routerParamsSub = this.route.params.subscribe((data: any) => {
-      this.postsService.getOneFromPosts(data['id']).subscribe((post: Post) => {
-        this.postData = post;
-        this.filteredReplies = this.postData.replies;
-      });
+      this.postsService
+        .getOneFromPosts(data['id'])
+        .subscribe(async (post: Post): Promise<void> => {
+          this.postData = post;
+          this.getPostCategorySub = this.categoriesService
+            .getOneFromCategories(this.postData.categoryId)
+            .subscribe((category: Category): void => {
+              this.postCategory = category;
+            });
+
+          this.filteredReplies = this.postData.replies;
+        });
     });
 
-    const params = this.route.snapshot.params;
+    const params: Params = this.route.snapshot.params;
     if (params && params['id']) {
       this.postID = params['id'];
     }
@@ -62,7 +75,7 @@ export class ForumSinglePostComponent {
     let filteredReplies: Reply[] = this.postData.replies;
 
     if (this.selectedVerified === 'yes') {
-      filteredReplies = filteredReplies.filter((reply: Reply) => {
+      filteredReplies = filteredReplies.filter((reply: Reply): boolean => {
         return reply.verified === true;
       });
     }

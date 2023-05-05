@@ -43,7 +43,12 @@
       <h3 class="posts-number">Wszystkich postów ({{numberOfPosts}})</h3>
       <hr>
       <div class="posts">
-        <app-post-card *ngFor="let post of filteredPosts" [postData]="post"></app-post-card>
+        <app-post-card *ngFor="let post of slicedPosts" [postData]="post"></app-post-card>
+      </div>
+      <div class="paginator">
+        <mat-paginator (page)="onPageChange($event)" [length]="filteredPosts.length" [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
+        </mat-paginator>
       </div>
     </div>
   </div>

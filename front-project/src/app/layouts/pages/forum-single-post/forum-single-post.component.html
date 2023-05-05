@@ -15,7 +15,7 @@
         <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
         <span class="add-reply" (click)="openDialog()">Odpowiedz</span>
       </div>
-      <span class="category">#{{postData.categoryId.name}}</span>
+      <span class="category" *ngIf="postCategory">#{{postCategory.name}}</span>
     </div>
   </div>
 

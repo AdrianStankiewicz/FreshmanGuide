@@ -11,6 +11,6 @@
       <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
       <span class="comments">Komentarze ({{postData.replies.length}})</span>
     </div>
-    <span class="category">#{{postData.categoryId.name}}</span>
+    <span class="category" *ngIf="postCategory">#{{postCategory.name}}</span>
   </div>
 </div>
