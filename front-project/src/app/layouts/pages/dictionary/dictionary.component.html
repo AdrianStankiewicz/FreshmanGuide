@@ -2,10 +2,17 @@
   <div class="row">
     <div class="col-md-4" *ngFor="let word of words">
       <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">{{ word.word }}</h5>
-          <hr>
-          <p class="card-text">{{ word.definition }}</p>
+        <div class="card-front">
+          <div class="card-body">
+            <h5 class="card-title">{{ word.word }}</h5>
+          </div>
+        </div>
+        <div class="card-back">
+          <div class="card-body">
+            <h5 class="card-title">{{ word.word }}</h5>
+            <hr>
+            <p class="card-text">{{ word.definition }}</p>
+          </div>
         </div>
       </div>
     </div>
