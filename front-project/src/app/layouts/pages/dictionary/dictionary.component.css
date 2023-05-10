@@ -1,0 +1,32 @@
+.container {
+  margin-bottom: 1rem;
+}
+
+.card {
+  font-family: 'Lora', serif;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.card-body {
+  padding: 2rem;
+  margin: 0;
+}
+
+.card-title {
+  font-size: 2rem;
+}
+
+.card:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.col-md-4 {
+  margin-top: 2rem;
+}
+
+hr {
+  height: 0.2rem;
+  opacity: 0.7;
+  background: black;
+}
