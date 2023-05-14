@@ -1,5 +1,5 @@
-﻿using BackProject.Models;
-using Microsoft.AspNetCore.Http;
+﻿using BackProject.Db;
+using BackProject.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BackProject.Controllers
@@ -8,185 +8,416 @@ namespace BackProject.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        public static List<Cantine> _cantines;
-        public static List<Category> _categories;
-        public static List<Consultations> _consultations;
-        public static List<Dictionary> _dictionaries;
-        public static List<Internship> _internships;
-        public static List<Post> _posts;
-        public static List<Professor> _professors;
-        public static List<Replies> _replies;
-        public static List<Shop> _shops;
+        private readonly MyAppDbContext _context;
 
-        public MainController()
+        public MainController(MyAppDbContext context)
         {
-            _cantines = new List<Cantine>(){
-            new() { Id = 1, Name = "Zupa", Price = 5.5f, Review = "Dobra nawet taka" },
-            new() { Id = 2, Name = "Ziemniaki", Price = 2.5f, Review = "Ziemniak jak ziemniak" },
-            new() { Id = 3, Name = "Naleśniki", Price = 7.5f, Review = "Słodkie i syte" }
-                };
-
-            _categories = new List<Category> {
-            new() { Id = 1, Name = "Szybka sprawa" },
-            new() { Id = 2, Name = "Ważna sprawa"},
-            new() { Id = 3, Name = "Sportowe" }
-                };
-
-            _dictionaries = new List<Dictionary> {
-             new() { Id = 1, Word = "Aka", Definition = "Akademik czyli u nas SDM2, sMARY i SDM4"},
-             new() { Id = 2, Word = "Katakumby", Definition = "Strefa studenta"},
-             new() { Id = 3, Word = "Kolos", Definition = "Taki sprawdzian tylko więcej materiału" }
-                };
-
-            _internships = new List<Internship> {
-             new() { Id = 1, Name = "Flex ", Link = "https://pracodawcy.pracuj.pl/profile/flextronics-international-poland-sp-z-o-o,6bmfsg3,pl"},
-             new() { Id = 2, Name = "ERGO Hestia", Link = "https://www.pracuj.pl/praca/stazysta-w-zespole-zarzadzania-bezpieczenstwem-i-zgodnoscia-it-sopot-hestii-1,oferta,1002460851?s=eec3c7af&searchId=MTY3OTU3NDQ1MTY2MC45NzE0"},
-             new() { Id = 3, Name = "Rafineria Gdańska Sp. z o.o.", Link = "https://rafineriagdanska.pl/3487/kariera/oferty_pracy" }
-                };
-
-            _posts = new List<Post> {
-            new() { Id = 1, Nick = "Kanciak", CategoryId = _categories[0], Body = "Hej nie wiem jak załatwic internet w akademiku?", CreatedAt = DateTime.Now, Verified = true},
-            new() { Id = 2, Nick = "Warszawiak", CategoryId = _categories[1], Body = "Siema nie moge znaleść uczelni!?!??!", CreatedAt = DateTime.Now, Verified = false},
-            new() { Id = 3, Nick = "Pływanciak", CategoryId = _categories[2], Body = "Hej kiedy jest darmowy basen?", CreatedAt = DateTime.Now, Verified = true },
-            new() { Id = 4, Nick = "Kwadraciak", CategoryId = _categories[0], Body = "Siemanooo gdzie są spoko kluby???", CreatedAt = DateTime.Now, Verified = false },
-            new() { Id = 5, Nick = "Stiven", CategoryId = _categories[2], Body = "Hej co potrzebuje żeby iść na statek?", CreatedAt = DateTime.Now, Verified = true }
-                };
-
-            _professors = new List<Professor> {
-             new() { Id = 1, Organisation = "ksi", Name = "dr inż. Marcin Forkiewicz", Room = "F-216", Email = "m.forkiewicz@wznj.umg.edu.pl", HowToContact = "Email", TypeOfExamination = "Otwarte", AvailabilityOfMaterials = "Bardzo dobre Teams", Note = "Bardzo miła osoba"},
-             new() { Id = 2, Organisation = "ksi", Name = "dr hab. inż. Ireneusz Czarnowski", Room = "F-204", Email = "i.czarnowski@umg.edu.pl", HowToContact = "Teams", TypeOfExamination = "Otwarte i zamknięte", AvailabilityOfMaterials = "Bardzo dobre Teams", Note = "Bardzo miła osoba"},
-             new() { Id = 3, Organisation = "ksi", Name = "dr hab. Dariusz Barbucha", Room = "F-204", Email = "d.barbucha@wznj.umg.edu.pl", HowToContact = "Email", TypeOfExamination = "Zamknięte", AvailabilityOfMaterials = "Bardzo Dobre Ilias", Note = "Bardzo miła osoba"}
-                 };
-
-            _consultations = new List<Consultations> {
-             new() { Id = 1, ProfessorId = _professors[0], Data = "środa 11:00-13:00"},
-             new() { Id = 2, ProfessorId = _professors[1], Data = "poniedziałek 11:00-12:00"},
-             new() { Id = 3, ProfessorId = _professors[1], Data = "czwartek 08:00-09:00"},
-             new() { Id = 4, ProfessorId = _professors[2], Data = "piątek 08:00-10:00"}
-                };
-
-            _replies = new List<Replies> {
-             new() { Id = 1, Nick = "Karabin", PostId = _posts[0], Body = "Hej wystarczy isc do Shredder?", CreatedAt = DateTime.Now, Verified = true},
-             new() { Id = 2, Nick = "Gocha", PostId = _posts[0], Body = "Nie działa ostatnio", CreatedAt = DateTime.Now, Verified = false},
-             new() { Id = 3, Nick = "Kaszub", PostId = _posts[1], Body = "Chłopie naprzeciw MC", CreatedAt = DateTime.Now, Verified = false },
-             new() { Id = 4, Nick = "Ratownik", PostId = _posts[2], Body = "W piątki o 20:30", CreatedAt = DateTime.Now, Verified = true },
-             new() { Id = 5, Nick = "Leonard", PostId = _posts[3], Body = "Siemaa poszukaj sobie Harem i Sfinks kox naprawde", CreatedAt = DateTime.Now, Verified = false }
-                };
-
-            _shops = new List<Shop> {
-             new() { Id = 1, ItemName = "Bluza", Price = 210f},
-             new() { Id = 2, ItemName = "Puzzle", Price = 20.00f},
-             new() { Id = 3, ItemName = "Torba", Price = 45.0f },
-             new() { Id = 4, ItemName = "Otwieracz do piwa", Price = 10.0f }
-                };
+            _context = context;
         }
 
         [HttpGet("GetAllCantines")]
-        public List<Cantine> GetAllCantines()
+        public IActionResult GetAllCantines()
         {
-            return _cantines;
+            try
+            {
+                var canteen = _context.Canteen.ToList();
+                if (canteen.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(canteen);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
-        [HttpGet("GetCantine/{id}")] 
-        public Cantine GetCantine(int id)
+        [HttpGet("GetCantine/{id}")]
+        public IActionResult GetCantine(int id)
         {
-            return _cantines[id];
+            try
+            {
+                var canteen = _context.Canteen.Find(id);
+                if (canteen == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(canteen);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetAllCategories")]
-        public List<Category> GetAllCategories()
+        public IActionResult GetAllCategories()
         {
-            return _categories;
+            try
+            {
+                var category = _context.Category.ToList();
+                if (category.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetCategory/{id}")]
-         public Category GetCategory(int id)
-         {
-             return _categories[id];
-         }
+        public IActionResult GetCategory(int id)
+        {
+            try
+            {
+                var category = _context.Category.Find(id);
+                if (category == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(category);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         [HttpGet("GetAllConsultations")]
-        public List<Consultations> GetAllConsultations()
+        public IActionResult GetAllConsultations()
         {
-            return _consultations;
+            try
+            {
+                var consultation = _context.Consultation.ToList();
+                if (consultation.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(consultation);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetConsultations/{id}")]
-        public Consultations GetConsultations(int id)
+        public IActionResult GetConsultations(int id)
         {
-            return _consultations[id];
+            try
+            {
+                var consultations = _context.Consultation.Find(id);
+                if (consultations == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(consultations);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
 
         [HttpGet("GetAllDictionaries")]
-        public List<Dictionary> GetAllDictionaries()
+        public IActionResult GetAllDictionaries()
         {
-            return _dictionaries;
+            try
+            {
+                var dictionary = _context.Dictionary.ToList();
+                if (dictionary.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(dictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
-
         [HttpGet("GetDictionary/{id}")]
-        public Dictionary GetDictionary(int id)
+        public IActionResult GetDiconary(int id)
         {
-            return _dictionaries[id];
+            try
+            {
+                var dictionary = _context.Dictionary.Find(id);
+                if (dictionary == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(dictionary);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetAllInternships")]
-        public List<Internship> GetAllInternships()
+        public IActionResult GetAllInternships()
         {
-            return _internships;
+            try
+            {
+                var internship = _context.Practice.ToList();
+                if (internship.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(internship);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetInternship/{id}")]
-        public Internship GetInternship(int id)
+        public IActionResult GetInternship(int id)
         {
-            return _internships[id];
+            try
+            {
+                var internship = _context.Practice.Find(id);
+                if (internship == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(internship);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("PostInternship")]
+        public IActionResult PostReply(Internship model)
+        {
+            try
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return Ok("Internship created. ");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetAllPosts")]
-        public List<Post> GetAllPosts()
+        public IActionResult GetAllPosts()
         {
-            return _posts;
+            try
+            {
+                var post = _context.Post.ToList();
+                if (post.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(post);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetPost/{id}")]
-        public Post GetPost(int id)
+        public IActionResult GetPost(int id)
         {
-            return _posts[id];
+            try
+            {
+                var post = _context.Post.Find(id);
+                if (post == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(post);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("PostPost")]
+        public IActionResult PostPost(Post model)
+        {
+            try
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return Ok("Post created. ");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetAllProfessors")]
-        public List<Professor> GetAllProfessors()
+        public IActionResult GetAllProfessors()
         {
-            return _professors;
+            try
+            {
+                var professor = _context.Professor.ToList();
+                if (professor.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(professor);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetProfessor/{id}")]
-        public Professor GetProfessor(int id)
+        public IActionResult GetProfessor(int id)
         {
-            return _professors[id];
+            try
+            {
+                var professor = _context.Professor.Find(id);
+                if (professor == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(professor);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetAllReplies")]
-        public List<Replies> GetAllReplies()
+        public IActionResult GetAllReplies()
         {
-            return _replies;
+            try
+            {
+                var reply = _context.Reply.ToList();
+                if (reply.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(reply);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetReply/{id}")]
-        public Replies GetReply(int id)
+        public IActionResult GetReply(int id)
         {
-            return _replies[id];
+            try
+            {
+                var reply = _context.Reply.Find(id);
+                if (reply == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(reply);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("PostReply")]
+        public IActionResult PostReply(Reply model)
+        {
+            try
+            {
+                _context.Add(model);
+                _context.SaveChanges();
+                return Ok("Reply created. ");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetAllShops")]
-        public List<Shop> GetAllShops()
+        public IActionResult GetAllShops()
         {
-            return _shops;
+            try
+            {
+                var shop = _context.Shop.ToList();
+                if (shop.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(shop);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetShop/{id}")]
-        public Shop GetShop(int id)
+        public IActionResult GetShop(int id)
         {
-            return _shops[id];
+            try
+            {
+                var shop = _context.Shop.Find(id);
+                if (shop == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(shop);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAllAdmins")]
+        public IActionResult GetAllAdmins()
+        {
+            try
+            {
+                var admin = _context.Admin.ToList();
+                if (admin.Count == 0)
+                {
+                    return NotFound("No element found");
+                }
+                return Ok(admin);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetAdmin/{id}")]
+        public IActionResult GetAdmin(int id)
+        {
+            try
+            {
+                var admin = _context.Admin.Find(id);
+                if (admin == null)
+                {
+                    return NotFound($"Element not found {id}");
+                }
+                return Ok(admin);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
