@@ -1,4 +1,57 @@
-<div class="container">
-  <p>forum works!</p>
+<div class="first">
+  <div class="container">
+    <div class="search-box">
+      <div class="search-box__searchbar">
+        <input [(ngModel)]="searchKeyword" (keyup)="onSearchChange()" type="text" placeholder="Wyszukaj wątek...">
+        <mat-icon>search</mat-icon>
+      </div>
+      <div class="search-box__filters">
+        <div class="search-box__filters--filter">
+          <label for="category">Wybierz kategorię</label>
+          <select (change)="onCategoryChange($event)" name="category" id="category" #categorySelectElement>
+            <option disabled selected value="">--wybierz--</option>
+            <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+          </select>
+        </div>
+        <div class="search-box__filters--filter">
+          <label for="verified">Tylko zweryfikowane</label>
+          <select (change)="onVerifiedChange($event)" name="verified" id="verified" #verifiedSelectElement>
+            <option disabled selected value="">--wybierz--</option>
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+          </select>
+        </div>
+        <div class="search-box__filters--filter">
+          <label for="sort">Sortuj według</label>
+          <select (change)="onSort($event)" name="sort" id="sort" #sortSelectElement>
+            <option disabled selected value="">--wybierz--</option>
+            <option>Najnowsze</option>
+            <option>Popularność</option>
+          </select>
+        </div>
+      </div>
+      <div class="search-box__addQuestion">
+        <button class="reset" type="button" (click)="onReset()">Resetuj</button>
+        <button type="button" (click)="openDialog()">Zadaj pytanie</button>
+      </div>
+    </div>
+  </div>
 </div>
+<div class="second">
+  <div class="container second-container">
+    <div class="posts-box">
+      <h3 class="posts-number">Wszystkich postów ({{numberOfPosts}})</h3>
+      <hr>
+      <div class="posts">
+        <app-post-card *ngFor="let post of slicedPosts" [postData]="post"></app-post-card>
+      </div>
+      <div class="paginator">
+        <mat-paginator (page)="onPageChange($event)" [length]="filteredPosts.length" [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
 <ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>

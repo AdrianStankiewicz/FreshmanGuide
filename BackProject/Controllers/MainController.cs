@@ -24,7 +24,7 @@ namespace BackProject.Controllers
                 if (canteen.Count == 0)
                 {
                     return NotFound("No element found");
-                }
+        }
                 return Ok(canteen);
             }
             catch (Exception ex)
@@ -42,7 +42,7 @@ namespace BackProject.Controllers
                 if (canteen == null)
                 {
                     return NotFound($"Element not found {id}");
-                }
+        }
                 return Ok(canteen);
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace BackProject.Controllers
                 if (category.Count == 0)
                 {
                     return NotFound("No element found");
-                }
+        }
                 return Ok(category);
             }
             catch (Exception ex)
@@ -71,14 +71,14 @@ namespace BackProject.Controllers
 
         [HttpGet("GetCategory/{id}")]
         public IActionResult GetCategory(int id)
-        {
+         {
             try
             {
                 var category = _context.Category.Find(id);
                 if (category == null)
                 {
                     return NotFound($"Element not found {id}");
-                }
+         }
                 return Ok(category);
             }
             catch (Exception ex)
@@ -96,7 +96,7 @@ namespace BackProject.Controllers
                 if (consultation.Count == 0)
                 {
                     return NotFound("No element found");
-                }
+        }
                 return Ok(consultation);
             }
             catch (Exception ex)
@@ -114,7 +114,7 @@ namespace BackProject.Controllers
                 if (consultations == null)
                 {
                     return NotFound($"Element not found {id}");
-                }
+        }
                 return Ok(consultations);
             }
             catch (Exception ex)
@@ -133,7 +133,7 @@ namespace BackProject.Controllers
                 if (dictionary.Count == 0)
                 {
                     return NotFound("No element found");
-                }
+        }
                 return Ok(dictionary);
             }
             catch (Exception ex)
@@ -150,7 +150,7 @@ namespace BackProject.Controllers
                 if (dictionary == null)
                 {
                     return NotFound($"Element not found {id}");
-                }
+        }
                 return Ok(dictionary);
             }
             catch (Exception ex)
@@ -168,7 +168,7 @@ namespace BackProject.Controllers
                 if (internship.Count == 0)
                 {
                     return NotFound("No element found");
-                }
+        }
                 return Ok(internship);
             }
             catch (Exception ex)
@@ -205,7 +205,7 @@ namespace BackProject.Controllers
                 return Ok("Internship created. ");
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -223,7 +223,7 @@ namespace BackProject.Controllers
                 return Ok(post);
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -256,7 +256,7 @@ namespace BackProject.Controllers
                 return Ok("Post created. ");
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -274,7 +274,7 @@ namespace BackProject.Controllers
                 return Ok(professor);
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -292,7 +292,7 @@ namespace BackProject.Controllers
                 return Ok(professor);
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -310,7 +310,7 @@ namespace BackProject.Controllers
                 return Ok(reply);
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -343,7 +343,7 @@ namespace BackProject.Controllers
                 return Ok("Reply created. ");
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -361,7 +361,7 @@ namespace BackProject.Controllers
                 return Ok(shop);
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }
@@ -415,7 +415,7 @@ namespace BackProject.Controllers
                 return Ok(admin);
             }
             catch (Exception ex)
-            {
+        {
                 return BadRequest(ex.Message);
             }
         }

@@ -1,0 +1,204 @@
+@import "./forum.animations.css";
+
+.second {
+  padding: 40px 0 10px 0;
+  width: 100%;
+  background-color: var(--whiteColor);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .search-box {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 0;
+  padding: 30px;
+  width: clamp(300px, 95%, 1000px);
+  background-color: var(--mainNavyColorDarker);
+  border-radius: 3px;
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+}
+
+.container .search-box .search-box__addQuestion {
+  display: flex;
+  justify-content: space-between;
+}
+
+.container .search-box .search-box__addQuestion button {
+  margin-top: 30px;
+  padding: 10px;
+  width: 45%;
+  max-width: 170px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--mainNavyColorDarker);
+  background: var(--mainGoldColor);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+}
+
+.container .search-box .search-box__addQuestion .reset {
+  padding: 10px 6px;
+  color: var(--mainGoldColor);
+  background: transparent;
+  border: 1px solid var(--mainGoldColor);
+}
+
+.container .search-box .search-box__searchbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.container .search-box .search-box__searchbar input {
+  padding: 8px 10px;
+  width: 100%;
+  color: var(--mainNavyColorDarker);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+}
+
+.container .search-box .search-box__searchbar mat-icon {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  background-color: var(--whiteColor);
+}
+
+.container .search-box .search-box__filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.container .search-box .search-box__filters .search-box__filters--filter {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.container .search-box .search-box__filters .search-box__filters--filter label {
+  font-size: 1.4rem;
+  color: var(--mainGoldColor);
+}
+
+.container
+  .search-box
+  .search-box__filters
+  .search-box__filters--filter
+  select {
+  margin: 5px 0 10px 0;
+  padding: 8px 10px;
+  color: var(--mainNavyColorDarker);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.container
+  .search-box
+  .search-box__filters
+  .search-box__filters--filter
+  select
+  option {
+  text-align: center;
+}
+
+.container
+  .search-box
+  .search-box__filters
+  .search-box__filters--filter:last-child
+  select {
+  margin-bottom: 0;
+}
+
+.container .posts-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px;
+  padding: 15px 0;
+  width: clamp(280px, 95%, 1000px);
+  border-radius: 3px;
+  animation: slide-in-left 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) 1s both;
+}
+
+.container .posts-box .paginator {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  font-family: 'Lato', sans-serif !important;
+}
+
+.container .posts-box .posts {
+  display: flex;
+  flex-direction: column;
+}
+
+.container .posts-box .posts-number {
+  font-size: 1.8rem;
+}
+
+.container .posts-box .paginator {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  width: 100%;
+}
+
+@media only screen and (min-width: 400px) {
+  .container .search-box .search-box__addQuestion button {
+    padding: 10px 20px;
+    font-size: 1.4rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .container .search-box {
+    padding: 30px 50px;
+  }
+
+  .container .search-box .search-box__addQuestion {
+    justify-content: flex-end;
+  }
+
+  .container .search-box .search-box__addQuestion button {
+    width: 30%;
+  }
+
+  .container .search-box .search-box__addQuestion .reset {
+    margin-right: 15px;
+    width: 15%;
+    color: var(--mainGoldColor);
+    background: transparent;
+    border: 1px solid var(--mainGoldColor);
+  }
+
+  .container .search-box .search-box__filters {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .container .search-box .search-box__filters .search-box__filters--filter {
+    width: 30%;
+  }
+
+  .container
+    .search-box
+    .search-box__filters
+    .search-box__filters--filter
+    select {
+    margin-bottom: 0;
+  }
+}

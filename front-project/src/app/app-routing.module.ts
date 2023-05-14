@@ -9,6 +9,7 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
 import { HomeComponent } from './layouts/pages/home/home.component';
 import { InternshipComponent } from './layouts/pages/internship/internship.component';
 import { TeachersComponent } from './layouts/pages/teachers/teachers.component';
+import { ForumSinglePostComponent } from './layouts/pages/forum-single-post/forum-single-post.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'stolowka', component: CanteenComponent },
   { path: 'praktyki', component: InternshipComponent },
   { path: 'forum', component: ForumComponent },
+  { path: 'forum/post/:id', component: ForumSinglePostComponent },
 ];
 
 @NgModule({

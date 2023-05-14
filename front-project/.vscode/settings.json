@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/f2ebd45d-ed5d-444d-9841-57b8fdbcef1e/resourceGroups/ProjektGrupowy/providers/Microsoft.Web/sites/FreshmanGuideProject",
+    "appService.deploySubpath": "dist\\front-project"
+}

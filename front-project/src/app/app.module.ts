@@ -1,10 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatButtonModule } from '@angular/material/button';
-import { NgxLoadingModule } from 'ngx-loading';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
 import { ToastrModule } from 'ngx-toastr';
 import { MatIconModule } from '@angular/material/icon';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +26,11 @@ import { DictionaryComponent } from './layouts/pages/dictionary/dictionary.compo
 import { CanteenComponent } from './layouts/pages/canteen/canteen.component';
 import { InternshipComponent } from './layouts/pages/internship/internship.component';
 import { ForumComponent } from './layouts/pages/forum/forum.component';
+import { PostCardComponent } from './layouts/partials/post-card/post-card.component';
+import { ForumSinglePostComponent } from './layouts/pages/forum-single-post/forum-single-post.component';
+import { FormsModule } from '@angular/forms';
+import { QuestionPopupComponent } from './layouts/partials/question-popup/question-popup.component';
+import { ReplyPopupComponent } from './layouts/partials/reply-popup/reply-popup.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +48,10 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
     CanteenComponent,
     InternshipComponent,
     ForumComponent,
+    PostCardComponent,
+    ForumSinglePostComponent,
+    QuestionPopupComponent,
+    ReplyPopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,8 +65,13 @@ import { ForumComponent } from './layouts/pages/forum/forum.component';
       backdropBackgroundColour: 'rgba(0,0,0,0.3)',
       fullScreenBackdrop: true,
     }),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({}),
     MatIconModule,
+    HttpClientModule,
+    MatPaginatorModule,
+    FormsModule,
+    MatDialogModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

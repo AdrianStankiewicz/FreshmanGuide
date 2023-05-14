@@ -1,0 +1,97 @@
+.gold {
+  color: var(--mainGoldColor) !important;
+}
+
+.card {
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 30px;
+  width: 100%;
+  height: 250px;
+  background: var(--mainNavyColorDarker);
+  border-radius: 3px;
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.card:hover {
+  background: var(--mainNavyColor);
+}
+
+.card .first-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  height: 20%;
+}
+
+.card .first-row .nick {
+  font-size: 1.8rem;
+  color: var(--mainGoldColor);
+}
+
+.card .first-row .star {
+  color: var(--mainGrayColor);
+}
+
+.card .content {
+  height: 60%;
+  font-size: 1.4rem;
+  font-weight: lighter;
+  color: var(--mainGrayColor);
+  overflow: auto;
+}
+
+.card .last-row {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 10px;
+  color: var(--mainGoldColor);
+}
+
+.card .last-row .info {
+  display: flex;
+  flex-direction: column;
+  font-weight: lighter;
+  font-size: 1.4rem;
+  order: 2;
+}
+
+.card .last-row .category {
+  order: 1;
+}
+
+.card .last-row .info .last-updated {
+  margin-right: 15px;
+}
+
+@media only screen and (min-width: 410px) {
+  .card .last-row {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .card .last-row .info {
+    order: 1;
+  }
+
+  .card .last-row .category {
+    order: 2;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .card {
+    height: 200px;
+  }
+
+  .card .last-row .info {
+    flex-direction: row;
+  }
+}
