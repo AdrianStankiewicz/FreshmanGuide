@@ -5,7 +5,16 @@ export interface Post {
   nick: string;
   categoryId: number;
   body: string;
-  createdAt: Date;
+  createdAt: Date | string;
   verified: boolean;
-  replies: Reply[];
+  reply: Reply[];
+}
+
+export interface PostPost {
+  nick: string;
+  categoryId: number;
+  body: string;
+  createdAt: Date | string;
+  verified: boolean;
+  reply: Reply[] | null;
 }

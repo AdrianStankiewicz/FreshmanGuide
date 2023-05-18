@@ -9,7 +9,7 @@
   <div class="last-row">
     <div class="info">
       <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
-      <span *ngIf="postData.replies" class="comments">Komentarze ({{postData.replies.length}})</span>
+      <span *ngIf="postData.reply" class="comments">Komentarze ({{postData.reply.length}})</span>
     </div>
     <span class="category" *ngIf="postCategory">#{{postCategory.name}}</span>
   </div>

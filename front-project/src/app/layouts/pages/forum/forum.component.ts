@@ -76,7 +76,6 @@ export class ForumComponent {
       .getAllFromPosts()
       .subscribe((posts: Post[]): void => {
         this.posts = posts;
-
         this.filteredPosts = this.posts;
         this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
         this.numberOfPosts = this.filteredPosts.length;
@@ -145,7 +144,7 @@ export class ForumComponent {
 
     if (this.selectedSort === 'Popularność') {
       filteredPosts = filteredPosts.sort((a: Post, b: Post): number => {
-        return b.replies.length - a.replies.length;
+        return b.reply.length - a.reply.length;
       });
     } else if (this.selectedSort === 'Najnowsze') {
       filteredPosts = filteredPosts.sort((a: Post, b: Post): number => {

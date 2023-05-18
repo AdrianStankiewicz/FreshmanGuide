@@ -1,5 +1,6 @@
+import { HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -8,16 +9,19 @@ export class HandleErrorService {
   constructor() {}
 
   handleError(error: any): Observable<any> {
+    if (error.status === 200) {
+      return of(null); // ignore code 200 error
+    }
+
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      //Client side error
+      // client side error
       errorMessage = error.error.message;
     } else {
-      //Server side error
+      // server side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-    return throwError(() => {
-      return errorMessage;
-    });
+
+    return throwError(() => errorMessage);
   }
 }
