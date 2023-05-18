@@ -51,7 +51,7 @@ export class ForumSinglePostComponent {
               this.postCategory = category;
             });
 
-          this.filteredReplies = this.postData.replies;
+          this.filteredReplies = this.postData.reply;
         });
     });
 
@@ -72,7 +72,7 @@ export class ForumSinglePostComponent {
   }
 
   applyFilters(): void {
-    let filteredReplies: Reply[] = this.postData.replies;
+    let filteredReplies: Reply[] = this.postData.reply;
 
     if (this.selectedVerified === 'yes') {
       filteredReplies = filteredReplies.filter((reply: Reply): boolean => {

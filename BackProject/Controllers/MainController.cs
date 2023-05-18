@@ -217,9 +217,11 @@ namespace BackProject.Controllers
             {
                 var post = _context.Post.ToList();
                 if (post.Count == 0)
-                {
                     return NotFound("No element found");
-                }
+
+                foreach (var item in post)
+                    item.Reply = _context.Reply.Where(x => x.PostId == item.Id).ToList();
+
                 return Ok(post);
             }
             catch (Exception ex)
@@ -235,9 +237,10 @@ namespace BackProject.Controllers
             {
                 var post = _context.Post.Find(id);
                 if (post == null)
-                {
                     return NotFound($"Element not found {id}");
-                }
+
+                post.Reply = _context.Reply.Where(x => x.PostId == id).ToList();
+
                 return Ok(post);
             }
             catch (Exception ex)

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry, throwError } from 'rxjs';
 import { Constants } from 'src/app/constants';
-import { Post } from 'src/app/models/post';
+import { Post, PostPost } from 'src/app/models/post';
 import { HandleErrorService } from '../handle-error.service';
 import { RepliesService } from './replies.service';
 
@@ -25,5 +25,11 @@ export class PostsService {
     return this.http
       .get<Post>(`${Constants.backendApiUrl}Main/GetPost/${postID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
+  }
+
+  postPost(post: PostPost): Observable<Post> {
+    return this.http
+      .post<Post>(`${Constants.backendApiUrl}Main/PostPost`, post)
+      .pipe(catchError(this.handleErrorService.handleError));
   }
 }
