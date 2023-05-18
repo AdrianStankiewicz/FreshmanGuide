@@ -21,7 +21,7 @@
 
   <div class="replies" *ngIf="filteredReplies">
     <div class="title">
-      <h3>Komentarze ({{filteredReplies.length}})</h3>
+      <h3 *ngIf="filteredReplies">Komentarze ({{filteredReplies.length}})</h3>
       <hr>
       <div class="filters">
         <div class="filters--filter">
