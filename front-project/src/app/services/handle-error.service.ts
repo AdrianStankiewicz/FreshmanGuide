@@ -10,15 +10,15 @@ export class HandleErrorService {
 
   handleError(error: any): Observable<any> {
     if (error.status === 200) {
-      return of(null); // Zignoruj błąd o kodzie 200
+      return of(null); // ignore code 200 error
     }
 
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
-      // Błąd po stronie klienta
+      // client side error
       errorMessage = error.error.message;
     } else {
-      // Błąd po stronie serwera
+      // server side error
       errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
 
