@@ -1,3 +1,4 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -5,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/http/categories.service';
+import { PostsService } from 'src/app/services/http/posts.service';
 
 @Component({
   selector: 'app-question-popup',
@@ -14,6 +16,7 @@ import { CategoriesService } from 'src/app/services/http/categories.service';
 export class QuestionPopupComponent {
   public questionForm!: FormGroup;
   categories: Category[] = [];
+  selectedCategory!: string;
 
   getAllFromCategoriesSub!: Subscription;
 
@@ -25,7 +28,8 @@ export class QuestionPopupComponent {
     private dialogRef: MatDialogRef<QuestionPopupComponent>,
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private postsService: PostsService
   ) {}
 
   ngOnInit(): void {
@@ -46,11 +50,31 @@ export class QuestionPopupComponent {
     this.dialogRef.close();
   }
 
-  onSubmit(): void {
-    let questionData: any = this.questionForm.value;
+  onCategoryChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.selectedCategory = selectElement.value;
+  }
 
+  onSubmit(): void {
     if (this.questionForm.valid) {
-      console.log(questionData);
+      const selectedCategoryID: number | undefined =
+        this.categories.find((category: Category) => {
+          return category.name === this.selectedCategory;
+        })?.id || 1;
+
+      this.postsService
+        .postPost({
+          nick: this.questionForm.controls['nick'].value,
+          categoryId: selectedCategoryID,
+          body: this.questionForm.controls['question'].value,
+          createdAt: new Date(),
+          verified: false,
+          reply: [],
+        })
+        .subscribe((response: any) => {
+          console.log(response);
+        });
+
       this.dialogRef.close();
       setTimeout(() => {
         this.toastr.success('Post został dodany', 'Sukces');

@@ -10,7 +10,7 @@
     <div class="form-field"
       [ngClass]="{'invalid-input-field': questionForm.controls['category'].invalid && questionForm.controls['category'].touched}">
       <label for="">Kategoria</label>
-      <select
+      <select (change)="onCategoryChange($event)"
         [ngClass]="{'invalid-input': questionForm.controls['category'].invalid && questionForm.controls['category'].touched}"
         matInput formControlName="category" name="category" id="category" #categorySelectElement>
         <option disabled selected value="">--wybierz--</option>
