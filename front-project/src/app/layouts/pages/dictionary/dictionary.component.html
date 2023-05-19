@@ -1,21 +1,24 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4" *ngFor="let word of words">
-      <div class="card">
-        <div class="card-front">
-          <div class="card-body">
-            <h5 class="card-title">{{ word.word }}</h5>
+    <ng-container *ngFor="let word of groupedWords">
+      <h2 class="">{{ word[0] }}</h2>
+      <div class="col-md-4" *ngFor="let groupWord of word[1]">
+        <div class="card">
+          <div class="card-front">
+            <div class="card-body">
+              <h5 class="card-title">{{ groupWord.word }}</h5>
+            </div>
           </div>
-        </div>
-        <div class="card-back">
-          <div class="card-body">
-            <h5 class="card-title">{{ word.word }}</h5>
-            <hr>
-            <p class="card-text">{{ word.definition }}</p>
+          <div class="card-back">
+            <div class="card-body">
+              <h5 class="card-title">{{ groupWord.word }}</h5>
+              <hr>
+              <p class="card-text">{{ groupWord.definition }}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
 </div>
 
