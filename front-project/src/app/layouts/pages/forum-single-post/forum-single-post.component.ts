@@ -53,7 +53,6 @@ export class ForumSinglePostComponent {
             });
 
           this.filteredReplies = this.postData.reply;
-          console.log(this.filteredReplies);
         });
     });
 
