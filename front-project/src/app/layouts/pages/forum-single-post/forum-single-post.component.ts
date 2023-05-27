@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/models/post';
 import { Reply } from 'src/app/models/reply';
@@ -33,7 +33,8 @@ export class ForumSinglePostComponent {
     private route: ActivatedRoute,
     private postsService: PostsService,
     private dialogRef: MatDialog,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class ForumSinglePostComponent {
             });
 
           this.filteredReplies = this.postData.reply;
+          console.log(this.filteredReplies);
         });
     });
 
@@ -91,9 +93,13 @@ export class ForumSinglePostComponent {
 
   openDialog(): void {
     const dialogConfig: MatDialogConfig<any> = new MatDialogConfig();
+    const urlParams = this.router.url;
     dialogConfig.disableClose = true;
     dialogConfig.hasBackdrop = true;
     dialogConfig.width = 'clamp(310px, 95%, 800px)';
+    dialogConfig.data = {
+      params: urlParams,
+    };
 
     this.dialogRef.open(ReplyPopupComponent, dialogConfig);
   }
