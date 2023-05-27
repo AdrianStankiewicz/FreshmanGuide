@@ -33,7 +33,7 @@
           </select>
         </div>
       </div>
-      <div class="reply-box" *ngFor="let reply of filteredReplies">
+      <div class="reply-box" *ngFor="let reply of slicedReplies">
         <div class="first-row">
           <span class="nick">{{reply.nick}}</span>
           <mat-icon class="star" [ngClass]="{'gold': reply.verified === true}">star</mat-icon>
@@ -44,6 +44,11 @@
         <div class="info">
           <span class="last-updated">Edytowano {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
         </div>
+      </div>
+      <div class="paginator">
+        <mat-paginator (page)="onPageChange($event)" [length]="filteredReplies.length" [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
+        </mat-paginator>
       </div>
     </div>
   </div>

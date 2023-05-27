@@ -217,6 +217,12 @@
   color: var(--mainGoldColor);
 }
 
+.mat-mdc-paginator {
+  margin-top: 15px;
+  background-color: var(--mainGrayColor);
+  border-radius: 5px;
+}
+
 @media only screen and (min-width: 410px) {
   .card .last-row {
     flex-direction: row;
