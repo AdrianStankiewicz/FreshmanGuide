@@ -40,6 +40,9 @@ export class BanerComponent {
   banerTextInternship: string =
     'Znajdziesz tu praktyki polecane przez starszych studentów';
   banerImageInternship: string = `url('/assets/images/internship1.jpeg')`;
+  banerTitleShop: string = 'Sklepik UMG';
+  banerTextShop: string = 'Sprawdź co możesz kupić w uczelnianym sklepiku';
+  banerImageShop: string = `url('/assets/images/shop1.jpeg')`;
   banerTitleForum: string = 'Forum';
   banerTextForum: string = 'Zadaj pytanie starszym studentom';
   banerImageForum: string = `url('/assets/images/forum1.jpeg')`;
@@ -94,6 +97,12 @@ export class BanerComponent {
               this.banerImageInternship;
             this.banerTitle = this.banerTitleInternship;
             this.banerText = this.banerTextInternship;
+            break;
+            case '/sklepik':
+            this.banerImage.nativeElement.style.backgroundImage =
+              this.banerImageShop;
+            this.banerTitle = this.banerTitleShop;
+            this.banerText = this.banerTextShop;
             break;
           case '/forum':
             this.banerImage.nativeElement.style.backgroundImage =
