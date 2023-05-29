@@ -84,6 +84,12 @@ export class InternshipComponent {
       );
     }
 
+    if (this.selectedCategory) {
+      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
+        return internship.category.normalize().includes(this.selectedCategory);
+      });
+    }
+
     this.filteredInternships = filteredInternships;
     this.numberOfInternships = this.filteredInternships.length;
     this.paginator.firstPage();
