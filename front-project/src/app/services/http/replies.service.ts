@@ -25,4 +25,10 @@ export class RepliesService {
       .get<Reply>(`${Constants.backendApiUrl}Main/GetReply/${replyID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
+
+  postReply(reply: Reply): Observable<Reply> {
+    return this.http
+      .post<Reply>(`${Constants.backendApiUrl}Main/PostReply`, reply)
+      .pipe(catchError(this.handleErrorService.handleError));
+  }
 }

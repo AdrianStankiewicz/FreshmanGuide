@@ -31,6 +31,7 @@ import { ForumSinglePostComponent } from './layouts/pages/forum-single-post/foru
 import { FormsModule } from '@angular/forms';
 import { QuestionPopupComponent } from './layouts/partials/question-popup/question-popup.component';
 import { ReplyPopupComponent } from './layouts/partials/reply-popup/reply-popup.component';
+import { ShopComponent } from './layouts/pages/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { ReplyPopupComponent } from './layouts/partials/reply-popup/reply-popup.
     ForumSinglePostComponent,
     QuestionPopupComponent,
     ReplyPopupComponent,
+    ShopComponent,
   ],
   imports: [
     BrowserModule,

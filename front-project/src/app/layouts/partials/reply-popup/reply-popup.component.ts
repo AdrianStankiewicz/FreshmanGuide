@@ -1,7 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
+import { RepliesService } from 'src/app/services/http/replies.service';
+import { ForumSinglePostComponent } from '../../pages/forum-single-post/forum-single-post.component';
 
 @Component({
   selector: 'app-reply-popup',
@@ -10,14 +12,19 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ReplyPopupComponent {
   public replyForm!: FormGroup;
+  urlParams!: any;
+  postID!: number;
 
   @ViewChild('nickInputElement') nickInputElement!: ElementRef;
   @ViewChild('replyTextAreaElement') replyTextAreaElement!: ElementRef;
+  @ViewChild(ForumSinglePostComponent) singlePost!: ForumSinglePostComponent;
 
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ReplyPopupComponent>,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private replyService: RepliesService
   ) {}
 
   ngOnInit(): void {
@@ -25,6 +32,10 @@ export class ReplyPopupComponent {
       nick: ['', Validators.required],
       reply: ['', Validators.required],
     });
+
+    this.urlParams = this.data.params;
+    const splittedUrl = this.urlParams.split('/');
+    this.postID = splittedUrl.pop();
   }
 
   onClose(): void {
@@ -32,10 +43,19 @@ export class ReplyPopupComponent {
   }
 
   onSubmit(): void {
-    let replyData: any = this.replyForm.value;
+    let replyData: any = {
+      nick: this.replyForm.controls['nick'].value,
+      body: this.replyForm.controls['reply'].value,
+      postId: this.postID,
+      createdAt: new Date().toISOString(),
+      verified: false,
+    };
 
     if (this.replyForm.valid) {
-      console.log(replyData);
+      this.replyService.postReply(replyData).subscribe((response: any) => {
+        console.log(response);
+      });
+
       this.dialogRef.close();
       setTimeout(() => {
         this.toastr.success('Komentarz został dodany', 'Sukces');
