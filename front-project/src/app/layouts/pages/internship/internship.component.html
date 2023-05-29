@@ -7,7 +7,7 @@
       </div>
       <div class="search-box__filters">
         <div class="search-box__filters--filter">
-          <label for="category">Wybierz wydział</label>
+          <label for="category">Wybierz kategorię</label>
           <select (change)="onCategoryChange($event)" name="category" id="category" #categorySelectElement>
             <option disabled selected value="">--wybierz--</option>
             <option *ngFor="let internship of internships" value="{{internship.category}}">{{internship.category}}</option>

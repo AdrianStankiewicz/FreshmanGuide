@@ -29,6 +29,7 @@ export class InternshipComponent {
   searchKeyword: string = '';
   searchedInternships: Internship[] = [];
 
+  internshipCategory!: Internship | undefined;
   selectedCategory: string = '';
 
   getAllFromInternshipsSub!: Subscription;
@@ -82,6 +83,12 @@ export class InternshipComponent {
       filteredInternships = filteredInternships.filter((internship): boolean =>
       internship.name.toLowerCase().includes(this.searchKeyword.toLowerCase())
       );
+    }
+
+    if (this.selectedCategory) {
+      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
+        return internship.category.normalize().includes(this.selectedCategory);
+      });
     }
 
     this.filteredInternships = filteredInternships;
