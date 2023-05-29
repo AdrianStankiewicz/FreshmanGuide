@@ -29,7 +29,6 @@ export class InternshipComponent {
   searchKeyword: string = '';
   searchedInternships: Internship[] = [];
 
-  internshipCategory!: Internship | undefined;
   selectedCategory: string = '';
 
   getAllFromInternshipsSub!: Subscription;
