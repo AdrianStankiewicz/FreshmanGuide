@@ -29,7 +29,7 @@ export class QuestionPopupComponent {
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
     private toastr: ToastrService,
-    private postsService: PostsService
+    private postsService: PostsService,
   ) {}
 
   ngOnInit(): void {
@@ -78,7 +78,7 @@ export class QuestionPopupComponent {
       this.dialogRef.close();
       setTimeout(() => {
         this.toastr.success('Post został dodany', 'Sukces');
-      }, 1000);
+      }, 5000);
     } else {
       this.markInvalidInputs();
     }
