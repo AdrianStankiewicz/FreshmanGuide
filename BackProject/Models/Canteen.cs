@@ -6,7 +6,7 @@ namespace BackProject.Models
     {
         public int Id { get; set; }
         public String Name { get; set; }
-        public float Price { get; set; }
+        public double Price { get; set; }
         public String Review { get; set; }
     }
 }
