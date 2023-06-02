@@ -16,7 +16,7 @@ namespace BackProject.Controllers
         }
 
         [HttpGet("GetAllCanteen")]
-        public IActionResult GetAllCantines()
+        public IActionResult GetAllCanteen()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace BackProject.Controllers
         }
 
         [HttpGet("GetCanteen/{id}")]
-        public IActionResult GetCantine(int id)
+        public IActionResult GetCanteen(int id)
         {
             try
             {
