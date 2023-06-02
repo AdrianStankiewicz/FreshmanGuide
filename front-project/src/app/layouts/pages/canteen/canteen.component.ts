@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Canteen } from 'src/app/models/Canteen';
+import { Canteen } from 'src/app/models/canteen';
 import { CanteenService } from 'src/app/services/http/canteen.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
