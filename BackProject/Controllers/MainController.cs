@@ -15,8 +15,8 @@ namespace BackProject.Controllers
             _context = context;
         }
 
-        [HttpGet("GetAllCantines")]
-        public IActionResult GetAllCantines()
+        [HttpGet("GetAllCanteen")]
+        public IActionResult GetAllCanteen()
         {
             try
             {
@@ -33,8 +33,8 @@ namespace BackProject.Controllers
             }
         }
 
-        [HttpGet("GetCantine/{id}")]
-        public IActionResult GetCantine(int id)
+        [HttpGet("GetCanteen/{id}")]
+        public IActionResult GetCanteen(int id)
         {
             try
             {

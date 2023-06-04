@@ -1,0 +1,38 @@
+name: Publish Backend on Azure 
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - master
+
+env:
+  AZURE_WEBAPP_NAME: 'FreshmanGuideBackend'
+  AZURE_WEBAPP_PACKAGE_PATH: './BackProject/publish'
+    
+jobs:
+  publish:
+    runs-on: windows-latest
+    
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '6.0.x'
+        
+    - name: Install dependencies
+      run: dotnet restore ./BackProject/BackProject.sln
+      
+    - name: Build Project
+      run: dotnet build ./BackProject/BackProject.sln --configuration Release --no-restore
+      
+    - name: Publish Project
+      run: dotnet publish ./BackProject/BackProject.sln --configuration Release --no-build --output ${{env.AZURE_WEBAPP_PACKAGE_PATH}}
+      
+    - name: Deployment to Azure
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile:  ${{ secrets.AZURE_PUBLISH_PROFILE_BACKEND }}
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}

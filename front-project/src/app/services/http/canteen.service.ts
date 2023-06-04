@@ -16,7 +16,7 @@ export class CanteenService {
 
   getAllFromCanteen(): Observable<Canteen[]> {
     return this.http
-      .get<Canteen[]>(`${Constants.backendApiUrl}Main/GetAllCanteens`)
+      .get<Canteen[]>(`${Constants.backendApiUrl}Main/GetAllCanteen`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
