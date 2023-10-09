@@ -9,4 +9,4 @@
   <app-footer></app-footer>
 </div>
 
-<ngx-loading *ngIf="loading" [show]="loading"></ngx-loading>
+<ngx-loading *ngIf="loading$ | async as isLoading" [show]="isLoading"></ngx-loading>

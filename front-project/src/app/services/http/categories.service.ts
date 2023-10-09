@@ -14,13 +14,13 @@ export class CategoriesService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromCategories(): Observable<Category[]> {
+  public getAllFromCategories(): Observable<Category[]> {
     return this.http
       .get<Category[]>(`${Constants.backendApiUrl}Main/GetAllCategories`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromCategories(categoryID: number): Observable<Category> {
+  public getOneFromCategories(categoryID: number): Observable<Category> {
     return this.http
       .get<Category>(`${Constants.backendApiUrl}Main/GetCategory/${categoryID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));

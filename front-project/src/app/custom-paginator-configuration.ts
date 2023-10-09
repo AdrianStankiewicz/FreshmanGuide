@@ -19,10 +19,10 @@ export function CustomPaginator() {
   };
 
   customPaginatorIntl.itemsPerPageLabel = 'Postów na stronie:';
-  customPaginatorIntl.firstPageLabel = 'Pierwsza strona';
-  customPaginatorIntl.lastPageLabel = 'Ostatnia strona';
-  customPaginatorIntl.previousPageLabel = 'Poprzednia strona';
-  customPaginatorIntl.nextPageLabel = 'Następna strona';
+  customPaginatorIntl.firstPageLabel = '';
+  customPaginatorIntl.lastPageLabel = '';
+  customPaginatorIntl.previousPageLabel = '';
+  customPaginatorIntl.nextPageLabel = '';
   customPaginatorIntl.getRangeLabel = rangeLabel;
 
   return customPaginatorIntl;

@@ -1,0 +1,54 @@
+<div class="first">
+  <div class="container">
+    <div class="search-box">
+      <div class="search-box__searchbar">
+        <input [(ngModel)]="searchKeyword" (keyup)="onSearchChange()" type="text" placeholder="Wyszukaj wątek...">
+        <mat-icon>search</mat-icon>
+      </div>
+      <div class="search-box__filters">
+        <div class="search-box__filters--filter">
+          <label for="category">Wybierz kategorię</label>
+          <select (change)="onCategoryChange($event)" name="category" id="category" #categorySelectElement>
+            <option disabled selected value="">--wybierz--</option>
+            <option *ngFor="let internship of internships" value="{{internship.category}}">{{internship.category}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="search-box__addQuestion">
+        <button class="reset" type="button" (click)="onReset()">Resetuj</button>
+        <button type="button">Dodaj praktykę</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="second" style="position: relative; min-height: 100px;">
+  <mat-spinner *ngIf="!slicedInternships || slicedInternships.length === 0"
+    style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
+  <div class="container second-container" *ngIf="slicedInternships && slicedInternships.length > 0">
+    <div class="posts-box">
+      <h3 class="posts-number">Wszystkich praktyk ({{numberOfInternships}})</h3>
+      <hr>
+      <div class="posts">
+        <div class="card" *ngFor="let internship of slicedInternships ; let i = index; trackBy: trackByFn">
+          <a href={{internship.link}} target="_blank" rel="noopener noreferrer">
+            <div class="first-row">
+              <span class="nick">{{internship.name}}</span>
+            </div>
+            <div class="content">
+              <a href={{internship.link}} target="_blank" rel="noopener noreferrer">{{internship.link}}</a>
+            </div>
+            <div class="last-row">
+              <span class="category" *ngIf="internship">#{{internship.category}}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="paginator">
+        <mat-paginator (page)="onPageChange($event)" [length]="filteredInternships.length" [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>

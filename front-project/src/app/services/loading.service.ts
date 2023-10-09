@@ -1,27 +1,28 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { OverflowService } from './overflow.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoadingService {
-  private loading$ = new BehaviorSubject<boolean>(false);
+  public loading$ = new BehaviorSubject<boolean>(false);
 
   public getLoading$(): Observable<boolean> {
     return this.loading$.asObservable();
   }
 
-  private updateLoading$(isLoading: boolean): void {
-    this.loading$.next(isLoading);
-  }
+  constructor(private overflowService: OverflowService) {}
 
   public startLoading(): boolean {
-    this.updateLoading$(true);
+    this.loading$.next(true);
+    this.overflowService.setFixedBody();
     return true;
   }
 
   public stopLoading(): boolean {
-    this.updateLoading$(false);
+    this.loading$.next(false);
+    this.overflowService.removeFixedBody();
     return false;
   }
 }
