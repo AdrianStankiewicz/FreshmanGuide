@@ -1,5 +1,5 @@
 .container {
-  margin-bottom: 1rem;
+  padding: 1rem 0;
 }
 
 .card {
@@ -9,6 +9,12 @@
   transform-style: preserve-3d;
   transition: transform 1s;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+}
+
+.title{
+  margin-bottom: 7px;
+  font-size: 2.2rem;
+  font-weight: bold;
 }
 
 .card-body {
@@ -45,7 +51,7 @@
 }
 
 .col-md-4 {
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 hr {
