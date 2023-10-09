@@ -8,6 +8,7 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class FindRoomComponent {
   loading!: boolean;
+  dishes: any[] = [{ name: 'Test1', review: 'Test1' }];
 
   constructor(private loadingService: LoadingService) {}
 
