@@ -14,13 +14,13 @@ export class ConsultationsService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromConsultations(): Observable<Consultation[]> {
+  public getAllFromConsultations(): Observable<Consultation[]> {
     return this.http
       .get<Consultation[]>(`${Constants.backendApiUrl}Main/GetAllConsultations`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromConsultations(consultationID: number): Observable<Consultation> {
+  public getOneFromConsultations(consultationID: number): Observable<Consultation> {
     return this.http
       .get<Consultation>(
         `${Constants.backendApiUrl}Main/GetConsultations/${consultationID}`

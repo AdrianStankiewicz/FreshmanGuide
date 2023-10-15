@@ -14,13 +14,13 @@ export class DictionaryService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromDictionary(): Observable<Dictionary[]> {
+  public getAllFromDictionary(): Observable<Dictionary[]> {
     return this.http
       .get<Dictionary[]>(`${Constants.backendApiUrl}Main/GetAllDictionaries`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromDictionary(dictionaryID: number): Observable<Dictionary> {
+  public getOneFromDictionary(dictionaryID: number): Observable<Dictionary> {
     return this.http
       .get<Dictionary>(
         `${Constants.backendApiUrl}Main/GetDictionary/${dictionaryID}`

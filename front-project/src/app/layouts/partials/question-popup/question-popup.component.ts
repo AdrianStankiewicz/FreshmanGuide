@@ -1,24 +1,38 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import {
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { MatIconModule } from '@angular/material/icon';
+import { Subscription, distinctUntilChanged } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/http/categories.service';
-import { PostsService } from 'src/app/services/http/posts.service';
+import { FormService } from './services/form.service';
 
 @Component({
   selector: 'app-question-popup',
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MatIconModule],
   templateUrl: './question-popup.component.html',
   styleUrls: ['./question-popup.component.css'],
 })
-export class QuestionPopupComponent {
-  public questionForm!: FormGroup;
-  categories: Category[] = [];
-  selectedCategory!: string;
+export class QuestionPopupComponent implements OnInit, OnDestroy {
+  protected questionForm!: FormGroup;
+  protected categories: Category[] = [];
 
-  getAllFromCategoriesSub!: Subscription;
+  private selectedCategory!: string;
+  private _subscriptions = new Subscription();
 
   @ViewChild('categorySelectElement') categorySelectElement!: ElementRef;
   @ViewChild('nickInputElement') nickInputElement!: ElementRef;
@@ -28,16 +42,18 @@ export class QuestionPopupComponent {
     private dialogRef: MatDialogRef<QuestionPopupComponent>,
     private formBuilder: FormBuilder,
     private categoriesService: CategoriesService,
-    private toastr: ToastrService,
-    private postsService: PostsService,
+    private formService: FormService
   ) {}
 
   ngOnInit(): void {
-    this.getAllFromCategoriesSub = this.categoriesService
-      .getAllFromCategories()
-      .subscribe((categories: Category[]): void => {
-        this.categories = categories;
-      });
+    this._subscriptions.add(
+      this.categoriesService
+        .getAllFromCategories()
+        .pipe(distinctUntilChanged())
+        .subscribe((categories: Category[]): void => {
+          this.categories = categories;
+        })
+    );
 
     this.questionForm = this.formBuilder.group({
       category: ['', Validators.required],
@@ -46,45 +62,38 @@ export class QuestionPopupComponent {
     });
   }
 
-  onClose(): void {
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
+    this.formService.destroy();
+  }
+
+  protected onClose(): void {
     this.dialogRef.close();
   }
 
-  onCategoryChange(event: Event): void {
+  protected onCategoryChange(event: Event): void {
     const selectElement = event.target as HTMLSelectElement;
     this.selectedCategory = selectElement.value;
   }
 
-  onSubmit(): void {
+  protected onSubmit(): void {
     if (this.questionForm.valid) {
       const selectedCategoryID: number | undefined =
-        this.categories.find((category: Category) => {
+        this.categories.find((category: Category): boolean => {
           return category.name === this.selectedCategory;
         })?.id || 1;
 
-      this.postsService
-        .postPost({
-          nick: this.questionForm.controls['nick'].value,
-          categoryId: selectedCategoryID,
-          body: this.questionForm.controls['question'].value,
-          createdAt: new Date(),
-          verified: false,
-          reply: [],
-        })
-        .subscribe((response: any) => {
-          console.log(response);
-        });
-
-      this.dialogRef.close();
-      setTimeout(() => {
-        this.toastr.success('Post został dodany', 'Sukces');
-      }, 5000);
+      this.formService.submit(
+        this.questionForm,
+        selectedCategoryID,
+        this.dialogRef
+      );
     } else {
       this.markInvalidInputs();
     }
   }
 
-  markInvalidInputs(): void {
+  private markInvalidInputs(): void {
     for (const control in this.questionForm.controls) {
       if (this.questionForm.controls.hasOwnProperty(control)) {
         this.questionForm.controls[control].markAsTouched();

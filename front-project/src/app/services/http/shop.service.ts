@@ -14,13 +14,13 @@ export class ShopService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromShop(): Observable<Shop[]> {
+  public getAllFromShop(): Observable<Shop[]> {
     return this.http
       .get<Shop[]>(`${Constants.backendApiUrl}Main/GetAllShops`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromShop(shopID: number): Observable<Shop> {
+  public getOneFromShop(shopID: number): Observable<Shop> {
     return this.http
       .get<Shop>(`${Constants.backendApiUrl}Main/GetShop/${shopID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));

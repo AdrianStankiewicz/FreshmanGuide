@@ -1,0 +1,35 @@
+<div class="first" *ngIf="title && content && imageSrc && imageDesc && type === 'first'">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <h2 class="title">{{title}}</h2>
+        <div class="text">
+          <p>
+            {{content}}
+          </p>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <img id="img1" class="img" *ngIf="imageSrc" [src]="imageSrc" [alt]="imageDesc" loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="second" *ngIf="title && content && imageSrc && imageDesc && type === 'second'">
+  <div class="container">
+    <div id="row2" class="row">
+      <div class="col-md-5">
+        <img id="img2" class=img *ngIf="imageSrc" [src]="imageSrc" [alt]="imageDesc" loading="lazy">
+      </div>
+      <div class="col-md-7">
+        <h2 id="title2" class="title">{{title}}</h2>
+        <div class="text">
+          <p>
+            {{content}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

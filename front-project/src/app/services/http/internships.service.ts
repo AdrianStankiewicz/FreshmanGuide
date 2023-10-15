@@ -14,13 +14,13 @@ export class InternshipsService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromInternships(): Observable<Internship[]> {
+  public getAllFromInternships(): Observable<Internship[]> {
     return this.http
       .get<Internship[]>(`${Constants.backendApiUrl}Main/GetAllInternships`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromInternships(internshipID: number): Observable<Internship> {
+  public getOneFromInternships(internshipID: number): Observable<Internship> {
     return this.http
       .get<Internship>(
         `${Constants.backendApiUrl}Main/GetInternship/${internshipID}`

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, retry, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, retry, throwError } from 'rxjs';
 import { Constants } from 'src/app/constants';
 import { Post, PostPost } from 'src/app/models/post';
 import { HandleErrorService } from '../handle-error.service';
@@ -10,24 +10,30 @@ import { RepliesService } from './replies.service';
   providedIn: 'root',
 })
 export class PostsService {
+  public allPosts$ = new BehaviorSubject<Post[]>([]);
+
+  public getAllPosts$(): Observable<Post[]> {
+    return this.allPosts$.asObservable();
+  }
+
   constructor(
     private http: HttpClient,
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromPosts(): Observable<Post[]> {
+  public getAllFromPosts(): Observable<Post[]> {
     return this.http
       .get<Post[]>(`${Constants.backendApiUrl}Main/GetAllPosts`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromPosts(postID: number): Observable<Post> {
+  public getOneFromPosts(postID: number): Observable<Post> {
     return this.http
       .get<Post>(`${Constants.backendApiUrl}Main/GetPost/${postID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  postPost(post: PostPost): Observable<Post> {
+  public postPost(post: PostPost): Observable<Post> {
     return this.http
       .post<Post>(`${Constants.backendApiUrl}Main/PostPost`, post)
       .pipe(catchError(this.handleErrorService.handleError));
