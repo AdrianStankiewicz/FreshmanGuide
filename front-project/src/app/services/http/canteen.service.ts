@@ -14,13 +14,13 @@ export class CanteenService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromCanteen(): Observable<Canteen[]> {
+  public getAllFromCanteen(): Observable<Canteen[]> {
     return this.http
       .get<Canteen[]>(`${Constants.backendApiUrl}Main/GetAllCanteen`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromCanteen(canteenID: number): Observable<Canteen> {
+  public getOneFromCanteen(canteenID: number): Observable<Canteen> {
     return this.http
       .get<Canteen>(`${Constants.backendApiUrl}Main/GetCanteen/${canteenID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));

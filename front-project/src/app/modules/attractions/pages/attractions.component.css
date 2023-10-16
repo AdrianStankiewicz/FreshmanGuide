@@ -1,0 +1,77 @@
+@import "src/app/layouts/animations/animations-main.css";
+
+.second {
+  padding: 10px 0;
+  width: 100%;
+  background-color: var(--whiteColor);
+}
+
+.second .container .circles {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 0;
+  width: 100%;
+}
+
+.second .container .circles .circle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 120px;
+  height: 120px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--mainGoldColor);
+  background-color: var(--mainNavyColor);
+  border-radius: 50%;
+  transition: color 0.3s, background-color 0.3s;
+  animation: swing-in 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+
+.second .container .circles .circle:hover {
+  color: var(--mainNavyColor);
+  background-color: var(--mainGoldColor);
+}
+
+.second .container .circles .circle:last-child {
+  margin-bottom: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (min-width: 576px) {
+  .second .container .circles {
+    flex-direction: row;
+    width: 90%;
+  }
+
+  .second .container .circles .circle {
+    margin-bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .second .container .circles {
+    width: 80%;
+  }
+
+  .second .container .circles .circle {
+    margin-bottom: 0;
+    width: 120px;
+    height: 120px;
+    font-size: 1.6rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .second .container .circles {
+    width: 50%;
+  }
+}

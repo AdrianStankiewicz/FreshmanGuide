@@ -14,19 +14,19 @@ export class RepliesService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromReplies(): Observable<Reply[]> {
+  public getAllFromReplies(): Observable<Reply[]> {
     return this.http
       .get<Reply[]>(`${Constants.backendApiUrl}Main/GetAllReplies`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromReplies(replyID: number): Observable<Reply> {
+  public getOneFromReplies(replyID: number): Observable<Reply> {
     return this.http
       .get<Reply>(`${Constants.backendApiUrl}Main/GetReply/${replyID}`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  postReply(reply: Reply): Observable<Reply> {
+  public postReply(reply: Reply): Observable<Reply> {
     return this.http
       .post<Reply>(`${Constants.backendApiUrl}Main/PostReply`, reply)
       .pipe(catchError(this.handleErrorService.handleError));

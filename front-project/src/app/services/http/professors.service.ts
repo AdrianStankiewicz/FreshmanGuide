@@ -14,13 +14,13 @@ export class ProfessorsService {
     private handleErrorService: HandleErrorService
   ) {}
 
-  getAllFromProfessors(): Observable<Professor[]> {
+  public getAllFromProfessors(): Observable<Professor[]> {
     return this.http
       .get<Professor[]>(`${Constants.backendApiUrl}Main/GetAllProfessors`)
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
-  getOneFromProfessors(professorID: number): Observable<Professor> {
+  public getOneFromProfessors(professorID: number): Observable<Professor> {
     return this.http
       .get<Professor>(
         `${Constants.backendApiUrl}Main/GetProfessor/${professorID}`

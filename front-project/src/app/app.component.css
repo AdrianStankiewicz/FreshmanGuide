@@ -1,3 +1,12 @@
 :host {
   height: 100%;
 }
+.outlet {
+  min-height: calc(100vh - 430px);
+}
+
+@media only screen and (max-width: 768px) {
+  .outlet {
+    min-height: calc(100vh - 320px);
+  }
+}

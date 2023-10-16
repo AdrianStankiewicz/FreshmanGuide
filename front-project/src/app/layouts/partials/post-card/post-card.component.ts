@@ -1,5 +1,8 @@
-import { Component, Input } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { MatIconModule } from '@angular/material/icon';
+import { RouterModule } from '@angular/router';
+import { Subscription, distinctUntilChanged } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Post } from 'src/app/models/post';
 import { CategoriesService } from 'src/app/services/http/categories.service';
@@ -7,22 +10,31 @@ import { CategoriesService } from 'src/app/services/http/categories.service';
 @Component({
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
+  standalone: true,
+  imports: [CommonModule, RouterModule, MatIconModule],
   styleUrls: ['./post-card.component.css'],
 })
-export class PostCardComponent {
-  postCategory!: Category;
+export class PostCardComponent implements OnInit, OnDestroy {
+  protected postCategory!: Category;
 
-  getPostCategorySub!: Subscription;
-
-  constructor(private categoriesService: CategoriesService) {}
+  private _subscriptions = new Subscription();
 
   @Input('postData') postData!: Post;
 
+  constructor(private categoriesService: CategoriesService) {}
+
   ngOnInit(): void {
-    this.getPostCategorySub = this.categoriesService
-      .getOneFromCategories(this.postData.categoryId)
-      .subscribe((category: Category): void => {
-        this.postCategory = category;
-      });
+    this._subscriptions.add(
+      this.categoriesService
+        .getOneFromCategories(this.postData.categoryId)
+        .pipe(distinctUntilChanged())
+        .subscribe((category: Category): void => {
+          this.postCategory = category;
+        })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
   }
 }
