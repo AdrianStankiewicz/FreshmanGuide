@@ -11,5 +11,6 @@ namespace BackProject.Models
         [Required]
         public String Link { get; set; }
         public String Category { get; set; }
+        public String Faculty { get; set; }
     }
 }

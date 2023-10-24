@@ -3,4 +3,5 @@ export interface Internship {
   name: string;
   link: string;
   category: string;
+  faculty: string;
 }
