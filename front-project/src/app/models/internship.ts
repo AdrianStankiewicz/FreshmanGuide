@@ -5,3 +5,10 @@ export interface Internship {
   category: string;
   faculty: string;
 }
+
+export interface PostInternship {
+  name: string;
+  link: string;
+  category: string;
+  faculty: string;
+}
