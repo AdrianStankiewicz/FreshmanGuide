@@ -80,7 +80,7 @@ a {
 .container .search-box .search-box__filters {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   margin-top: 30px;
   width: 100%;
@@ -97,11 +97,7 @@ a {
   color: var(--mainGoldColor);
 }
 
-.container
-  .search-box
-  .search-box__filters
-  .search-box__filters--filter
-  select {
+.container .search-box .search-box__filters .search-box__filters--filter select {
   margin: 5px 0 10px 0;
   padding: 8px 10px;
   color: var(--mainNavyColorDarker);
@@ -203,7 +199,7 @@ a {
 }
 
 .card .content {
-  height: 60%;
+  height: 40%;
   font-size: 1.4rem;
   font-weight: lighter;
   color: var(--mainGrayColor);
