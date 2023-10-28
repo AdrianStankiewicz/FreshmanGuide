@@ -1,0 +1,68 @@
+<div class="popup">
+  <div class="up">
+    <button class="close" (click)="onClose()"><mat-icon>close</mat-icon></button>
+    <h3>Dodaj praktykę</h3>
+  </div>
+
+  <hr>
+
+  <form action="" [formGroup]="internshipForm">
+    <div class="form-row">
+      <div class="form-field"
+        [ngClass]="{'invalid-input-field': internshipForm.controls['category'].invalid && internshipForm.controls['category'].touched}">
+        <label for="category">Kategoria</label>
+        <select (change)="onCategoryChange($event)"
+          [ngClass]="{'invalid-input': internshipForm.controls['category'].invalid && internshipForm.controls['category'].touched}"
+          matInput formControlName="category" name="category" id="category" #categorySelectElement>
+          <option disabled selected value="">--wybierz--</option>
+          <option *ngFor="let category of uniqueCategories" value="{{category}}">{{category}}</option>
+        </select>
+        <div class="error"
+          *ngIf="internshipForm.controls['category'].invalid && internshipForm.controls['category'].touched">
+          To pole jest wymagane!
+        </div>
+      </div>
+      <div class="form-field"
+        [ngClass]="{'invalid-input-field': internshipForm.controls['faculty'].invalid && internshipForm.controls['faculty'].touched}">
+        <label for="faculty">Wydział</label>
+        <select (change)="onFacultyChange($event)"
+          [ngClass]="{'invalid-input': internshipForm.controls['faculty'].invalid && internshipForm.controls['faculty'].touched}"
+          matInput formControlName="faculty" name="faculty" id="faculty" #facultySelectElement>
+          <option disabled selected value="">--wybierz--</option>
+          <option>Elektryczny</option>
+          <option>Mechaniczny</option>
+          <option>Nawigacyjny</option>
+          <option>Zarzadzania i nauk o jakosci</option>
+        </select>
+        <div class="error"
+          *ngIf="internshipForm.controls['faculty'].invalid && internshipForm.controls['faculty'].touched">
+          To pole jest wymagane!
+        </div>
+      </div>
+    </div>
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': internshipForm.controls['name'].invalid && internshipForm.controls['name'].touched}">
+      <label for="name">Nazwa</label>
+      <input
+        [ngClass]="{'invalid-input': internshipForm.controls['name'].invalid && internshipForm.controls['name'].touched}"
+        matInput formControlName="name" type="text" name="name" id="name" #nameInputElement autocomplete="off">
+      <div class="error" *ngIf="internshipForm.controls['name'].invalid && internshipForm.controls['name'].touched">
+        To pole jest wymagane!
+      </div>
+    </div>
+    <div class="form-field"
+      [ngClass]="{'invalid-input-field': internshipForm.controls['link'].invalid && internshipForm.controls['link'].touched}">
+      <label for="link">Link</label>
+      <input
+        [ngClass]="{'invalid-input': internshipForm.controls['link'].invalid && internshipForm.controls['link'].touched}"
+        matInput formControlName="link" type="text" name="link" id="link" #linkInputElement>
+      <div class="error" *ngIf="internshipForm.controls['link'].invalid && internshipForm.controls['link'].touched">
+        To pole jest wymagane!
+      </div>
+    </div>
+
+    <div class="submit">
+      <button (click)="onSubmit()" type="button">Dodaj</button>
+    </div>
+  </form>
+</div>
