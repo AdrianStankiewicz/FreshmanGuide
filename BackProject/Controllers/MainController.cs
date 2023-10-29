@@ -196,7 +196,7 @@ namespace BackProject.Controllers
         }
 
         [HttpPost("PostInternship")]
-        public IActionResult PostReply(Internship model)
+        public IActionResult PostInternship(Internship model)
         {
             try
             {
