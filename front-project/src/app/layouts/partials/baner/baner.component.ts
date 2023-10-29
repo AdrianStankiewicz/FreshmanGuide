@@ -34,6 +34,10 @@ export class BanerComponent implements DoCheck, OnDestroy {
   private banerTextFormalities: string =
     'Przeczytaj informacje na temat formalności i kół naukowych';
   private banerImageFormalities: string = `url('/assets/images/students1.jpeg')`;
+  private banerTitleDocuments: string = 'Ważne dokumenty';
+  private banerTextDocuments: string =
+    'Zbiór przykładowo wypełnionych dokumentów';
+  private banerImageDocuments: string = `url('/assets/images/docs1.jpg')`;
   private banerTitleDictionary: string = 'Słownik studenckiego slangu';
   private banerTextDictionary: string =
     'Znajdziesz tu pojęcia, którymi posługują się starsi studenci';
@@ -92,6 +96,12 @@ export class BanerComponent implements DoCheck, OnDestroy {
                 this.banerImageFormalities;
               this.banerTitle = this.banerTitleFormalities;
               this.banerText = this.banerTextFormalities;
+              break;
+            case '/dokumenty':
+              this.banerImage.nativeElement.style.backgroundImage =
+                this.banerImageDocuments;
+              this.banerTitle = this.banerTitleDocuments;
+              this.banerText = this.banerTextDocuments;
               break;
             case '/slownik':
               this.banerImage.nativeElement.style.backgroundImage =

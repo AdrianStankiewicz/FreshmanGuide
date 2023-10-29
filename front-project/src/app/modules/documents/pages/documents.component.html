@@ -1,0 +1,4 @@
+<div *ngFor="let document of documents">
+    <p>{{ document.title }}</p>
+    <a href="javascript:void(0)" (click)="downloadDocument(document.id, document.title, document.extension)">Download</a>
+  </div>
