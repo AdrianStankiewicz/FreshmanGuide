@@ -200,7 +200,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                _context.Add(model);
+                _context.Practice.Add(model);
                 _context.SaveChanges();
                 return Ok("Internship created. ");
             }
