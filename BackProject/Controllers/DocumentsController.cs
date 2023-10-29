@@ -1,6 +1,7 @@
 ﻿using BackProject.Db;
 using BackProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Headers;
 
 namespace BackProject.Controllers
 {
@@ -46,7 +47,7 @@ namespace BackProject.Controllers
                     await file.CopyToAsync(ms);
                     var fileBytes = ms.ToArray();
 
-                    var fileExtension = Path.GetExtension(file.FileName).TrimStart('.');
+                    var fileExtension = Path.GetExtension(file.FileName).Trim().TrimStart('.');
 
                     var document = new Document
                     {
@@ -59,6 +60,32 @@ namespace BackProject.Controllers
 
                     return Ok("File uploaded successfully");
                 }
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("DownloadDocument/{id}")]
+        public async Task<IActionResult> DownloadDocument(int id)
+        {
+            try
+            {
+                var document = await _context.Document.FindAsync(id);
+                if (document == null)
+                {
+                    return NotFound("Document not found");
+                }
+
+                var contentDisposition = new ContentDispositionHeaderValue("attachment")
+                {
+                    FileName = document.Title + "." + document.Extension
+                };
+
+                Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
+
+                return File(document.Doc, "application/octet-stream");
             }
             catch (Exception ex)
             {
