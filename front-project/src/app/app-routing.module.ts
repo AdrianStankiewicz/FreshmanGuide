@@ -39,6 +39,13 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'dokumenty',
+    loadChildren: () =>
+      import('./modules/documents/documents.module').then(
+        (m) => m.DocuemntsModule
+      ),
+  },
+  {
     path: 'znajdz-sale',
     loadChildren: () =>
       import('./modules/find-room/find-room.module').then(
