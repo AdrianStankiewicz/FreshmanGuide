@@ -33,9 +33,15 @@ export class InternshipsService {
       .pipe(retry(1), catchError(this.handleErrorService.handleError));
   }
 
+<<<<<<< HEAD
+  public postInternship(internship: PostInternship): Observable<Internship> {
+    return this.http
+      .post<Internship>(`${Constants.backendApiUrl}Main/PostInternship`, internship)
+=======
   public postInternship(internship: PostInternship): Observable<PostInternship> {
     return this.http
       .post<PostInternship>(`${Constants.backendApiUrl}Main/PostInternship`, internship)
+>>>>>>> 3c8a44e4af6b00a1cc4ad8fac269e2600069993d
       .pipe(catchError(this.handleErrorService.handleError));
   }
 }

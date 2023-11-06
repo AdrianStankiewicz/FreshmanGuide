@@ -18,5 +18,6 @@ namespace BackProject.Db
         public DbSet<Professor> Professor { get; set; }
         public DbSet<Reply> Reply { get; set; }
         public DbSet<Shop> Shop { get; set; }
+        public DbSet<Document> Document { get; set; }
     }
 }
