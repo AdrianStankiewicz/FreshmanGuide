@@ -1,6 +1,17 @@
 <div class="container">
-  <p>canteen works!</p>
-  <ul>
-    <li *ngFor="let dish of dishes">{{dish.name}}</li>
-  </ul>
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 my-3 justify-content-center justify-content-lg-start">
+    <div class="col-10" *ngFor="let dish of dishes">
+      <div class="card h-100 min-h dish-border dish-hover">
+        <div class="card-header bg-transparent">
+          <p class="card-title h3">{{ dish.name }}</p>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{ dish.review }}</p>
+        </div>
+        <div class="card-footer text-end">{{ dish.price }} zł</div>
+      </div>
+    </div>
+  </div>
+
+
 </div>

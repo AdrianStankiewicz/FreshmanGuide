@@ -1,6 +1,7 @@
 export interface Canteen {
-  id: number;
-  name: string;
-  price: number;
-  review: string;
-}
+    id: number;
+    name: string;
+    price: number;
+    review: string;
+  }
+  
