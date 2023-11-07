@@ -1,6 +1,8 @@
 ﻿using BackProject.Db;
 using BackProject.Models;
+using BackProject.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackProject.Controllers
 {
@@ -8,11 +10,11 @@ namespace BackProject.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        private readonly MyAppDbContext _context;
+        private readonly MyAppDbContext _dbContext;
 
         public MainController(MyAppDbContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
         [HttpGet("GetAllCanteen")]
@@ -20,7 +22,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var canteen = _context.Canteen.ToList();
+                var canteen = _dbContext.Canteen.ToList();
                 if (canteen.Count == 0)
                 {
                     return NotFound("No element found");
@@ -38,7 +40,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var canteen = _context.Canteen.Find(id);
+                var canteen = _dbContext.Canteen.Find(id);
                 if (canteen == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -56,7 +58,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var category = _context.Category.ToList();
+                var category = _dbContext.Category.ToList();
                 if (category.Count == 0)
                 {
                     return NotFound("No element found");
@@ -74,7 +76,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var category = _context.Category.Find(id);
+                var category = _dbContext.Category.Find(id);
                 if (category == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -92,7 +94,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var consultation = _context.Consultation.ToList();
+                var consultation = _dbContext.Consultation.ToList();
                 if (consultation.Count == 0)
                 {
                     return NotFound("No element found");
@@ -110,7 +112,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var consultations = _context.Consultation.Find(id);
+                var consultations = _dbContext.Consultation.Find(id);
                 if (consultations == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -129,7 +131,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var dictionary = _context.Dictionary.ToList();
+                var dictionary = _dbContext.Dictionary.ToList();
                 if (dictionary.Count == 0)
                 {
                     return NotFound("No element found");
@@ -146,7 +148,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var dictionary = _context.Dictionary.Find(id);
+                var dictionary = _dbContext.Dictionary.Find(id);
                 if (dictionary == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -164,7 +166,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var internship = _context.Practice.ToList();
+                var internship = _dbContext.Practice.ToList();
                 if (internship.Count == 0)
                 {
                     return NotFound("No element found");
@@ -182,7 +184,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var internship = _context.Practice.Find(id);
+                var internship = _dbContext.Practice.Find(id);
                 if (internship == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -200,8 +202,8 @@ namespace BackProject.Controllers
         {
             try
             {
-                _context.Practice.Add(model);
-                _context.SaveChanges();
+                _dbContext.Practice.Add(model);
+                _dbContext.SaveChanges();
                 return Ok("Internship created. ");
             }
             catch (Exception ex)
@@ -215,12 +217,12 @@ namespace BackProject.Controllers
         {
             try
             {
-                var post = _context.Post.ToList();
+                var post = _dbContext.Post.ToList();
                 if (post.Count == 0)
                     return NotFound("No element found");
 
                 foreach (var item in post)
-                    item.Reply = _context.Reply.Where(x => x.PostId == item.Id).ToList();
+                    item.Reply = _dbContext.Reply.Where(x => x.PostId == item.Id).ToList();
 
                 return Ok(post);
             }
@@ -235,11 +237,11 @@ namespace BackProject.Controllers
         {
             try
             {
-                var post = _context.Post.Find(id);
+                var post = _dbContext.Post.Find(id);
                 if (post == null)
                     return NotFound($"Element not found {id}");
 
-                post.Reply = _context.Reply.Where(x => x.PostId == id).ToList();
+                post.Reply = _dbContext.Reply.Where(x => x.PostId == id).ToList();
 
                 return Ok(post);
             }
@@ -254,9 +256,48 @@ namespace BackProject.Controllers
         {
             try
             {
-                _context.Add(model);
-                _context.SaveChanges();
-                return Ok("Post created. ");
+                _dbContext.Add(model);
+                _dbContext.SaveChanges();
+                return Ok("Post created");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPut("EditPost/{id}")]
+        public async Task<IActionResult> EditPost([FromRoute] int id, PostDto model)
+        {
+            var postToEdit = await _dbContext.Post.FirstOrDefaultAsync(x => x.Id == id);
+            if (postToEdit == null)
+                return BadRequest("Wrong post Id");
+            
+            postToEdit.Nick = model.Nick;
+            postToEdit.CategoryId = model.CategoryId;
+            postToEdit.Body = model.Body;
+            postToEdit.Verified = model.Verified;
+
+            await _dbContext.SaveChangesAsync();
+            return Ok("Post edited ");
+        }
+
+        [HttpDelete("DeletePost/{id}")]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            try
+            {
+                var postToDelete = await _dbContext.Post.FirstOrDefaultAsync(x => x.Id == id);
+                if (postToDelete == null)
+                    return BadRequest("Wrong post Id");
+
+                var repliesToDelete = await _dbContext.Reply.Where(x => x.PostId == postToDelete.Id).ToListAsync();
+                if(repliesToDelete != null)
+                    _dbContext.Reply.RemoveRange(repliesToDelete);
+
+                _dbContext.Post.Remove(postToDelete);
+                await _dbContext.SaveChangesAsync();
+                return Ok("Post deleted ");
             }
             catch (Exception ex)
             {
@@ -269,12 +310,12 @@ namespace BackProject.Controllers
         {
             try
             {
-                var postToVerify = _context.Post.FirstOrDefault(post => post.Id == id);
+                var postToVerify = _dbContext.Post.FirstOrDefault(post => post.Id == id);
                 if (postToVerify == null)
                     return BadRequest("Wrong post Id");
 
                 postToVerify.Verified = true;
-                _context.SaveChanges();
+                _dbContext.SaveChanges();
 
                 return Ok("Post verified");
             }
@@ -289,7 +330,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var professor = _context.Professor.ToList();
+                var professor = _dbContext.Professor.ToList();
                 if (professor.Count == 0)
                 {
                     return NotFound("No element found");
@@ -307,7 +348,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var professor = _context.Professor.Find(id);
+                var professor = _dbContext.Professor.Find(id);
                 if (professor == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -325,7 +366,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var reply = _context.Reply.ToList();
+                var reply = _dbContext.Reply.ToList();
                 if (reply.Count == 0)
                 {
                     return NotFound("No element found");
@@ -343,7 +384,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var reply = _context.Reply.Find(id);
+                var reply = _dbContext.Reply.Find(id);
                 if (reply == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -361,8 +402,8 @@ namespace BackProject.Controllers
         {
             try
             {
-                _context.Add(model);
-                _context.SaveChanges();
+                _dbContext.Add(model);
+                _dbContext.SaveChanges();
                 return Ok("Reply created. ");
             }
             catch (Exception ex)
@@ -376,12 +417,12 @@ namespace BackProject.Controllers
         {
             try
             {
-                var replyToVerify = _context.Reply.FirstOrDefault(reply => reply.Id == id);
+                var replyToVerify = _dbContext.Reply.FirstOrDefault(reply => reply.Id == id);
                 if (replyToVerify == null)
                     return BadRequest("Wrong comment Id");
 
                 replyToVerify.Verified = true;
-                _context.SaveChanges();
+                _dbContext.SaveChanges();
 
                 return Ok("Comment verified");
             }
@@ -396,7 +437,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var shop = _context.Shop.ToList();
+                var shop = _dbContext.Shop.ToList();
                 if (shop.Count == 0)
                 {
                     return NotFound("No element found");
@@ -414,7 +455,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var shop = _context.Shop.Find(id);
+                var shop = _dbContext.Shop.Find(id);
                 if (shop == null)
                 {
                     return NotFound($"Element not found {id}");
@@ -432,7 +473,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var admin = _context.Admin.ToList();
+                var admin = _dbContext.Admin.ToList();
                 if (admin.Count == 0)
                 {
                     return NotFound("No element found");
@@ -450,7 +491,7 @@ namespace BackProject.Controllers
         {
             try
             {
-                var admin = _context.Admin.Find(id);
+                var admin = _dbContext.Admin.Find(id);
                 if (admin == null)
                 {
                     return NotFound($"Element not found {id}");
