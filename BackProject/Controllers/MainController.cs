@@ -264,6 +264,26 @@ namespace BackProject.Controllers
             }
         }
 
+        [HttpPost("VerifyPost/{id}")]
+        public IActionResult VerifyPost([FromRoute] int id)
+        {
+            try
+            {
+                var postToVerify = _context.Post.FirstOrDefault(post => post.Id == id);
+                if (postToVerify == null)
+                    return BadRequest("Wrong post Id");
+
+                postToVerify.Verified = true;
+                _context.SaveChanges();
+
+                return Ok("Post verified");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpGet("GetAllProfessors")]
         public IActionResult GetAllProfessors()
         {
