@@ -1,6 +1,7 @@
 ﻿using BackProject.Db;
 using BackProject.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Http.Headers;
 
 namespace BackProject.Controllers
@@ -9,88 +10,65 @@ namespace BackProject.Controllers
     [ApiController]
     public class DocumentsController : ControllerBase
     {
-        private readonly MyAppDbContext _context;
+        private readonly MyAppDbContext _dbContext;
 
         public DocumentsController(MyAppDbContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllDocuments()
         {
-            try
-            {
-                var docs = _context.Document.ToList();
-                if (docs.Count == 0)
-                {
-                    return NotFound("No element found");
-                }
-                return Ok(docs);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var docs = await _dbContext.Document.ToListAsync();
+            if (docs.Count == 0)
+                return NotFound("No element found");
+            return Ok(docs);
         }
 
         [HttpPost("{title}")]
         public async Task<IActionResult> UploadDocument(IFormFile file, string title)
         {
-            try
-            {
-                if (file == null || file.Length == 0)
-                    return BadRequest("File not selected");
+            if (file == null || file.Length == 0)
+                return BadRequest("File not selected");
 
-                using (var ms = new MemoryStream())
+            using (var ms = new MemoryStream())
+            {
+                await file.CopyToAsync(ms);
+                var fileBytes = ms.ToArray();
+
+                var fileExtension = Path.GetExtension(file.FileName).Trim().TrimStart('.');
+
+                var document = new Document
                 {
-                    await file.CopyToAsync(ms);
-                    var fileBytes = ms.ToArray();
+                    Doc = fileBytes,
+                    Extension = fileExtension,
+                    Title = title
+                };
+                _dbContext.Document.Add(document);
+                await _dbContext.SaveChangesAsync();
 
-                    var fileExtension = Path.GetExtension(file.FileName).Trim().TrimStart('.');
-
-                    var document = new Document
-                    {
-                        Doc = fileBytes,
-                        Extension = fileExtension,
-                        Title = title
-                    };
-                    _context.Document.Add(document);
-                    await _context.SaveChangesAsync();
-
-                    return Ok("File uploaded successfully");
-                }
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
+                return Ok("File uploaded successfully");
             }
         }
 
         [HttpGet("DownloadDocument/{id}")]
         public async Task<IActionResult> DownloadDocument(int id)
         {
-            try
+            var document = await _dbContext.Document.FindAsync(id);
+            if (document == null)
             {
-                var document = await _context.Document.FindAsync(id);
-                if (document == null)
-                {
-                    return NotFound("Document not found");
-                }
-
-                var contentDisposition = new ContentDispositionHeaderValue("attachment")
-                {
-                    FileName = document.Title + "." + document.Extension
-                };
-
-                Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
-
-                return File(document.Doc, "application/octet-stream");
+                return NotFound("Document not found");
             }
-            catch (Exception ex)
+
+            var contentDisposition = new ContentDispositionHeaderValue("attachment")
             {
-                return BadRequest(ex.Message);
-            }
+                FileName = document.Title + "." + document.Extension
+            };
+
+            Response.Headers.Add("Content-Disposition", contentDisposition.ToString());
+
+            return File(document.Doc, "application/octet-stream");
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using BackProject.Db;
 using BackProject.Models;
+using BackProject.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BackProject.Controllers
 {
@@ -8,419 +10,300 @@ namespace BackProject.Controllers
     [ApiController]
     public class MainController : ControllerBase
     {
-        private readonly MyAppDbContext _context;
+        private readonly MyAppDbContext _dbContext;
 
         public MainController(MyAppDbContext context)
         {
-            _context = context;
+            _dbContext = context;
         }
 
         [HttpGet("GetAllCanteen")]
-        public IActionResult GetAllCanteen()
+        public async Task<IActionResult> GetAllCanteen()
         {
-            try
-            {
-                var canteen = _context.Canteen.ToList();
-                if (canteen.Count == 0)
-                {
-                    return NotFound("No element found");
-        }
-                return Ok(canteen);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var canteen = await _dbContext.Canteen.ToListAsync();
+            if (canteen.Count == 0)
+                return NotFound("No elements found");
+            return Ok(canteen);
         }
 
         [HttpGet("GetCanteen/{id}")]
-        public IActionResult GetCanteen(int id)
+        public async Task<IActionResult> GetCanteen(int id)
         {
-            try
-            {
-                var canteen = _context.Canteen.Find(id);
-                if (canteen == null)
-                {
-                    return NotFound($"Element not found {id}");
-        }
-                return Ok(canteen);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var canteen = await _dbContext.Canteen.FirstOrDefaultAsync(x => x.Id == id);
+            if (canteen == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(canteen);
         }
 
         [HttpGet("GetAllCategories")]
-        public IActionResult GetAllCategories()
+        public async Task<IActionResult> GetAllCategories()
         {
-            try
-            {
-                var category = _context.Category.ToList();
-                if (category.Count == 0)
-                {
-                    return NotFound("No element found");
-        }
-                return Ok(category);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var category = await _dbContext.Category.ToListAsync();
+            if (category.Count == 0)
+                return NotFound("No elements found");
+            return Ok(category);
         }
 
         [HttpGet("GetCategory/{id}")]
-        public IActionResult GetCategory(int id)
-         {
-            try
-            {
-                var category = _context.Category.Find(id);
-                if (category == null)
-                {
-                    return NotFound($"Element not found {id}");
-         }
-                return Ok(category);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+        public async Task<IActionResult> GetCategory(int id)
+        {
+            var category = await _dbContext.Category.FirstOrDefaultAsync(x => x.Id == id);
+            if (category == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(category);
         }
 
         [HttpGet("GetAllConsultations")]
-        public IActionResult GetAllConsultations()
+        public async Task<IActionResult> GetAllConsultations()
         {
-            try
-            {
-                var consultation = _context.Consultation.ToList();
-                if (consultation.Count == 0)
-                {
-                    return NotFound("No element found");
-        }
-                return Ok(consultation);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var consultation = await _dbContext.Consultation.ToListAsync();
+            if (consultation.Count == 0)
+                return NotFound("No elements found");
+            return Ok(consultation);
         }
 
         [HttpGet("GetConsultations/{id}")]
-        public IActionResult GetConsultations(int id)
+        public async Task<IActionResult> GetConsultations(int id)
         {
-            try
-            {
-                var consultations = _context.Consultation.Find(id);
-                if (consultations == null)
-                {
-                    return NotFound($"Element not found {id}");
-        }
-                return Ok(consultations);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var consultations = await _dbContext.Consultation.FirstOrDefaultAsync(x => x.Id == id);
+            if (consultations == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(consultations);
         }
 
 
         [HttpGet("GetAllDictionaries")]
-        public IActionResult GetAllDictionaries()
+        public async Task<IActionResult> GetAllDictionaries()
         {
-            try
-            {
-                var dictionary = _context.Dictionary.ToList();
-                if (dictionary.Count == 0)
-                {
-                    return NotFound("No element found");
-        }
-                return Ok(dictionary);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var dictionary = await _dbContext.Dictionary.ToListAsync();
+            if (dictionary.Count == 0)
+                return NotFound("No element found");
+            return Ok(dictionary);
         }
         [HttpGet("GetDictionary/{id}")]
-        public IActionResult GetDiconary(int id)
+        public async Task<IActionResult> GetDiconary(int id)
         {
-            try
-            {
-                var dictionary = _context.Dictionary.Find(id);
-                if (dictionary == null)
-                {
-                    return NotFound($"Element not found {id}");
-        }
-                return Ok(dictionary);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var dictionary = await _dbContext.Dictionary.FirstOrDefaultAsync(x => x.Id == id);
+            if (dictionary == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(dictionary);
         }
 
         [HttpGet("GetAllInternships")]
-        public IActionResult GetAllInternships()
+        public async Task<IActionResult> GetAllInternships()
         {
-            try
-            {
-                var internship = _context.Practice.ToList();
-                if (internship.Count == 0)
-                {
-                    return NotFound("No element found");
-        }
-                return Ok(internship);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var internship = await _dbContext.Practice.ToListAsync();
+            if (internship.Count == 0)
+                return NotFound("No elements found");
+            return Ok(internship);
         }
 
         [HttpGet("GetInternship/{id}")]
-        public IActionResult GetInternship(int id)
+        public async Task<IActionResult> GetInternship(int id)
         {
-            try
-            {
-                var internship = _context.Practice.Find(id);
-                if (internship == null)
-                {
-                    return NotFound($"Element not found {id}");
-                }
-                return Ok(internship);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var internship = await _dbContext.Practice.FirstOrDefaultAsync(x => x.Id == id);
+            if (internship == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(internship);
         }
 
         [HttpPost("PostInternship")]
-        public IActionResult PostInternship(Internship model)
+        public async Task<IActionResult> PostInternship(Internship model)
         {
-            try
-            {
-                _context.Practice.Add(model);
-                _context.SaveChanges();
-                return Ok("Internship created. ");
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            _dbContext.Practice.Add(model);
+            await _dbContext.SaveChangesAsync();
+            return Ok("Internship created. ");
         }
 
         [HttpGet("GetAllPosts")]
-        public IActionResult GetAllPosts()
+        public async Task<IActionResult> GetAllPosts()
         {
-            try
-            {
-                var post = _context.Post.ToList();
-                if (post.Count == 0)
-                    return NotFound("No element found");
+            var post = await _dbContext.Post.Include(x => x.Reply).ToListAsync();
+            if (post.Count == 0)
+                return NotFound("No elements found");
 
-                foreach (var item in post)
-                    item.Reply = _context.Reply.Where(x => x.PostId == item.Id).ToList();
-
-                return Ok(post);
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            return Ok(post);
         }
 
         [HttpGet("GetPost/{id}")]
-        public IActionResult GetPost(int id)
+        public async Task<IActionResult> GetPost(int id)
         {
-            try
-            {
-                var post = _context.Post.Find(id);
-                if (post == null)
-                    return NotFound($"Element not found {id}");
-
-                post.Reply = _context.Reply.Where(x => x.PostId == id).ToList();
-
-                return Ok(post);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var post = await _dbContext.Post.Include(r => r.Reply).FirstOrDefaultAsync(x => x.Id == id);
+            if (post == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(post);
         }
 
         [HttpPost("PostPost")]
-        public IActionResult PostPost(Post model)
+        public async Task<IActionResult> PostPost(Post model)
         {
-            try
-            {
-                _context.Add(model);
-                _context.SaveChanges();
-                return Ok("Post created. ");
-            }
-            catch (Exception ex)
+            _dbContext.Add(model);
+            await _dbContext.SaveChangesAsync();
+            return Ok("Post created");
+        }
+
+        [HttpPut("EditPost/{id}")]
+        public async Task<IActionResult> EditPost([FromRoute] int id, PostDto model)
         {
-                return BadRequest(ex.Message);
-            }
+            var postToEdit = await _dbContext.Post.FirstOrDefaultAsync(x => x.Id == id);
+            if (postToEdit == null)
+                return BadRequest("Wrong post Id");
+            
+            postToEdit.Nick = model.Nick;
+            postToEdit.CategoryId = model.CategoryId;
+            postToEdit.Body = model.Body;
+            postToEdit.Verified = model.Verified;
+
+            await _dbContext.SaveChangesAsync();
+            return Ok("Post edited ");
+        }
+
+        [HttpDelete("DeletePost/{id}")]
+        public async Task<IActionResult> DeletePost(int id)
+        {
+            var postToDelete = await _dbContext.Post.FirstOrDefaultAsync(x => x.Id == id);
+            if (postToDelete == null)
+                return BadRequest("Wrong post Id");
+
+            var repliesToDelete = await _dbContext.Reply.Where(x => x.PostId == postToDelete.Id).ToListAsync();
+            if (repliesToDelete != null)
+                _dbContext.Reply.RemoveRange(repliesToDelete);
+
+            _dbContext.Post.Remove(postToDelete);
+            await _dbContext.SaveChangesAsync();
+            return Ok("Post deleted ");
+        }
+
+        [HttpPost("VerifyPost/{id}")]
+        public async Task<IActionResult> VerifyPost([FromRoute] int id)
+        {
+            var postToVerify = await _dbContext.Post.FirstOrDefaultAsync(post => post.Id == id);
+            if (postToVerify == null)
+                return BadRequest("Wrong post Id");
+
+            postToVerify.Verified = true;
+            await _dbContext.SaveChangesAsync();
+
+            return Ok("Post verified");
         }
 
         [HttpGet("GetAllProfessors")]
-        public IActionResult GetAllProfessors()
+        public async Task<IActionResult> GetAllProfessors()
         {
-            try
-            {
-                var professor = _context.Professor.ToList();
-                if (professor.Count == 0)
-                {
-                    return NotFound("No element found");
-                }
-                return Ok(professor);
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            var professor = await _dbContext.Professor.ToListAsync();
+            if (professor.Count == 0)
+                return NotFound("No elements found");
+            return Ok(professor);
         }
 
         [HttpGet("GetProfessor/{id}")]
-        public IActionResult GetProfessor(int id)
+        public async Task<IActionResult> GetProfessor(int id)
         {
-            try
-            {
-                var professor = _context.Professor.Find(id);
-                if (professor == null)
-                {
-                    return NotFound($"Element not found {id}");
-                }
-                return Ok(professor);
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            var professor = await _dbContext.Professor.FirstOrDefaultAsync(post => post.Id == id);
+            if (professor == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(professor);
         }
 
         [HttpGet("GetAllReplies")]
-        public IActionResult GetAllReplies()
+        public async Task<IActionResult> GetAllReplies()
         {
-            try
-            {
-                var reply = _context.Reply.ToList();
-                if (reply.Count == 0)
-                {
-                    return NotFound("No element found");
-                }
-                return Ok(reply);
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            var reply = await _dbContext.Reply.ToListAsync();
+            if (reply.Count == 0)
+                return NotFound("No elements found");
+            return Ok(reply);
         }
 
         [HttpGet("GetReply/{id}")]
-        public IActionResult GetReply(int id)
+        public async Task<IActionResult> GetReply(int id)
         {
-            try
-            {
-                var reply = _context.Reply.Find(id);
-                if (reply == null)
-                {
-                    return NotFound($"Element not found {id}");
-                }
-                return Ok(reply);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var reply = await _dbContext.Reply.FirstOrDefaultAsync(post => post.Id == id);
+            if (reply == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(reply);
         }
 
         [HttpPost("PostReply")]
-        public IActionResult PostReply(Reply model)
+        public async Task<IActionResult> PostReply(Reply model)
         {
-            try
-            {
-                _context.Add(model);
-                _context.SaveChanges();
-                return Ok("Reply created. ");
-            }
-            catch (Exception ex)
+            _dbContext.Add(model);
+            await _dbContext.SaveChangesAsync();
+            return Ok("Reply created");
+        }
+
+        [HttpPut("EditReply/{id}")]
+        public async Task<IActionResult> EditReply([FromRoute] int id, ReplyDto model)
         {
-                return BadRequest(ex.Message);
-            }
+            var replyToEdit = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
+            if (replyToEdit == null)
+                return BadRequest("Wrong post Id");
+
+            replyToEdit.Nick = model.Nick;
+            replyToEdit.Body = model.Body;
+            replyToEdit.Verified = model.Verified;
+
+            await _dbContext.SaveChangesAsync();
+            return Ok("Post edited ");
+        }
+
+        [HttpDelete("DeleteReply/{id}")]
+        public async Task<IActionResult> DeleteReply(int id)
+        {
+            var repliyToDelete = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
+            if (repliyToDelete == null)
+                _dbContext.Reply.Remove(repliyToDelete);
+
+            await _dbContext.SaveChangesAsync();
+            return Ok("Reply deleted ");
+        }
+
+        [HttpPost("VerifyReply/{id}")]
+        public async Task<IActionResult> VerifyReply([FromRoute] int id)
+        {
+            var replyToVerify = await _dbContext.Reply.FirstOrDefaultAsync(reply => reply.Id == id);
+            if (replyToVerify == null)
+                return BadRequest("Wrong comment Id");
+
+            replyToVerify.Verified = true;
+            await _dbContext.SaveChangesAsync();
+
+            return Ok("Comment verified");
         }
 
         [HttpGet("GetAllShops")]
-        public IActionResult GetAllShops()
+        public async Task<IActionResult> GetAllShops()
         {
-            try
-            {
-                var shop = _context.Shop.ToList();
-                if (shop.Count == 0)
-                {
-                    return NotFound("No element found");
-                }
-                return Ok(shop);
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            var shop = await _dbContext.Shop.ToListAsync();
+            if (shop.Count == 0)
+                return NotFound("No elements found");
+            return Ok(shop);
         }
 
         [HttpGet("GetShop/{id}")]
-        public IActionResult GetShop(int id)
+        public async Task<IActionResult> GetShop(int id)
         {
-            try
-            {
-                var shop = _context.Shop.Find(id);
-                if (shop == null)
-                {
-                    return NotFound($"Element not found {id}");
-                }
-                return Ok(shop);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var shop = await _dbContext.Shop.FirstOrDefaultAsync(reply => reply.Id == id);
+            if (shop == null)
+                return NotFound($"Element not found with Id: {id}");
+            return Ok(shop);
         }
 
         [HttpGet("GetAllAdmins")]
-        public IActionResult GetAllAdmins()
+        public async Task<IActionResult> GetAllAdmins()
         {
-            try
-            {
-                var admin = _context.Admin.ToList();
-                if (admin.Count == 0)
-                {
-                    return NotFound("No element found");
-                }
-                return Ok(admin);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var admin = await _dbContext.Admin.ToListAsync();
+            if (admin.Count == 0)
+                return NotFound("No element found");
+            return Ok(admin);
         }
 
         [HttpGet("GetAdmin/{id}")]
-        public IActionResult GetAdmin(int id)
+        public async Task<IActionResult> GetAdmin(int id)
         {
-            try
-            {
-                var admin = _context.Admin.Find(id);
-                if (admin == null)
-                {
-                    return NotFound($"Element not found {id}");
-                }
-                return Ok(admin);
-            }
-            catch (Exception ex)
-        {
-                return BadRequest(ex.Message);
-            }
+            var admin = await _dbContext.Admin.FirstOrDefaultAsync(x => x.Id == id);
+            if (admin == null)
+                return NotFound($"Not found Admin with id: {id}");
+            return Ok(admin);
         }
     }
 }
