@@ -412,6 +412,46 @@ namespace BackProject.Controllers
             }
         }
 
+        [HttpPut("EditReply/{id}")]
+        public async Task<IActionResult> EditReply([FromRoute] int id, ReplyDto model)
+        {
+            try
+            {
+                var replyToEdit = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
+                if (replyToEdit == null)
+                    return BadRequest("Wrong post Id");
+
+                replyToEdit.Nick = model.Nick;
+                replyToEdit.Body = model.Body;
+                replyToEdit.Verified = model.Verified;
+
+                await _dbContext.SaveChangesAsync();
+                return Ok("Post edited ");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("DeleteReply/{id}")]
+        public async Task<IActionResult> DeleteReply(int id)
+        {
+            try
+            {
+                var repliyToDelete = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
+                if (repliyToDelete == null)
+                    _dbContext.Reply.Remove(repliyToDelete);
+
+                await _dbContext.SaveChangesAsync();
+                return Ok("Reply deleted ");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost("VerifyReply/{id}")]
         public IActionResult VerifyReply([FromRoute] int id)
         {
