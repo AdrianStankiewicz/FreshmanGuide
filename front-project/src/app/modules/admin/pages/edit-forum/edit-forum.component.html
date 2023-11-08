@@ -2,4 +2,46 @@
   <button class="return" [routerLink]="['/admin/forum']"
     routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
     Wszystkie posty</button>
+
+  <mat-spinner *ngIf="spinnerVal"
+    style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
+
+  <form *ngIf="!spinnerVal" class="post-form" [formGroup]="editForm">
+    <div class="control">
+      <label>Autor</label>
+      <div class="input-box author-box">
+        <input formControlName="nick" type="text">
+        <mat-icon>person</mat-icon>
+      </div>
+    </div>
+    <div class="control">
+      <label>Treść</label>
+      <div class="input-box author-box">
+        <textarea formControlName="body" type="text"></textarea>
+        <mat-icon>description</mat-icon>
+      </div>
+    </div>
+    <div class="selects">
+      <div class="control">
+        <label>Kategoria</label>
+        <div class="input-box author-box">
+          <select formControlName="category">
+            <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="control">
+        <label>Zweryfikowany</label>
+        <div class="input-box author-box">
+          <select formControlName="verified">
+            <option [ngValue]="true">Tak</option>
+            <option [ngValue]="false">Nie</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="control">
+      <button class="save-btn" type="button" (click)="submit()">Zapisz</button>
+    </div>
+  </form>
 </div>
