@@ -19,11 +19,13 @@ const routes: Routes = [
   {
     path: 'forum',
     component: ForumComponent,
+    canActivate: [AdminGuard],
   },
   {
-  path: 'forum/post/:id',
-  component: EditForumComponent
-  }
+    path: 'forum/post/:id',
+    component: EditForumComponent,
+    canActivate: [AdminGuard],
+  },
 ];
 
 @NgModule({
