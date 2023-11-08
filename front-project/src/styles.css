@@ -19,6 +19,8 @@
   --mainGrayColorBorder: #e5e5e575;
   --mainGrayColorActive: #e5e5e521;
   --whiteColor: #ffffff;
+
+  --error: rgb(182, 70, 50);
 }
 
 html {
