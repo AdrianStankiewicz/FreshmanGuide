@@ -175,16 +175,16 @@ namespace BackProject.Controllers
         }
 
         [HttpPost("VerifyPost/{id}")]
-        public async Task<IActionResult> VerifyPost([FromRoute] int id)
+        public async Task<IActionResult> VerifyPost([FromRoute] int id, [FromBody] bool verify)
         {
             var postToVerify = await _dbContext.Post.FirstOrDefaultAsync(post => post.Id == id);
             if (postToVerify == null)
                 return BadRequest("Wrong post Id");
 
-            postToVerify.Verified = true;
+            postToVerify.Verified = verify;
             await _dbContext.SaveChangesAsync();
 
-            return Ok("Post verified");
+            return Ok($"Post verified: {verify}");
         }
 
         [HttpGet("GetAllProfessors")]
@@ -258,16 +258,16 @@ namespace BackProject.Controllers
         }
 
         [HttpPost("VerifyReply/{id}")]
-        public async Task<IActionResult> VerifyReply([FromRoute] int id)
+        public async Task<IActionResult> VerifyReply([FromRoute] int id, [FromBody] bool verify)
         {
             var replyToVerify = await _dbContext.Reply.FirstOrDefaultAsync(reply => reply.Id == id);
             if (replyToVerify == null)
                 return BadRequest("Wrong comment Id");
 
-            replyToVerify.Verified = true;
+            replyToVerify.Verified = verify;
             await _dbContext.SaveChangesAsync();
 
-            return Ok("Comment verified");
+            return Ok($"Comment verified: {verify}");
         }
 
         [HttpGet("GetAllShops")]
