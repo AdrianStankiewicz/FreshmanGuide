@@ -1,7 +1,13 @@
 <div class="container" style="position: relative;">
-  <button class="return" [routerLink]="['/admin/forum']"
-    routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
-    Wszystkie posty</button>
+  <div class="upper-buttons">
+    <button class="return" [routerLink]="['/admin/forum']"
+      routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
+      Wszystkie posty</button>
+
+    <button class="delete-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 
   <mat-spinner *ngIf="spinnerVal"
     style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
@@ -44,4 +50,19 @@
       <button class="save-btn" type="button" (click)="submit()">Zapisz</button>
     </div>
   </form>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        Ta operacja spowoduje usunięcie wskazanego elementu.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">Wstecz</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete()">Rozumiem</button>
+      </div>
+    </div>
+  </div>
 </div>

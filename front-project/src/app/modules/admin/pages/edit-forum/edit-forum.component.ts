@@ -115,4 +115,8 @@ export class EditForumComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this.editForumPostFormService.submit(this.postID, newPost);
   }
+
+  protected delete(): void {
+    this.editForumPostFormService.delete(this.postID);
+  }
 }

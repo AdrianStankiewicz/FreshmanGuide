@@ -8,7 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, distinctUntilChanged, take, takeUntil } from 'rxjs';
-import { Category } from 'src/app/models/category';
+import { UpdatePost } from 'src/app/models/post';
 import { PostsService } from 'src/app/services/http/posts.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -27,8 +27,8 @@ export class EditForumPostFormService {
     private fb: FormBuilder,
     private postsApiService: PostsService,
     private toastr: ToastrService,
-    private router: Router,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private router: Router
   ) {
     this.buildForm();
   }
@@ -64,8 +64,7 @@ export class EditForumPostFormService {
     editForm.updateValueAndValidity();
   }
 
-  submit(postID: number, body: any): void {
-    console.log(body);
+  submit(postID: number, body: UpdatePost): void {
     this.loadingService.startLoading();
     this.postsApiService
       .updatePost(postID, body)
@@ -73,6 +72,23 @@ export class EditForumPostFormService {
       .subscribe({
         next: (): void => {
           this.toastr.success('Pomyślnie zapisano');
+          this.loadingService.stopLoading();
+        },
+        error: (): void => {
+          this.toastr.error('Coś poszło nie tak');
+          this.loadingService.stopLoading();
+        },
+      });
+  }
+
+  delete(postID: number): void {
+    this.loadingService.startLoading();
+    this.postsApiService
+      .deletePost(postID)
+      .pipe(take(1), distinctUntilChanged(), takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (): void => {
+          this.toastr.success('Pomyślnie usunięto');
           this.router.navigateByUrl('/admin/forum');
           this.loadingService.stopLoading();
         },
