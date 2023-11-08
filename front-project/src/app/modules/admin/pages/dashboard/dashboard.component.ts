@@ -23,6 +23,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.loadingService.stopLoading();
   }
 
+  protected toForum(): void {
+    this.router.navigateByUrl('/admin/forum');
+  }
+
   protected logout(): void {
     localStorage.removeItem('freshmanGuideJWT');
     this.toastr.success('Pomyślnie wylogowano');

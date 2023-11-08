@@ -1,4 +1,4 @@
-<div class="card" [routerLink]="['/forum/post', postData.id]" *ngIf="postData" routerLinkActive="router-link-active">
+<div class="card" *ngIf="postData">
   <div class="first-row">
     <span class="nick">{{postData.nick}}</span>
     <mat-icon class="star" [ngClass]="{'gold': postData.verified == true}">star</mat-icon>

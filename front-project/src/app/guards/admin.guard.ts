@@ -5,13 +5,14 @@ import {
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminGuard {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private toastr: ToastrService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
@@ -28,12 +29,14 @@ export class AdminGuard {
 
       if (!isAdmin) {
         this.router.navigateByUrl('/admin/zaloguj');
+        this.toastr.warning('Musisz być zalogowany');
         return false;
       }
 
       return true;
     } else {
       this.router.navigateByUrl('/admin/zaloguj');
+      this.toastr.warning('Musisz być zalogowany');
       return false;
     }
   }

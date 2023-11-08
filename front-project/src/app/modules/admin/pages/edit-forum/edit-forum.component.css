@@ -1,0 +1,38 @@
+@keyframes swing-in {
+  0% {
+    transform: rotateX(-100deg);
+    transform-origin: top;
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
+.container {
+  margin-top: 30px;
+  min-height: 400px;
+}
+
+.container .return {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  padding: 10px;
+  width: 55%;
+  max-width: 170px;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--mainNavyColorDarker);
+  background: var(--mainGoldColor);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.container .return mat-icon {
+  margin-right: 5px;
+}
