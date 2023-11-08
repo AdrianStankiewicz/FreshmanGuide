@@ -164,13 +164,14 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       });
     }
-
     this.filteredPosts = filteredPosts;
     this.numberOfPosts = this.filteredPosts.length;
-    this.paginator.firstPage();
+    if (this.paginator) {
+      this.paginator.firstPage();
+      this.paginator.length = this.numberOfPosts;
+      this.paginator.pageSize = this.pageSize;
+    }
     this.slicedPosts = this.filteredPosts;
-    this.paginator.length = this.numberOfPosts;
-    this.paginator.pageSize = this.pageSize;
     this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
   }
 
@@ -184,7 +185,9 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
     this.filteredPosts.sort((a: Post, b: Post): number => a.id - b.id);
     this.numberOfPosts = this.filteredPosts.length;
 
-    this.paginator.pageSize = this.pageSize;
+    if (this.paginator) {
+      this.paginator.pageSize = this.pageSize;
+    }
     this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
 
     this.categorySelectElement.nativeElement.value = '';
