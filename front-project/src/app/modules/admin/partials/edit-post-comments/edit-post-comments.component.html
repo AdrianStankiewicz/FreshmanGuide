@@ -37,7 +37,7 @@
             </div>
           </div>
           <div class="control buttons-contr">
-            <button class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal">
+            <button class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal" (click)="saveCommentID(reply)">
               <mat-icon>delete</mat-icon>
             </button>
             <button class="save-btn" type="button">Zapisz</button>
@@ -62,7 +62,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn" data-bs-dismiss="modal">Wstecz</button>
-        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Rozumiem</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="delete()">Rozumiem</button>
       </div>
     </div>
   </div>

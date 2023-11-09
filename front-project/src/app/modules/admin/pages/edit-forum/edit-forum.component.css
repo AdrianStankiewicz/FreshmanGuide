@@ -190,3 +190,7 @@
 .modal-title {
   font-size: 1.6rem !important;
 }
+
+label {
+  font-weight: bold;
+}

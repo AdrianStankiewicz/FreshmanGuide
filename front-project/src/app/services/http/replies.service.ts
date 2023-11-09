@@ -31,4 +31,10 @@ export class RepliesService {
       .post<Reply>(`${Constants.backendApiUrl}Main/PostReply`, reply)
       .pipe(catchError(this.handleErrorService.handleError));
   }
+
+  public deleteReply(replyID: number): Observable<Reply> {
+    return this.http
+      .delete<Reply>(`${Constants.backendApiUrl}Main/DeleteReply/${replyID}`)
+      .pipe(catchError(this.handleErrorService.handleError));
+  }
 }

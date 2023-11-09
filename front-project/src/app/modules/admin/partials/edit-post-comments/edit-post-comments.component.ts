@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -10,27 +10,44 @@ import {
 } from '@angular/material/paginator';
 import { CustomPaginator } from 'src/app/custom-paginator-configuration';
 import { Reply } from 'src/app/models/reply';
+import { EditForumCommentFormService } from './services/edit-forum-comment-form.service';
 
 @Component({
   selector: 'app-edit-post-comments',
   standalone: true,
-  imports: [CommonModule, MatPaginatorModule, MatIconModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    MatPaginatorModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   templateUrl: './edit-post-comments.component.html',
   styleUrls: ['./edit-post-comments.component.css'],
   providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }],
 })
-export class EditPostCommentsComponent implements OnInit {
+export class EditPostCommentsComponent implements OnInit, OnDestroy {
   @Input() comments!: Reply[];
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   protected slicedReplies: Reply[] = [];
   protected filteredReplies: Reply[] = [];
   protected pageSize = 3;
+
   private numberOfReplies = 0;
   private selectedVerified = '';
+  private currentCommentID = 0;
+
+  constructor(
+    private editForumCommentFormService: EditForumCommentFormService
+  ) {}
 
   ngOnInit(): void {
     this.applyFilters();
+  }
+
+  ngOnDestroy(): void {
+    this.editForumCommentFormService.destroy();
   }
 
   private applyFilters(): void {
@@ -69,5 +86,17 @@ export class EditPostCommentsComponent implements OnInit {
 
   protected trackByFn(index: number, item: Reply): number {
     return index;
+  }
+
+  protected delete(): void {
+    if (this.currentCommentID && this.currentCommentID !== 0) {
+      this.editForumCommentFormService.delete(this.currentCommentID);
+    }
+  }
+
+  protected saveCommentID(reply: Reply): void {
+    if (reply.id) {
+      this.currentCommentID = reply.id;
+    }
   }
 }
