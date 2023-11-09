@@ -34,11 +34,11 @@ export class EditPostCommentsComponent implements OnInit, OnDestroy {
   protected filteredReplies: Reply[] = [];
   protected pageSize = 3;
   protected editCommentFormArray: { id: number; form: FormGroup }[] = [];
+  protected commentIndex = 0;
 
   private numberOfReplies = 0;
   private selectedVerified = '';
   private currentCommentID = 0;
-  private commentRounds: number[] = [];
 
   constructor(
     private editForumCommentFormService: EditForumCommentFormService
@@ -83,6 +83,7 @@ export class EditPostCommentsComponent implements OnInit, OnDestroy {
 
   protected onPageChange(event: PageEvent): void {
     const startIndex = event.pageIndex * event.pageSize;
+    this.commentIndex = startIndex;
     let endIndex = startIndex + event.pageSize;
     if (endIndex > this.filteredReplies.length) {
       endIndex = this.filteredReplies.length;

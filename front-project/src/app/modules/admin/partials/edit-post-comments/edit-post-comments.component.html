@@ -12,7 +12,7 @@
         </div>
       </div>
       <div class="reply-box" *ngFor="let reply of slicedReplies; let i = index; trackBy: trackByFn">
-        <form *ngIf="reply && reply.id" [formGroup]="editCommentFormArray[i].form">
+        <form *ngIf="reply && reply.id" [formGroup]="editCommentFormArray[commentIndex + i].form">
           <div class="control">
             <label>Autor</label>
             <div class="input-box author-box">

@@ -87,10 +87,10 @@ export class ForumSinglePostComponent {
     this.filteredReplies = filteredReplies;
     this.numberOfReplies = this.filteredReplies.length;
     this.slicedReplies = this.filteredReplies;
-    if(this.paginator) {
+    if (this.paginator) {
       this.paginator.firstPage();
-    this.paginator.length = this.numberOfReplies;
-    this.paginator.pageSize = this.pageSize;
+      this.paginator.length = this.numberOfReplies;
+      this.paginator.pageSize = this.pageSize;
     }
     this.slicedReplies = this.filteredReplies.slice(0, this.pageSize);
   }
