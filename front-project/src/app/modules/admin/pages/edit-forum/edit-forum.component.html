@@ -4,10 +4,12 @@
       routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
       Wszystkie posty</button>
 
-    <button class="delete-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <button *ngIf="!spinnerVal" class="delete-btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
       <mat-icon>delete</mat-icon>
     </button>
   </div>
+
+  <h3 *ngIf="!spinnerVal" class="main-label">Dane posta</h3>
 
   <mat-spinner *ngIf="spinnerVal"
     style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
@@ -65,4 +67,12 @@
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="postData && !spinnerVal" class="container">
+  <hr>
+
+  <h3 class="main-label">Komentarze ({{postData.reply.length}})</h3>
+
+  <app-edit-post-comments [comments]="postData.reply"></app-edit-post-comments>
 </div>

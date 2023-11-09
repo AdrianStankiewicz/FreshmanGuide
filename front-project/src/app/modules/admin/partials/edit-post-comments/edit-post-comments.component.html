@@ -1,0 +1,69 @@
+<div class="container" *ngIf="comments">
+  <div class="replies">
+    <div class="title">
+      <div class="filters">
+        <div class="filters--filter">
+          <label for="verified">Tylko zweryfikowane</label>
+          <select (change)="onVerifiedChange($event)" name="verified" id="verified" #verifiedSelectElement>
+            <option disabled selected value="no">--wybierz--</option>
+            <option value="yes">Tak</option>
+            <option value="no">Nie</option>
+          </select>
+        </div>
+      </div>
+      <div class="reply-box" *ngFor="let reply of slicedReplies; let i = index; trackBy: trackByFn">
+        <form>
+          <div class="control">
+            <label>Autor</label>
+            <div class="input-box author-box">
+              <input type="text">
+              <mat-icon>person</mat-icon>
+            </div>
+          </div>
+          <div class="control">
+            <label>Treść</label>
+            <div class="input-box author-box">
+              <textarea type="text"></textarea>
+              <mat-icon>description</mat-icon>
+            </div>
+          </div>
+          <div class="control">
+            <label>Zweryfikowany</label>
+            <div class="input-box author-box">
+              <select>
+                <option [ngValue]="true">Tak</option>
+                <option [ngValue]="false">Nie</option>
+              </select>
+            </div>
+          </div>
+          <div class="control buttons-contr">
+            <button class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal">
+              <mat-icon>delete</mat-icon>
+            </button>
+            <button class="save-btn" type="button">Zapisz</button>
+          </div>
+        </form>
+      </div>
+      <div class="paginator">
+        <mat-paginator (page)="onPageChange($event)" [length]="filteredReplies.length" [pageSize]="pageSize"
+          [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        Ta operacja spowoduje usunięcie wskazanego elementu.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">Wstecz</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Rozumiem</button>
+      </div>
+    </div>
+  </div>
+</div>

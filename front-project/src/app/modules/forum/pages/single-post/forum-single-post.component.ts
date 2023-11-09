@@ -25,8 +25,8 @@ import { CustomPaginator } from 'src/app/custom-paginator-configuration';
 export class ForumSinglePostComponent {
   protected postData!: Post;
   protected pageSize = 3;
-  protected slicedReplies: Reply[] = [];
   protected postCategory!: Category;
+  protected slicedReplies: Reply[] = [];
   protected filteredReplies: Reply[] = [];
 
   private postID!: number;
@@ -86,10 +86,12 @@ export class ForumSinglePostComponent {
 
     this.filteredReplies = filteredReplies;
     this.numberOfReplies = this.filteredReplies.length;
-    this.paginator.firstPage();
     this.slicedReplies = this.filteredReplies;
+    if(this.paginator) {
+      this.paginator.firstPage();
     this.paginator.length = this.numberOfReplies;
     this.paginator.pageSize = this.pageSize;
+    }
     this.slicedReplies = this.filteredReplies.slice(0, this.pageSize);
   }
 

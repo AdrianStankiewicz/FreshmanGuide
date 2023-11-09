@@ -35,10 +35,13 @@ export class EditForumPostFormService {
 
   private buildForm(): void {
     this.editPostForm = this.fb.nonNullable.group({
-      nick: new FormControl<string>('', {
-        validators: [Validators.required],
-        updateOn: 'blur',
-      }),
+      nick: new FormControl<string>(
+        { value: '', disabled: true },
+        {
+          validators: [Validators.required],
+          updateOn: 'blur',
+        }
+      ),
       category: new FormControl<string>('', {
         validators: [Validators.required],
         updateOn: 'blur',

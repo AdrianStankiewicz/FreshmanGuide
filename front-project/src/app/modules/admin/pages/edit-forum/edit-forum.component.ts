@@ -16,11 +16,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Post } from 'src/app/models/post';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/http/categories.service';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { CustomPaginator } from 'src/app/custom-paginator-configuration';
 
 @Component({
   selector: 'app-edit-forum',
   templateUrl: './edit-forum.component.html',
   styleUrls: ['./edit-forum.component.css'],
+  providers: [{ provide: MatPaginatorIntl, useValue: CustomPaginator() }],
 })
 export class EditForumComponent implements OnInit, AfterViewInit, OnDestroy {
   protected editForm!: FormGroup;

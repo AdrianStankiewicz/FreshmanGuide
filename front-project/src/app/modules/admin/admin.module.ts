@@ -10,6 +10,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { PostCardComponent } from 'src/app/layouts/partials/post-card/post-card.component';
 import { EditForumComponent } from './pages/edit-forum/edit-forum.component';
+import { EditPostCommentsComponent } from './partials/edit-post-comments/edit-post-comments.component';
 
 @NgModule({
   declarations: [DashboardComponent, LoginComponent, EditForumComponent],
@@ -24,6 +25,7 @@ import { EditForumComponent } from './pages/edit-forum/edit-forum.component';
     ReactiveFormsModule,
     FormsModule,
     PostCardComponent,
+    EditPostCommentsComponent
   ],
 })
 export class AdminModule {}
