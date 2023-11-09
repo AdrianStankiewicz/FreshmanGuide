@@ -12,25 +12,25 @@
         </div>
       </div>
       <div class="reply-box" *ngFor="let reply of slicedReplies; let i = index; trackBy: trackByFn">
-        <form>
+        <form *ngIf="reply && reply.id" [formGroup]="editCommentFormArray[i].form">
           <div class="control">
             <label>Autor</label>
             <div class="input-box author-box">
-              <input type="text">
+              <input formControlName="nick" type="text">
               <mat-icon>person</mat-icon>
             </div>
           </div>
           <div class="control">
             <label>Treść</label>
-            <div class="input-box author-box">
-              <textarea type="text"></textarea>
+            <div class="input-box">
+              <textarea formControlName="body" type="text"></textarea>
               <mat-icon>description</mat-icon>
             </div>
           </div>
           <div class="control">
             <label>Zweryfikowany</label>
-            <div class="input-box author-box">
-              <select>
+            <div class="input-box">
+              <select formControlName="verified">
                 <option [ngValue]="true">Tak</option>
                 <option [ngValue]="false">Nie</option>
               </select>
@@ -40,7 +40,7 @@
             <button class="delete-btn" data-bs-toggle="modal" data-bs-target="#modal" (click)="saveCommentID(reply)">
               <mat-icon>delete</mat-icon>
             </button>
-            <button class="save-btn" type="button">Zapisz</button>
+            <button class="save-btn" type="button" (click)="submit(reply)">Zapisz</button>
           </div>
         </form>
       </div>

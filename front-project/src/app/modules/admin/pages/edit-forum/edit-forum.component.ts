@@ -110,7 +110,7 @@ export class EditForumComponent implements OnInit, AfterViewInit, OnDestroy {
 
   protected submit(): void {
     const newPost = {
-      nick: this.editForm.value.nick,
+      nick: this.postData.nick,
       body: this.editForm.value.body,
       categoryId: this.editForm.value.categoryId,
       verified: this.editForm.value.verified,

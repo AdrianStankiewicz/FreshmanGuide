@@ -6,3 +6,9 @@ export interface Reply {
   createdAt: Date | string;
   verified: boolean;
 }
+
+export interface UpdateReply {
+  nick: string;
+  body: string;
+  verified: boolean;
+}

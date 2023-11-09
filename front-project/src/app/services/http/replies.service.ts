@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, map, retry, throwError } from 'rxjs';
 import { Constants } from 'src/app/constants';
-import { Reply } from 'src/app/models/reply';
+import { Reply, UpdateReply } from 'src/app/models/reply';
 import { HandleErrorService } from '../handle-error.service';
 
 @Injectable({
@@ -29,6 +29,12 @@ export class RepliesService {
   public postReply(reply: Reply): Observable<Reply> {
     return this.http
       .post<Reply>(`${Constants.backendApiUrl}Main/PostReply`, reply)
+      .pipe(catchError(this.handleErrorService.handleError));
+  }
+
+  public updateReply(replyID: number, body: UpdateReply): Observable<Reply> {
+    return this.http
+      .put<Reply>(`${Constants.backendApiUrl}Main/EditReply/${replyID}`, body)
       .pipe(catchError(this.handleErrorService.handleError));
   }
 

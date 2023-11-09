@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import {
   MatPaginator,
@@ -33,16 +33,22 @@ export class EditPostCommentsComponent implements OnInit, OnDestroy {
   protected slicedReplies: Reply[] = [];
   protected filteredReplies: Reply[] = [];
   protected pageSize = 3;
+  protected editCommentFormArray: { id: number; form: FormGroup }[] = [];
 
   private numberOfReplies = 0;
   private selectedVerified = '';
   private currentCommentID = 0;
+  private commentRounds: number[] = [];
 
   constructor(
     private editForumCommentFormService: EditForumCommentFormService
   ) {}
 
   ngOnInit(): void {
+    this.comments.forEach((c: Reply): void => {
+      this.getCommentForm(c);
+    });
+
     this.applyFilters();
   }
 
@@ -97,6 +103,46 @@ export class EditPostCommentsComponent implements OnInit, OnDestroy {
   protected saveCommentID(reply: Reply): void {
     if (reply.id) {
       this.currentCommentID = reply.id;
+    }
+  }
+
+  protected getCommentForm(comment: Reply): FormGroup {
+    const pristineForm = this.editForumCommentFormService.buildForm();
+
+    if (comment.id) {
+      const response = {
+        id: comment.id,
+        form: pristineForm,
+      };
+
+      this.editCommentFormArray.push(response);
+      const form = response.form;
+
+      form.patchValue({
+        nick: comment.nick,
+        body: comment.body,
+        verified: comment.verified,
+      });
+
+      return form;
+    } else {
+      return pristineForm;
+    }
+  }
+
+  protected submit(comment: Reply): void {
+    const commentForm = this.editCommentFormArray.filter(
+      (f: { id: number; form: FormGroup<any> }): boolean => f.id === comment.id
+    );
+
+    const newComment = {
+      nick: comment.nick,
+      body: commentForm[0].form.value.body,
+      verified: commentForm[0].form.value.verified,
+    };
+
+    if (comment.id) {
+      this.editForumCommentFormService.submit(comment.id, newComment);
     }
   }
 }
