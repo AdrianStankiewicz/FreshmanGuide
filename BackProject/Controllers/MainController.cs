@@ -251,8 +251,9 @@ namespace BackProject.Controllers
         {
             var repliyToDelete = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
             if (repliyToDelete == null)
-                _dbContext.Reply.Remove(repliyToDelete);
+                return BadRequest("Wrong reply Id");
 
+            _dbContext.Reply.Remove(repliyToDelete);
             await _dbContext.SaveChangesAsync();
             return Ok("Reply deleted ");
         }
