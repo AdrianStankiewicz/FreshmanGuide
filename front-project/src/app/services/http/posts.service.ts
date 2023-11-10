@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, catchError, retry, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, retry } from 'rxjs';
 import { Constants } from 'src/app/constants';
-import { Post, PostPost } from 'src/app/models/post';
+import { Post, PostPost, UpdatePost } from 'src/app/models/post';
 import { HandleErrorService } from '../handle-error.service';
-import { RepliesService } from './replies.service';
 
 @Injectable({
   providedIn: 'root',
@@ -36,6 +35,18 @@ export class PostsService {
   public postPost(post: PostPost): Observable<Post> {
     return this.http
       .post<Post>(`${Constants.backendApiUrl}Main/PostPost`, post)
+      .pipe(catchError(this.handleErrorService.handleError));
+  }
+
+  public updatePost(postID: number, body: UpdatePost): Observable<Post> {
+    return this.http
+      .put<Post>(`${Constants.backendApiUrl}Main/EditPost/${postID}`, body)
+      .pipe(catchError(this.handleErrorService.handleError));
+  }
+
+  public deletePost(postID: number): Observable<Post> {
+    return this.http
+      .delete<Post>(`${Constants.backendApiUrl}Main/DeletePost/${postID}`)
       .pipe(catchError(this.handleErrorService.handleError));
   }
 }

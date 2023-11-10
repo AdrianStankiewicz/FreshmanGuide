@@ -20,6 +20,8 @@ import {
 } from '@angular/material/paginator';
 import { CustomPaginator } from 'src/app/custom-paginator-configuration';
 import { QuestionPopupComponent } from 'src/app/layouts/partials/question-popup/question-popup.component';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forum',
@@ -33,6 +35,7 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
   protected categories: Category[] = [];
   protected filteredPosts: Post[] = [];
   protected numberOfPosts = 0;
+  protected isAdmin = false;
 
   private posts: Post[] = [];
   private _subscriptions = new Subscription();
@@ -55,7 +58,9 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
     private loadingService: LoadingService,
     private postsService: PostsService,
     private categoriesService: CategoriesService,
-    private dialogRef: MatDialog
+    private dialogRef: MatDialog,
+    private location: Location,
+    private router: Router
   ) {}
 
   @ViewChild('categorySelectElement') categorySelectElement!: ElementRef;
@@ -65,6 +70,8 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     this.loadingService.startLoading();
+
+    this.checkIfAdmin();
 
     this._subscriptions.add(
       this.postsService
@@ -157,13 +164,14 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
         );
       });
     }
-
     this.filteredPosts = filteredPosts;
     this.numberOfPosts = this.filteredPosts.length;
-    this.paginator.firstPage();
+    if (this.paginator) {
+      this.paginator.firstPage();
+      this.paginator.length = this.numberOfPosts;
+      this.paginator.pageSize = this.pageSize;
+    }
     this.slicedPosts = this.filteredPosts;
-    this.paginator.length = this.numberOfPosts;
-    this.paginator.pageSize = this.pageSize;
     this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
   }
 
@@ -177,7 +185,9 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
     this.filteredPosts.sort((a: Post, b: Post): number => a.id - b.id);
     this.numberOfPosts = this.filteredPosts.length;
 
-    this.paginator.pageSize = this.pageSize;
+    if (this.paginator) {
+      this.paginator.pageSize = this.pageSize;
+    }
     this.slicedPosts = this.filteredPosts.slice(0, this.pageSize);
 
     this.categorySelectElement.nativeElement.value = '';
@@ -219,5 +229,31 @@ export class ForumComponent implements OnInit, AfterViewInit, OnDestroy {
 
   protected trackByFn(index: number, item: Post): number {
     return item.id;
+  }
+
+  private checkIfAdmin(): void {
+    const token = localStorage.getItem('freshmanGuideJWT');
+
+    if (token) {
+      try {
+        const decoded = JSON.parse(atob(token));
+        const isAdmin = decoded.isAdmin;
+        const location = this.location.path();
+
+        if (isAdmin && location.includes('admin')) {
+          this.isAdmin = true;
+        }
+      } catch (error) {
+        throw new Error('Something went wrong');
+      }
+    }
+  }
+
+  protected toPost(postID: number): void {
+    if (!this.isAdmin) {
+      this.router.navigate([`/forum/post/${postID}`]);
+    } else if (this.isAdmin) {
+      this.router.navigate([`/admin/forum/post/${postID}`]);
+    }
   }
 }

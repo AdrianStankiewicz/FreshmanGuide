@@ -18,7 +18,7 @@ export function CustomPaginator() {
     return `${startIndex + 1} - ${endIndex} z ${length}`;
   };
 
-  customPaginatorIntl.itemsPerPageLabel = 'Postów na stronie:';
+  customPaginatorIntl.itemsPerPageLabel = '';
   customPaginatorIntl.firstPageLabel = '';
   customPaginatorIntl.lastPageLabel = '';
   customPaginatorIntl.previousPageLabel = '';

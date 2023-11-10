@@ -19,6 +19,8 @@
   --mainGrayColorBorder: #e5e5e575;
   --mainGrayColorActive: #e5e5e521;
   --whiteColor: #ffffff;
+
+  --error: rgb(182, 70, 50);
 }
 
 html {
@@ -86,6 +88,10 @@ mat-paginator {
   right: 50%;
   transform: translateX(50%);
   box-shadow: none !important;
+}
+
+select {
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 768px) {

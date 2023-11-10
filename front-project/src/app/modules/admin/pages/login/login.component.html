@@ -1,0 +1,24 @@
+<div class="container">
+  <form class="search-box" [formGroup]="loginForm">
+    <div class="search-box__searchbar">
+      <input formControlName="login" type="text" placeholder="Login">
+      <mat-icon>verified_user</mat-icon>
+    </div>
+    <small [ngClass]="{
+      'visible': loginForm.get('login')?.hasError('required') && loginForm.get('login')?.touched,
+      'invisible': !loginForm.get('login')?.hasError('required') || !loginForm.get('login')?.touched
+    }" class="error">Pole
+      jest wymagane</small>
+    <div class="search-box__searchbar">
+      <input formControlName="password" type="password" placeholder="Hasło">
+      <mat-icon>vpn_key</mat-icon>
+    </div>
+    <small [ngClass]="{
+      'visible': loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched,
+      'invisible': !loginForm.get('password')?.hasError('required') || !loginForm.get('password')?.touched
+    }" class="error">Pole jest wymagane</small>
+    <div class="buttons">
+      <button type="button" (click)="submit()">Zaloguj</button>
+    </div>
+  </form>
+</div>

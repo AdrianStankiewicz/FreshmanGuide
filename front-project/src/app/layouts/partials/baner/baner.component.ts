@@ -1,4 +1,10 @@
-import { Component, DoCheck, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import {
+  Component,
+  DoCheck,
+  ElementRef,
+  OnDestroy,
+  ViewChild,
+} from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { Subscription, distinctUntilChanged, filter } from 'rxjs';
 import { Event } from '@angular/router';
@@ -57,6 +63,9 @@ export class BanerComponent implements DoCheck, OnDestroy {
   private banerTitleForum: string = 'Forum';
   private banerTextForum: string = 'Zadaj pytanie starszym studentom';
   private banerImageForum: string = `url('/assets/images/forum1.jpeg')`;
+  private banerTitleAdmin: string = 'Admin';
+  private banerTextAdmin: string = 'Panel administratora';
+  private banerImageAdmin: string = `url('/assets/images/forum1.jpeg')`;
 
   @ViewChild('banerImage') banerImage!: ElementRef;
 
@@ -72,73 +81,80 @@ export class BanerComponent implements DoCheck, OnDestroy {
         .subscribe((event: Event): void => {
           const navigationEndEvent = event as NavigationEnd;
 
-          switch (navigationEndEvent.url) {
-            case '/atrakcje':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageAttractions;
-              this.banerTitle = this.banerTitleAttractions;
-              this.banerText = this.banerTextAttractions;
-              break;
-            case '/prowadzacy':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageteachers;
-              this.banerTitle = this.banerTitleteachers;
-              this.banerText = this.banerTextteachers;
-              break;
-            case '/znajdz-sale':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageMap;
-              this.banerTitle = this.banerTitleMap;
-              this.banerText = this.banerTextMap;
-              break;
-            case '/sprawy-studenckie':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageFormalities;
-              this.banerTitle = this.banerTitleFormalities;
-              this.banerText = this.banerTextFormalities;
-              break;
-            case '/dokumenty':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageDocuments;
-              this.banerTitle = this.banerTitleDocuments;
-              this.banerText = this.banerTextDocuments;
-              break;
-            case '/slownik':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageDictionary;
-              this.banerTitle = this.banerTitleDictionary;
-              this.banerText = this.banerTextDictionary;
-              break;
-            case '/stolowka':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageCanteen;
-              this.banerTitle = this.banerTitleCanteen;
-              this.banerText = this.banerTextCanteen;
-              break;
-            case '/praktyki':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageInternship;
-              this.banerTitle = this.banerTitleInternship;
-              this.banerText = this.banerTextInternship;
-              break;
-            case '/sklepik':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageShop;
-              this.banerTitle = this.banerTitleShop;
-              this.banerText = this.banerTextShop;
-              break;
-            case '/forum':
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageForum;
-              this.banerTitle = this.banerTitleForum;
-              this.banerText = this.banerTextForum;
-              break;
-            default:
-              this.banerImage.nativeElement.style.backgroundImage =
-                this.banerImageHome;
-              this.banerTitle = this.banerTitleHome;
-              this.banerText = this.banerTextHome;
-              break;
+          if (navigationEndEvent.toString().includes('admin')) {
+            this.banerImage.nativeElement.style.backgroundImage =
+              this.banerImageAdmin;
+            this.banerTitle = this.banerTitleAdmin;
+            this.banerText = this.banerTextAdmin;
+          } else {
+            switch (navigationEndEvent.url) {
+              case '/atrakcje':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageAttractions;
+                this.banerTitle = this.banerTitleAttractions;
+                this.banerText = this.banerTextAttractions;
+                break;
+              case '/prowadzacy':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageteachers;
+                this.banerTitle = this.banerTitleteachers;
+                this.banerText = this.banerTextteachers;
+                break;
+              case '/znajdz-sale':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageMap;
+                this.banerTitle = this.banerTitleMap;
+                this.banerText = this.banerTextMap;
+                break;
+              case '/sprawy-studenckie':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageFormalities;
+                this.banerTitle = this.banerTitleFormalities;
+                this.banerText = this.banerTextFormalities;
+                break;
+              case '/dokumenty':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageDocuments;
+                this.banerTitle = this.banerTitleDocuments;
+                this.banerText = this.banerTextDocuments;
+                break;
+              case '/slownik':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageDictionary;
+                this.banerTitle = this.banerTitleDictionary;
+                this.banerText = this.banerTextDictionary;
+                break;
+              case '/stolowka':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageCanteen;
+                this.banerTitle = this.banerTitleCanteen;
+                this.banerText = this.banerTextCanteen;
+                break;
+              case '/praktyki':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageInternship;
+                this.banerTitle = this.banerTitleInternship;
+                this.banerText = this.banerTextInternship;
+                break;
+              case '/sklepik':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageShop;
+                this.banerTitle = this.banerTitleShop;
+                this.banerText = this.banerTextShop;
+                break;
+              case '/forum':
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageForum;
+                this.banerTitle = this.banerTitleForum;
+                this.banerText = this.banerTextForum;
+                break;
+              default:
+                this.banerImage.nativeElement.style.backgroundImage =
+                  this.banerImageHome;
+                this.banerTitle = this.banerTitleHome;
+                this.banerText = this.banerTextHome;
+                break;
+            }
           }
         })
     );

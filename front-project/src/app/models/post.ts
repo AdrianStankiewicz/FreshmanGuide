@@ -18,3 +18,10 @@ export interface PostPost {
   verified: boolean;
   reply: Reply[] | null;
 }
+
+export interface UpdatePost {
+  nick: string;
+  categoryId: number;
+  body: string;
+  verified: boolean;
+}

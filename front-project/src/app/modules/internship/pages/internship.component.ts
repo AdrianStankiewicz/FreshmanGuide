@@ -1,4 +1,11 @@
-import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Subscription, distinctUntilChanged } from 'rxjs';
 import { Internship } from 'src/app/models/internship';
@@ -29,10 +36,10 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
   //searchbar
   protected searchKeyword = '';
   private searchedInternships: Internship[] = [];
-  
+
   //selectCategory
   private selectedCategory: string = '';
-  uniqueCategories: Set<string> = new Set<string>();  
+  uniqueCategories: Set<string> = new Set<string>();
 
   //selectFaculty
   private selectedFaculty: string = '';
@@ -56,18 +63,22 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe({
           next: (internships: Internship[]): void => {
-          this.internships = internships;
-          this.filteredInternships = this.internships;
-          this.slicedInternships = this.filteredInternships.slice(0, this.pageSize);
-          this.numberOfInternships = this.filteredInternships.length;
-          this.uniqueCategories.clear();
+            this.internships = internships;
+            this.filteredInternships = this.internships;
+            this.slicedInternships = this.filteredInternships.slice(
+              0,
+              this.pageSize
+            );
+            this.numberOfInternships = this.filteredInternships.length;
+            this.uniqueCategories.clear();
             this.internships.forEach((internship) => {
               this.uniqueCategories.add(internship.category);
             });
-          this.categorySelectElement.nativeElement.value = '';
-          this.facultySelectElement.nativeElement.value = '';
-          this.loadingService.stopLoading();
-        }})
+            this.categorySelectElement.nativeElement.value = '';
+            this.facultySelectElement.nativeElement.value = '';
+            this.loadingService.stopLoading();
+          },
+        })
     );
   }
 
@@ -104,7 +115,8 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.selectedCategory) {
-      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
+      filteredInternships = filteredInternships.filter(
+        (internship: Internship): boolean => {
           return internship.category
             .normalize()
             .includes(this.selectedCategory);
@@ -113,32 +125,39 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.selectedFaculty === 'Elektryczny') {
-      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
-        return internship.faculty === 'Elektryczny';
-      });
-    }
-    else if (this.selectedFaculty === 'Mechaniczny') {
-      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
-        return internship.faculty === 'Mechaniczny';
-      });
-    }
-    else if (this.selectedFaculty === 'Nawigacyjny') {
-      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
-        return internship.faculty === 'Nawigacyjny';
-      });
-    }
-    else if (this.selectedFaculty === 'Zarzadzania i nauk o jakosci') {
-      filteredInternships = filteredInternships.filter((internship: Internship): boolean => {
-        return internship.faculty === 'Zarzadzania i nauk o jakosci';
-      });
+      filteredInternships = filteredInternships.filter(
+        (internship: Internship): boolean => {
+          return internship.faculty === 'Elektryczny';
+        }
+      );
+    } else if (this.selectedFaculty === 'Mechaniczny') {
+      filteredInternships = filteredInternships.filter(
+        (internship: Internship): boolean => {
+          return internship.faculty === 'Mechaniczny';
+        }
+      );
+    } else if (this.selectedFaculty === 'Nawigacyjny') {
+      filteredInternships = filteredInternships.filter(
+        (internship: Internship): boolean => {
+          return internship.faculty === 'Nawigacyjny';
+        }
+      );
+    } else if (this.selectedFaculty === 'Zarzadzania i nauk o jakosci') {
+      filteredInternships = filteredInternships.filter(
+        (internship: Internship): boolean => {
+          return internship.faculty === 'Zarzadzania i nauk o jakosci';
+        }
+      );
     }
 
     this.filteredInternships = filteredInternships;
     this.numberOfInternships = this.filteredInternships.length;
-    this.paginator.firstPage();
     this.slicedInternships = this.filteredInternships;
-    this.paginator.length = this.numberOfInternships;
-    this.paginator.pageSize = this.pageSize;
+    if (this.paginator) {
+      this.paginator.firstPage();
+      this.paginator.length = this.numberOfInternships;
+      this.paginator.pageSize = this.pageSize;
+    }
     this.slicedInternships = this.filteredInternships.slice(0, this.pageSize);
   }
 
@@ -153,7 +172,9 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
     );
     this.numberOfInternships = this.filteredInternships.length;
 
-    this.paginator.pageSize = this.pageSize;
+    if (this.paginator) {
+      this.paginator.pageSize = this.pageSize;
+    }
     this.slicedInternships = this.filteredInternships.slice(0, this.pageSize);
 
     this.categorySelectElement.nativeElement.value = '';
