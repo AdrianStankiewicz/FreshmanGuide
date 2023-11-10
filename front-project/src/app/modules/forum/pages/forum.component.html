@@ -1,5 +1,9 @@
 <div class="first">
   <div class="container">
+    <button *ngIf="isAdmin" class="return" [routerLink]="['/admin']"
+      routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
+      Panel</button>
+
     <div class="search-box">
       <div class="search-box__searchbar">
         <input [(ngModel)]="searchKeyword" (keyup)="onSearchChange()" type="text" placeholder="Wyszukaj wątek...">
@@ -31,8 +35,8 @@
         </div>
       </div>
       <div class="search-box__addQuestion">
-        <button class="reset" type="button" (click)="onReset()">Resetuj</button>
-        <button type="button" (click)="openDialog()">Zadaj pytanie</button>
+        <button [ngClass]="{'no-margin': isAdmin}" class="reset" type="button" (click)="onReset()">Resetuj</button>
+        <button *ngIf="!isAdmin" type="button" (click)="openDialog()">Zadaj pytanie</button>
       </div>
     </div>
   </div>
@@ -45,8 +49,8 @@
       <h3 class="posts-number">Wszystkich postów ({{numberOfPosts}})</h3>
       <hr>
       <div class="posts">
-        <app-post-card *ngFor="let post of slicedPosts; let i = index; trackBy: trackByFn"
-          [postData]="post"></app-post-card>
+        <app-post-card *ngFor="let post of slicedPosts; let i = index; trackBy: trackByFn" [postData]="post"
+          (click)="toPost(post.id)"></app-post-card>
       </div>
       <div class="paginator">
         <mat-paginator (page)="onPageChange($event)" [length]="filteredPosts.length" [pageSize]="pageSize"

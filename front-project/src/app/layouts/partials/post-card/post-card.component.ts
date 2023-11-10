@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
 import { Subscription, distinctUntilChanged } from 'rxjs';
 import { Category } from 'src/app/models/category';
 import { Post } from 'src/app/models/post';
@@ -11,7 +10,7 @@ import { CategoriesService } from 'src/app/services/http/categories.service';
   selector: 'app-post-card',
   templateUrl: './post-card.component.html',
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule],
+  imports: [CommonModule, MatIconModule],
   styleUrls: ['./post-card.component.css'],
 })
 export class PostCardComponent implements OnInit, OnDestroy {

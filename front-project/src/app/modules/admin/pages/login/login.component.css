@@ -1,0 +1,80 @@
+@import "src/app/layouts/animations/animations-main.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container .search-box {
+  display: flex;
+  flex-direction: column;
+  margin: 60px 0;
+  padding: 30px;
+  width: clamp(300px, 95%, 550px);
+  background-color: var(--mainNavyColorDarker);
+  border-radius: 3px;
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.container .search-box .search-box__searchbar {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.container .search-box .search-box__searchbar input {
+  padding: 8px 10px;
+  width: 100%;
+  color: var(--mainNavyColorDarker);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+}
+
+.container .search-box .search-box__searchbar input.ng-invalid.ng-touched {
+  border: 2px solid var(--error);
+}
+
+.container .search-box .search-box__searchbar mat-icon {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  background-color: var(--whiteColor);
+}
+
+.container .search-box .buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.container .search-box .buttons button {
+  padding: 10px;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--mainNavyColorDarker);
+  background: var(--mainGoldColor);
+  border: 1px solid var(--mainGoldColor);
+  border-radius: 3px;
+}
+
+.error {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  color: var(--error);
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.invisible {
+  visibility: hidden;
+}

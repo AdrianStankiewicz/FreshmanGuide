@@ -83,6 +83,15 @@ const routes: Routes = [
         (m) => m.TeachersModule
       ),
   },
+  {
+    path: 'admin',
+    loadChildren: () =>
+      import('./modules/admin/admin.module').then((m) => m.AdminModule),
+  },
+  {
+    path: '**',
+    redirectTo: '',
+  },
 ];
 
 @NgModule({
@@ -97,7 +106,7 @@ const routes: Routes = [
     ForumModule,
     InternshipModule,
     ShopModule,
-    TeachersModule
+    TeachersModule,
   ],
   exports: [RouterModule],
 })
