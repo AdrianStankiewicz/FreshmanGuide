@@ -9,7 +9,7 @@ import {
   PageEvent,
 } from '@angular/material/paginator';
 import { CustomPaginator } from 'src/app/custom-paginator-configuration';
-import { Reply } from 'src/app/models/reply';
+import { Reply, UpdateReply } from 'src/app/models/reply';
 import { EditForumCommentFormService } from './services/edit-forum-comment-form.service';
 
 @Component({
@@ -136,7 +136,7 @@ export class EditPostCommentsComponent implements OnInit, OnDestroy {
       (f: { id: number; form: FormGroup<any> }): boolean => f.id === comment.id
     );
 
-    const newComment = {
+    const newComment: UpdateReply = {
       nick: comment.nick,
       body: commentForm[0].form.value.body,
       verified: commentForm[0].form.value.verified,

@@ -90,6 +90,10 @@ mat-paginator {
   box-shadow: none !important;
 }
 
+select {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 768px) {
   .toast-container .ngx-toastr {
     right: 30px;

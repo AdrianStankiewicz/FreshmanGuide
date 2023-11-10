@@ -3,17 +3,9 @@ import { FormGroup } from '@angular/forms';
 import { LoadingService } from 'src/app/services/loading.service';
 import { EditForumPostFormService } from '../../services/edit-forum-post-form.service';
 import { PostsService } from 'src/app/services/http/posts.service';
-import {
-  Subscription,
-  forkJoin,
-  map,
-  mergeMap,
-  switchMap,
-  take,
-  tap,
-} from 'rxjs';
+import { Subscription, forkJoin, switchMap, take, tap } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { Post } from 'src/app/models/post';
+import { Post, UpdatePost } from 'src/app/models/post';
 import { Category } from 'src/app/models/category';
 import { CategoriesService } from 'src/app/services/http/categories.service';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -109,7 +101,7 @@ export class EditForumComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   protected submit(): void {
-    const newPost = {
+    const newPost: UpdatePost = {
       nick: this.postData.nick,
       body: this.editForm.value.body,
       categoryId: this.editForm.value.categoryId,
