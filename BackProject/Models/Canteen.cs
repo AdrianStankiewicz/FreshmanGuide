@@ -8,5 +8,6 @@ namespace BackProject.Models
         public String Name { get; set; }
         public double Price { get; set; }
         public String Review { get; set; }
+        public String Type { get; set; }
     }
 }
