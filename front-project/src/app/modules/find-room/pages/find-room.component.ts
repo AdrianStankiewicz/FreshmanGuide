@@ -18,11 +18,4 @@ export class FindRoomComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     this.loadingService.stopLoading();
   }
-
-  protected trackByFn(
-    index: number,
-    item: { name: string; review: string }
-  ): string {
-    return item.name;
-  }
 }
