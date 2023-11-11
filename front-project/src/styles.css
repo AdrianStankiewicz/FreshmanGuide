@@ -10,6 +10,8 @@
 :root {
   /* COLORS */
   --blackColor: #000000;
+  --scroll: #2f2f2f;
+  --scroll-track: #2c2c2c2b;
   --mainNavyColor: #14213d;
   --mainNavyColorDarker: #0d1528;
   --mainGoldColor: #fca311;
@@ -79,6 +81,21 @@ mat-paginator {
 
 .mat-mdc-select-panel-above .mdc-menu-surface.mat-mdc-select-panel {
   max-width: 100px !important;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background: var(--scroll);
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scroll-track);
 }
 
 /* TOASTR */
