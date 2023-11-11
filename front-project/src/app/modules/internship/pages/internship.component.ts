@@ -39,7 +39,6 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
 
   //selectCategory
   private selectedCategory: string = '';
-  uniqueCategories: Set<string> = new Set<string>();
 
   //selectFaculty
   private selectedFaculty: string = '';
@@ -70,10 +69,6 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
               this.pageSize
             );
             this.numberOfInternships = this.filteredInternships.length;
-            this.uniqueCategories.clear();
-            this.internships.forEach((internship) => {
-              this.uniqueCategories.add(internship.category);
-            });
             this.categorySelectElement.nativeElement.value = '';
             this.facultySelectElement.nativeElement.value = '';
             this.loadingService.stopLoading();
@@ -117,35 +112,15 @@ export class InternshipComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.selectedCategory) {
       filteredInternships = filteredInternships.filter(
         (internship: Internship): boolean => {
-          return internship.category
-            .normalize()
-            .includes(this.selectedCategory);
+          return internship.category === this.selectedCategory;
         }
       );
     }
 
-    if (this.selectedFaculty === 'Elektryczny') {
+    if (this.selectedFaculty) {
       filteredInternships = filteredInternships.filter(
         (internship: Internship): boolean => {
-          return internship.faculty === 'Elektryczny';
-        }
-      );
-    } else if (this.selectedFaculty === 'Mechaniczny') {
-      filteredInternships = filteredInternships.filter(
-        (internship: Internship): boolean => {
-          return internship.faculty === 'Mechaniczny';
-        }
-      );
-    } else if (this.selectedFaculty === 'Nawigacyjny') {
-      filteredInternships = filteredInternships.filter(
-        (internship: Internship): boolean => {
-          return internship.faculty === 'Nawigacyjny';
-        }
-      );
-    } else if (this.selectedFaculty === 'Zarzadzania i nauk o jakosci') {
-      filteredInternships = filteredInternships.filter(
-        (internship: Internship): boolean => {
-          return internship.faculty === 'Zarzadzania i nauk o jakosci';
+          return internship.faculty === this.selectedFaculty;
         }
       );
     }
