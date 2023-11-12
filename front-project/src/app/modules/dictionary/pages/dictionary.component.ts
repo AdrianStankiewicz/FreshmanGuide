@@ -43,8 +43,12 @@ export class DictionaryComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private groupWords(): void {
-    this.groupedWords = [];
+    const polishUppercaseAlphabet: string[] = [
+      'A', 'Ą', 'B', 'C', 'Ć', 'D', 'E', 'Ę', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'Ł', 'M',
+      'N', 'Ń', 'O', 'Ó', 'P', 'R', 'S', 'Ś', 'T', 'U', 'W', 'Y', 'Z', 'Ź', 'Ż'
+    ];
 
+    this.groupedWords = [];
     this.words.forEach((word: Dictionary): void => {
       const firstLetter = word.word[0].toUpperCase();
 
@@ -58,8 +62,8 @@ export class DictionaryComponent implements OnInit, AfterViewInit, OnDestroy {
         this.groupedWords[groupIndex][1].push(word);
       }
     });
-
-    this.groupedWords.sort();
+    
+    this.groupedWords.sort((a, b) => polishUppercaseAlphabet.indexOf(a[0]) - polishUppercaseAlphabet.indexOf(b[0]));
   }
 
   protected trackByFn(index: number, item: Dictionary): number {
