@@ -7,6 +7,7 @@
           <label>Budynek</label>
           <div class="input-box">
             <select formControlName="building">
+              <option value="" selected>--wybierz--</option>
               <option *ngFor="let building of buildings; let i = index; trackBy: trackByFn" [value]="building">
                 {{building}}</option>
             </select>
@@ -16,6 +17,7 @@
           <label>Piętro</label>
           <div class="input-box">
             <select formControlName="floor">
+              <option value="" selected>--wybierz--</option>
               <option *ngFor="let floor of floors; let i = index; trackBy: trackByFn" [value]="floor">{{floor}}
               </option>
             </select>
@@ -25,6 +27,7 @@
           <label>Sala</label>
           <div class="input-box">
             <select formControlName="room">
+              <option value="" selected>--wybierz--</option>
               <option *ngFor="let room of rooms; let i = index; trackBy: trackByFn" [value]="room">{{room}}
               </option>
             </select>
@@ -38,7 +41,13 @@
     </form>
     <div class="image">
       <h3 class="main-label">Plan</h3>
-      <img class="img" loading="lazy" [src]="imageURL">
+      <div class="imagepin">
+        <img class="img" loading="lazy" [src]="imageURL" usemap="#f0">
+        <div class="pins pinsF0">
+          <span class="pin pinF1" style="top: 50%; left:72%;"></span>
+          <span class="pin pinF2" style="top: 50%; left:81%;"></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

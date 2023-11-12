@@ -39,6 +39,8 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
       this.filtersForm.controls['building'].valueChanges.subscribe(
         (b: string): void => {
           this.floors = this.getFloorOptions(b);
+          this.filtersForm.controls['floor'].setValue('');
+          this.filtersForm.controls['room'].setValue('');
         }
       )
     );
@@ -47,12 +49,20 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
       this.filtersForm.controls['floor'].valueChanges.subscribe(
         (f: string): void => {
           this.rooms = this.getRoomOptions(f);
+          this.filtersForm.controls['room'].setValue('');
+        }
+      )
+    );
+
+    this._subscriptions.add(
+      this.filtersForm.controls['room'].valueChanges.subscribe(
+        (r: string): void => {
+          this.lightRoom(r);
         }
       )
     );
 
     this.buildings = Object.values(BuildingsEnum);
-    this.filtersForm.controls['building'].setValue(BuildingsEnum.F);
   }
 
   ngAfterViewInit(): void {
@@ -60,6 +70,7 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.filtersForm.reset();
     this._subscriptions.unsubscribe();
   }
 
@@ -96,6 +107,23 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
         this.imageURL = '';
         return [];
         break;
+    }
+  }
+
+  private lightRoom(room: string): void {
+    const allPins = document.querySelectorAll('.pin');
+    allPins.forEach((pin: any): void => {
+      if (pin) {
+        pin.style.opacity = '0';
+      }
+    });
+
+    const name = `.pin${room}`;
+    if (name !== '.pin') {
+      const pin = document.querySelector(name) as HTMLSpanElement;
+      if (pin) {
+        pin.style.opacity = '1';
+      }
     }
   }
 }
