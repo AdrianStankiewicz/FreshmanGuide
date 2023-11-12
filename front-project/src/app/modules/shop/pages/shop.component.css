@@ -1,3 +1,5 @@
+@import "src/app/layouts/animations/animations-main.css";
+
 .container {
   display: flex;
   justify-content: center;
@@ -5,13 +7,20 @@
 }
 
 .card {
+  background-color: var(--mainNavyColorDarker);
   width: 40rem;
   height: 40rem;
   border-radius: 20px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
   overflow: hidden;
   padding: 10px 10px 10px 10px;
+  margin-top: 2rem;
   margin-bottom: 2rem;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.card:hover {
+  background: var(--mainNavyColor);
 }
 
 .card-img {
@@ -32,13 +41,15 @@
 .card-title {
   font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   text-align: center;
+  color: var(--mainGoldColor);
 }
 
 .card-text {
   font-size: 1.5rem;
   text-align: center;
+  color: var(--whiteColor);
 }
 
 .card:hover {
@@ -46,14 +57,43 @@
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.3);
 }
 
-.row {
-  justify-content: space-evenly;
-  margin: 0;
+.first {
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-@media only screen and (max-width: 600px) {
+h2, h3 {
+  color: var(--bs-heading-color);
+}
+
+table, th, td {
+  width: 300px;
+  border-color: var(--mainNavyColorDarker);
+  background-color: var(--mainGrayColor);
+  font-weight: normal;
+}
+
+.second {
+  background-color: var(--whiteColor);
+}
+
+.btn {
+  background-color: var(--mainNavyColorDarker);
+  border-color: var(--mainNavyColorDarker);
+  color: var(--mainGoldColor);
+  font-size: medium;
+}
+
+.btn:hover {
+  background: var(--mainNavyColor);
+}
+
+@media only screen and (max-width: 500px) {
   .card {
     width: 32rem;
     height: 32rem;
+  }
+
+  span {
+    white-space: nowrap;
   }
 }

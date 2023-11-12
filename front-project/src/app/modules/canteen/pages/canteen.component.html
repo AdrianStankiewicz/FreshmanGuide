@@ -1,17 +1,50 @@
 <div class="container">
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-4 my-3 justify-content-center justify-content-lg-start">
-    <div class="col-10" *ngFor="let dish of dishes">
-      <div class="card h-100 min-h dish-border dish-hover">
-        <div class="card-header bg-transparent">
-          <p class="card-title h3">{{ dish.name }}</p>
+  <div class="first my-5">
+    <h2 class="pb-4 text-center font-weight-bold">Godziny otwarcia</h2>
+    <table class="table mx-auto text-center">
+      <tbody>
+        <tr>
+          <th scope="row">Poniedziałek</th>
+          <td>09:00 – 16:00</td>
+        </tr>
+        <tr>
+          <th scope="row">Wtorek</th>
+          <td>09.00 - 16.00</td>
+        </tr>
+        <tr>
+          <th scope="row">Środa</th>
+          <td>09:00 – 16:00</td>
+        </tr>
+        <tr>
+          <th scope="row">Czwartek</th>
+          <td>09:00 – 16:00</td>
+        </tr>
+        <tr>
+          <th scope="row">Piątek</th>
+          <td>09:00 – 16:00</td>
+        </tr>
+        <tr>
+          <th scope="row">Sobota</th>
+          <td>10.00 - 15.00</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="second">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-4 gy-5 mt-5 py-5 justify-content-center justify-content-lg-start">
+      <div class="col-10" *ngFor="let dish of dishes">
+        <div class="card h-100 min-h dish-hover">
+          <div class="card-header border-0">
+            <p class="card-title pt-4 pl-2 h3 font-weight-bold">{{ dish.name }}</p>
+          </div>
+          <div class="card-body p-4 font-weight-light">
+            <p class="card-text">{{ dish.review }}</p>
+          </div>
+          <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">{{ dish.price }} zł</div>
         </div>
-        <div class="card-body">
-          <p class="card-text">{{ dish.review }}</p>
-        </div>
-        <div class="card-footer text-end">{{ dish.price }} zł</div>
       </div>
     </div>
   </div>
-
-
 </div>

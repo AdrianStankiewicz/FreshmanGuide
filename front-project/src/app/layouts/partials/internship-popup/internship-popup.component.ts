@@ -22,7 +22,6 @@ export class InternshipPopupComponent implements OnInit, OnDestroy {
 
   //selectCategory
   private selectedCategory!: string;
-  uniqueCategories: Set<string> = new Set<string>();
 
   //selectFaculty
   private selectedFaculty!: string;
@@ -46,10 +45,6 @@ export class InternshipPopupComponent implements OnInit, OnDestroy {
         .pipe(distinctUntilChanged())
         .subscribe((internships: Internship[]): void => {
           this.internships = internships;
-          this.uniqueCategories.clear();
-            this.internships.forEach((internship) => {
-              this.uniqueCategories.add(internship.category);
-            });
           this.categorySelectElement.nativeElement.value = '';
           this.facultySelectElement.nativeElement.value = '';
         })

@@ -15,7 +15,16 @@
           [ngClass]="{'invalid-input': internshipForm.controls['category'].invalid && internshipForm.controls['category'].touched}"
           matInput formControlName="category" name="category" id="category" #categorySelectElement>
           <option disabled selected value="">--wybierz--</option>
-          <option *ngFor="let category of uniqueCategories" value="{{category}}">{{category}}</option>
+          <option>Informatyka</option>
+          <option>Elektronika i Telekomunikacja</option>
+          <option>Elektrotechnika</option>
+          <option>Mechanika</option>
+          <option>Eksploatacja</option>
+          <option>Logistyka</option>
+          <option>Kierunki Morskie</option>
+          <option>Zarządzanie</option>
+          <option>Inżynieria Jakości</option>
+          <option>Inne</option>
         </select>
         <div class="error"
           *ngIf="internshipForm.controls['category'].invalid && internshipForm.controls['category'].touched">
@@ -32,7 +41,7 @@
           <option>Elektryczny</option>
           <option>Mechaniczny</option>
           <option>Nawigacyjny</option>
-          <option>Zarzadzania i nauk o jakosci</option>
+          <option>Zarządzania i Nauk o Jakości</option>
         </select>
         <div class="error"
           *ngIf="internshipForm.controls['faculty'].invalid && internshipForm.controls['faculty'].touched">
