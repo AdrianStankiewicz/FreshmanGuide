@@ -1,55 +1,44 @@
 <div class="container">
   <div class="box">
-    <div class="form">
+    <form class="form" [formGroup]="filtersForm">
       <div class="selects">
         <h3 class="main-label">Filtry</h3>
         <div class="control">
           <label>Budynek</label>
           <div class="input-box">
-            <select>
-              <option value="f" selected>F</option>
+            <select formControlName="building">
+              <option *ngFor="let building of buildings; let i = index; trackBy: trackByFn" [value]="building">
+                {{building}}</option>
             </select>
           </div>
         </div>
         <div class="control">
           <label>Piętro</label>
           <div class="input-box">
-            <select>
-              <option>option</option>
+            <select formControlName="floor">
+              <option *ngFor="let floor of floors; let i = index; trackBy: trackByFn" [value]="floor">{{floor}}
+              </option>
             </select>
           </div>
         </div>
         <div class="control">
           <label>Sala</label>
           <div class="input-box">
-            <select>
-              <option>option</option>
+            <select formControlName="room">
+              <option *ngFor="let room of rooms; let i = index; trackBy: trackByFn" [value]="room">{{room}}
+              </option>
             </select>
           </div>
         </div>
       </div>
       <div class="additional">
-        <h3 class="main-label">Informacje <br> dodatkowe</h3>
-        <p class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus tempore repellendus, eos
-          nostrum qui nobis
-          numquam asperiores, sint minus obcaecati, et eius dolor! Enim nobis tempore alias? Earum suscipit perspiciatis
-          voluptatem sed ipsum repellendus at laborum accusamus voluptatum consequuntur quis ab beatae quibusdam
-          deserunt assumenda modi blanditiis iusto eaque nihil vel aspernatur, provident est numquam? Quae eligendi
-          totam quo quod cumque earum quas. Velit aliquam, cum eaque quo, et consequuntur assumenda doloremque obcaecati
-          iste cumque earum. Blanditiis amet et quibusdam natus qui in molestias suscipit sapiente voluptatem neque enim
-          soluta vel veritatis ipsa eum saepe nihil, quas nam ullam facilis eos! Quas facilis asperiores, numquam
-          laborum placeat officiis voluptatem libero deleniti officia, cumque totam sint impedit saepe, at illo odit.
-          Neque accusantium natus soluta consequatur, doloribus blanditiis impedit! Placeat doloremque distinctio sit
-          modi commodi repellendus unde mollitia et nam nemo sunt voluptatibus soluta, ad ut. Ab, earum esse sapiente at
-          aliquam suscipit omnis! Quasi reprehenderit hic corporis quisquam rerum libero veniam eius nulla, natus soluta
-          dolorum inventore tempore eos numquam accusamus saepe eveniet adipisci laboriosam? Facere quidem dolor harum
-          veritatis impedit laborum qui expedita sapiente velit ipsam cupiditate minus, porro iste molestias, illo
-          eligendi saepe facilis nam quo. Repudiandae, dolore.</p>
+        <h3 class="main-label">Instrukcja</h3>
+        <p class="content">Wybierz budynek, piętro oraz salę, a wybrane miejsce zostanie wskazane na mapie poniżej.</p>
       </div>
-    </div>
+    </form>
     <div class="image">
       <h3 class="main-label">Plan</h3>
-      <img class="img" loading="lazy" src="assets/images/map-page/F/basement.png">
+      <img class="img" loading="lazy" [src]="imageURL">
     </div>
   </div>
 </div>

@@ -12,13 +12,17 @@
   width: 100%;
 }
 
-/* @media only screen and (min-width: 1200px) {
-  .box {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+@media only screen and (max-width: 1200px) {
+  .form {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
-} */
+
+  .form .selects {
+    order: 2;
+  }
+}
 
 .form {
   display: flex;
