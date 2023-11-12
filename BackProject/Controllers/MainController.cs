@@ -115,6 +115,35 @@ namespace BackProject.Controllers
             return Ok("Internship created. ");
         }
 
+        [HttpPut("EditInternsip/{id}")]
+        public async Task<IActionResult> EditPost([FromRoute] int id, InternshipDto model)
+        {
+            var internshipToEdit = await _dbContext.Practice.FirstOrDefaultAsync(x => x.Id == id);
+            if (internshipToEdit == null)
+                return BadRequest("Wrong internship Id");
+
+            internshipToEdit.Name = model.Name;
+            internshipToEdit.Link = model.Link;
+            internshipToEdit.Category = model.Category;
+            internshipToEdit.Faculty = model.Faculty;
+
+            await _dbContext.SaveChangesAsync();
+            return Ok("Internship edited ");
+        }
+
+
+        [HttpDelete("DeleteInternship/{id}")]
+        public async Task<IActionResult> DeleteInternship(int id)
+        {
+            var internshipToDelete = await _dbContext.Practice.FirstOrDefaultAsync(x => x.Id == id);
+            if (internshipToDelete == null)
+                return BadRequest("Wrong internship Id");
+
+            _dbContext.Practice.Remove(internshipToDelete);
+            await _dbContext.SaveChangesAsync();
+            return Ok("Internship deleted ");
+        }
+
         [HttpGet("GetAllPosts")]
         public async Task<IActionResult> GetAllPosts()
         {
@@ -249,11 +278,11 @@ namespace BackProject.Controllers
         [HttpDelete("DeleteReply/{id}")]
         public async Task<IActionResult> DeleteReply(int id)
         {
-            var repliyToDelete = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
-            if (repliyToDelete == null)
+            var replyToDelete = await _dbContext.Reply.FirstOrDefaultAsync(x => x.Id == id);
+            if (replyToDelete == null)
                 return BadRequest("Wrong reply Id");
 
-            _dbContext.Reply.Remove(repliyToDelete);
+            _dbContext.Reply.Remove(replyToDelete);
             await _dbContext.SaveChangesAsync();
             return Ok("Reply deleted ");
         }
