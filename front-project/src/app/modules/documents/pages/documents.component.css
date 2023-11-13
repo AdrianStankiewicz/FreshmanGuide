@@ -8,7 +8,6 @@ a {
 .card {
     background-color: var(--mainNavyColorDarker);
     box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
-    --bs-card-border-color: var(--bs-border-color--mainNavyColorDarker);
     animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
@@ -18,8 +17,4 @@ a {
 
 .card-header {
     color: var(--mainGoldColor);
-}
-
-.card-title {
-    padding-left: 40px;
 }
