@@ -41,13 +41,8 @@
     </form>
     <div class="image">
       <h3 class="main-label">Plan</h3>
-      <div class="imagepin">
-        <img class="img" loading="lazy" [src]="imageURL" usemap="#f0">
-        <div class="pins pinsF0">
-          <span class="pin pinF1" style="top: 50%; left:72%;"></span>
-          <span class="pin pinF2" style="top: 50%; left:81%;"></span>
-        </div>
-      </div>
+      <app-svg-fparter *ngIf="this.filtersForm.controls['floor'].value === 'F0'" class="img"
+        [selectedRoom]="selectedRoom"></app-svg-fparter>
     </div>
   </div>
 </div>

@@ -22,6 +22,7 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
   protected rooms: string[] = [];
   protected imageURL = '';
   protected filtersForm!: FormGroup;
+  protected selectedRoom!: string;
 
   private _subscriptions = new Subscription();
 
@@ -56,8 +57,8 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
 
     this._subscriptions.add(
       this.filtersForm.controls['room'].valueChanges.subscribe(
-        (r: string): void => {
-          this.lightRoom(r);
+        (room: string): void => {
+          this.selectedRoom = room;
         }
       )
     );
@@ -107,23 +108,6 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
         this.imageURL = '';
         return [];
         break;
-    }
-  }
-
-  private lightRoom(room: string): void {
-    const allPins = document.querySelectorAll('.pin');
-    allPins.forEach((pin: any): void => {
-      if (pin) {
-        pin.style.opacity = '0';
-      }
-    });
-
-    const name = `.pin${room}`;
-    if (name !== '.pin') {
-      const pin = document.querySelector(name) as HTMLSpanElement;
-      if (pin) {
-        pin.style.opacity = '1';
-      }
     }
   }
 }
