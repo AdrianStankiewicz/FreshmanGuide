@@ -38,6 +38,7 @@ body {
   letter-spacing: 0.3px;
   color: var(--blackColor);
   background-color: var(--mainGrayColor);
+  overflow-x: hidden;
 }
 
 /* ---------------------------------------------------------------- */

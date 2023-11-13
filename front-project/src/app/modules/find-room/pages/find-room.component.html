@@ -43,6 +43,10 @@
       <h3 class="main-label">Plan</h3>
       <app-svg-fparter *ngIf="this.filtersForm.controls['floor'].value === 'F0'" class="img"
         [selectedRoom]="selectedRoom"></app-svg-fparter>
+      <app-svg-ffirst *ngIf="this.filtersForm.controls['floor'].value === 'F1'" class="img"
+        [selectedRoom]="selectedRoom"></app-svg-ffirst>
+      <app-svg-fsecond *ngIf="this.filtersForm.controls['floor'].value === 'F2'" class="img"
+        [selectedRoom]="selectedRoom"></app-svg-fsecond>
     </div>
   </div>
 </div>

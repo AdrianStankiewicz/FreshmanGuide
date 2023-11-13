@@ -20,7 +20,6 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
   protected buildings: string[] = [];
   protected floors: string[] = [];
   protected rooms: string[] = [];
-  protected imageURL = '';
   protected filtersForm!: FormGroup;
   protected selectedRoom!: string;
 
@@ -71,7 +70,9 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.filtersForm.reset();
+    this.filtersForm.controls['building'].setValue('');
+    this.filtersForm.controls['floor'].setValue('');
+    this.filtersForm.controls['room'].setValue('');
     this._subscriptions.unsubscribe();
   }
 
@@ -93,19 +94,15 @@ export class FindRoomComponent implements OnInit, AfterViewInit, OnDestroy {
   private getRoomOptions(floor: string): string[] {
     switch (floor) {
       case FFloorsEnum.ZERO:
-        this.imageURL = 'assets/images/map-page/F/parter.png';
         return Object.values(FZeroRoomsEnum);
         break;
       case FFloorsEnum.ONE:
-        this.imageURL = 'assets/images/map-page/F/first.png';
         return Object.values(FOneRoomsEnum);
         break;
       case FFloorsEnum.TWO:
-        this.imageURL = 'assets/images/map-page/F/second.png';
         return Object.values(FTwoRoomsEnum);
         break;
       default:
-        this.imageURL = '';
         return [];
         break;
     }
