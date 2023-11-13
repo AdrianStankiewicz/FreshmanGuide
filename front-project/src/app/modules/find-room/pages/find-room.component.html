@@ -1,21 +1,52 @@
 <div class="container">
-  <div class="row">
-    <div class="accordion" id="accordionPanelsStayOpenExample">
-      <div *ngFor="let dish of dishes; let i = index; trackBy: trackByFn" class="accordion-item">
-        <h2 class="accordion-header" [id]="'panelsStayOpen-heading'+i">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-            [attr.data-bs-target]="'#panelsStayOpen-collapse'+i" aria-expanded="true"
-            [attr.aria-controls]="'panelsStayOpen-collapse'+i">
-            {{dish.name}}
-          </button>
-        </h2>
-        <div [id]="'panelsStayOpen-collapse'+i" class="accordion-collapse collapse"
-          [attr.aria-labelledby]="'panelsStayOpen-heading'+i">
-          <div class="accordion-body">
-            {{dish.review}}
+  <div class="box">
+    <form class="form" [formGroup]="filtersForm">
+      <div class="selects">
+        <h3 class="main-label">Filtry</h3>
+        <div class="control">
+          <label>Budynek</label>
+          <div class="input-box">
+            <select formControlName="building">
+              <option value="" selected>--wybierz--</option>
+              <option *ngFor="let building of buildings; let i = index; trackBy: trackByFn" [value]="building">
+                {{building}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <label>Piętro</label>
+          <div class="input-box">
+            <select formControlName="floor">
+              <option value="" selected>--wybierz--</option>
+              <option *ngFor="let floor of floors; let i = index; trackBy: trackByFn" [value]="floor">{{floor}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="control">
+          <label>Sala</label>
+          <div class="input-box">
+            <select formControlName="room">
+              <option value="" selected>--wybierz--</option>
+              <option *ngFor="let room of rooms; let i = index; trackBy: trackByFn" [value]="room">{{room}}
+              </option>
+            </select>
           </div>
         </div>
       </div>
+      <div class="additional">
+        <h3 class="main-label">Instrukcja</h3>
+        <p class="content">Wybierz budynek, piętro oraz salę, a wybrane miejsce zostanie wskazane na mapie poniżej.</p>
+      </div>
+    </form>
+    <div class="image">
+      <h3 class="main-label">Plan</h3>
+      <app-svg-fparter *ngIf="this.filtersForm.controls['floor'].value === 'F0'" class="img"
+        [selectedRoom]="selectedRoom"></app-svg-fparter>
+      <app-svg-ffirst *ngIf="this.filtersForm.controls['floor'].value === 'F1'" class="img"
+        [selectedRoom]="selectedRoom"></app-svg-ffirst>
+      <app-svg-fsecond *ngIf="this.filtersForm.controls['floor'].value === 'F2'" class="img"
+        [selectedRoom]="selectedRoom"></app-svg-fsecond>
     </div>
   </div>
 </div>
