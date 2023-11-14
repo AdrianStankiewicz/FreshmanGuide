@@ -12,3 +12,10 @@ export interface PostInternship {
   category: string;
   faculty: string;
 }
+
+export interface UpdateInternship {
+  name: string;
+  link: string;
+  category: string;
+  faculty: string;
+}

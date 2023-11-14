@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription, take, tap } from 'rxjs';
-import { Internship } from 'src/app/models/internship';
+import { Internship, UpdateInternship } from 'src/app/models/internship';
 import { InternshipsService } from 'src/app/services/http/internships.service';
 import { LoadingService } from 'src/app/services/loading.service';
 import { EditInternFormService } from '../../services/edit-intern-form.service';
@@ -63,6 +63,19 @@ export class EditSingleInternshipComponent implements OnInit, AfterViewInit {
   ngOnDestroy(): void {
     this._subscriptions.unsubscribe();
     this.editInternFormService.destroy();
+  }
+
+  protected submit(): void {
+    const newInternship: UpdateInternship = {
+      name: this.editForm.value.name,
+      link: this.editForm.value.link,
+      category: this.editForm.value.category,
+      faculty: this.editForm.value.faculty,
+    };
+
+    console.log(newInternship);
+
+    this.editInternFormService.submit(this.internID, newInternship);
   }
 
   protected delete(): void {

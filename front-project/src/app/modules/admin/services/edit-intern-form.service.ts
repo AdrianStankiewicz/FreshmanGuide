@@ -8,6 +8,7 @@ import {
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subject, distinctUntilChanged, take, takeUntil } from 'rxjs';
+import { UpdateInternship } from 'src/app/models/internship';
 import { InternshipsService } from 'src/app/services/http/internships.service';
 import { LoadingService } from 'src/app/services/loading.service';
 
@@ -60,6 +61,23 @@ export class EditInternFormService {
   validateEditInternForm(editForm: FormGroup): void {
     editForm.markAllAsTouched();
     editForm.updateValueAndValidity();
+  }
+
+  submit(internID: number, body: UpdateInternship): void {
+    this.loadingService.startLoading();
+    this.internshipsApiService
+      .updateInternship(internID, body)
+      .pipe(take(1), distinctUntilChanged(), takeUntil(this.unsubscribe$))
+      .subscribe({
+        next: (): void => {
+          this.toastr.success('Pomyślnie zapisano');
+          this.loadingService.stopLoading();
+        },
+        error: (): void => {
+          this.toastr.error('Coś poszło nie tak');
+          this.loadingService.stopLoading();
+        },
+      });
   }
 
   delete(internID: number): void {

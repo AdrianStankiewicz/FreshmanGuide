@@ -8,7 +8,11 @@ import {
   throwError,
 } from 'rxjs';
 import { Constants } from 'src/app/constants';
-import { Internship, PostInternship } from 'src/app/models/internship';
+import {
+  Internship,
+  PostInternship,
+  UpdateInternship,
+} from 'src/app/models/internship';
 import { HandleErrorService } from '../handle-error.service';
 
 @Injectable({
@@ -47,6 +51,18 @@ export class InternshipsService {
       .post<PostInternship>(
         `${Constants.backendApiUrl}Main/PostInternship`,
         internship
+      )
+      .pipe(catchError(this.handleErrorService.handleError));
+  }
+
+  public updateInternship(
+    internID: number,
+    body: UpdateInternship
+  ): Observable<Internship> {
+    return this.http
+      .put<Internship>(
+        `${Constants.backendApiUrl}Main/EditInternsip/${internID}`,
+        body
       )
       .pipe(catchError(this.handleErrorService.handleError));
   }
