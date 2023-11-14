@@ -1,9 +1,14 @@
-<div class="container">
-  <div *ngFor="let document of documents">   
-    <div class="card m-5 p-2">
-      <div class="card-header border-0">{{ document.title }}</div>
-      <div class="card-body">
-        <h4 class="card-title"><a href="javascript:void(0)" (click)="downloadDocument(document.id, document.title, document.extension)">Pobierz</a></h4>
+<div class="container" style="position: relative;">
+  <mat-spinner *ngIf="!documents || documents.length === 0"
+    style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
+  <div *ngIf="documents">
+    <div *ngFor="let document of documents">
+      <div class="card m-5 p-2">
+        <div class="card-header border-0">{{ document.title }}</div>
+        <div class="card-body">
+          <h4 class="card-title"><a href="javascript:void(0)"
+              (click)="downloadDocument(document.id, document.title, document.extension)">Pobierz</a></h4>
+        </div>
       </div>
     </div>
   </div>

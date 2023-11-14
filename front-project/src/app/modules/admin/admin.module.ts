@@ -11,9 +11,11 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { PostCardComponent } from 'src/app/layouts/partials/post-card/post-card.component';
 import { EditForumComponent } from './pages/edit-forum/edit-forum.component';
 import { EditPostCommentsComponent } from './partials/edit-post-comments/edit-post-comments.component';
+import { EditInternshipsComponent } from './pages/edit-internships/edit-internships.component';
+import { EditSingleInternshipComponent } from './pages/edit-single-internship/edit-single-internship.component';
 
 @NgModule({
-  declarations: [DashboardComponent, LoginComponent, EditForumComponent],
+  declarations: [DashboardComponent, LoginComponent, EditForumComponent, EditInternshipsComponent, EditSingleInternshipComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,

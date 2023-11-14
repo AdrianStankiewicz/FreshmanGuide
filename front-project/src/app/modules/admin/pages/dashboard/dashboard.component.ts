@@ -27,6 +27,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.router.navigateByUrl('/admin/forum');
   }
 
+  protected toInternships(): void {
+    this.router.navigateByUrl('/admin/praktyki');
+  }
+
   protected logout(): void {
     localStorage.removeItem('freshmanGuideJWT');
     this.toastr.success('Pomyślnie wylogowano');

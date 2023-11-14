@@ -1,20 +1,24 @@
 @import "src/app/layouts/animations/animations-main.css";
 
+.container {
+  min-height: 350px;
+}
+
 a {
-    text-decoration: none;
-    color: var(--whiteColor);
+  text-decoration: none;
+  color: var(--whiteColor);
 }
 
 .card {
-    background-color: var(--mainNavyColorDarker);
-    box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
-    animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  background-color: var(--mainNavyColorDarker);
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .card:hover {
-    background-color: var(--mainNavyColor);
+  background-color: var(--mainNavyColor);
 }
 
 .card-header {
-    color: var(--mainGoldColor);
+  color: var(--mainGoldColor);
 }
