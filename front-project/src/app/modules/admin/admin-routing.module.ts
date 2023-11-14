@@ -5,6 +5,8 @@ import { AdminGuard } from 'src/app/guards/admin.guard';
 import { LoginComponent } from './pages/login/login.component';
 import { ForumComponent } from '../forum/pages/forum.component';
 import { EditForumComponent } from './pages/edit-forum/edit-forum.component';
+import { EditInternshipsComponent } from './pages/edit-internships/edit-internships.component';
+import { EditSingleInternshipComponent } from './pages/edit-single-internship/edit-single-internship.component';
 
 const routes: Routes = [
   {
@@ -24,6 +26,16 @@ const routes: Routes = [
   {
     path: 'forum/post/:id',
     component: EditForumComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'praktyki',
+    component: EditInternshipsComponent,
+    canActivate: [AdminGuard],
+  },
+  {
+    path: 'praktyki/:id',
+    component: EditSingleInternshipComponent,
     canActivate: [AdminGuard],
   },
 ];
