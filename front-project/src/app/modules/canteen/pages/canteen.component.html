@@ -32,8 +32,11 @@
   </div>
 </div>
 <div class="second">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-4 gy-5 mt-5 py-5 justify-content-center justify-content-lg-start">
+  <div class="container" style="position: relative;">
+    <mat-spinner *ngIf="!dishes || dishes.length === 0"
+      style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
+    <div *ngIf="dishes"
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-4 gy-5 mt-5 py-5 justify-content-center justify-content-lg-start">
       <div class="col-10" *ngFor="let dish of dishes">
         <div class="card h-100 min-h dish-hover">
           <div class="card-header border-0">

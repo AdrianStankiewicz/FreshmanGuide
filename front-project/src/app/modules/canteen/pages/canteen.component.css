@@ -1,7 +1,11 @@
 @import "src/app/layouts/animations/animations-main.css";
 
+.container {
+  min-height: 260px;
+}
+
 .min-h {
-    min-height: 150px;
+  min-height: 150px;
 }
 
 .card {
@@ -11,11 +15,12 @@
 }
 
 .card:hover {
-  transition: .4s;
+  transition: 0.4s;
   background: var(--mainNavyColor);
 }
 
-.card-title, .card-footer {
+.card-title,
+.card-footer {
   color: var(--mainGoldColor);
 }
 
@@ -31,7 +36,9 @@ h2 {
   color: var(--bs-heading-color);
 }
 
-table, th, td {
+table,
+th,
+td {
   width: 300px;
   border-color: var(--mainNavyColorDarker);
   background-color: var(--mainGrayColor);
