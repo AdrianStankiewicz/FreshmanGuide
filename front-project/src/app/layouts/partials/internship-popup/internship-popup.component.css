@@ -78,7 +78,7 @@
 
 .popup form .form-field select {
   padding: 8px 10px;
-  width: clamp(200px, 30%, 500px);
+  width: clamp(250px, 30%, 500px);
   text-align: center;
   font-size: 1.4rem;
   color: var(--mainNavyColorDarker);

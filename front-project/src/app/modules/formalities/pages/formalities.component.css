@@ -1,69 +1,84 @@
-.container {
-  padding: 1rem 0;
+@import "src/app/layouts/animations/animations-main.css";
+
+.card {
+  background-color: var(--mainNavyColorDarker);
+  box-shadow: 5px 5px 3px #14213d58, 6px 6px 4px #14213d3c;
+  animation: swing-in 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  padding: 2rem;
 }
+
+.card-dziek:hover, .card-ko:hover {
+  transition: .4s;
+  background: var(--mainNavyColor);
+}
+
 .card-title {
   text-align: center;
   font-size: 2.2rem;
-  color: var(--mainNavyColorDarker);
+  color: var(--mainGoldColor);
   font-weight: bold;
-  padding: 2rem;
+  padding-bottom: 2rem;
 }
-.card-dziek, .card-sailing, .card-pool, .card-ko, .card-miejsca{
-  border-color: var(--mainGoldColor);
+
+.card-body {
+  color: var(--whiteColor);
+  font-weight: lighter;
+}
+
+table, th, td {
+  border-color: var(--mainNavyColorDarker);
+  font-weight: normal;
+  text-align: center;
 }
 
 .student {
-  color: var(--mainGoldColor);
+  font-weight: bold;
+  color: var(--mainNavyColorDarker);
+  border-color: var(--mainNavyColorDarker);
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.card-header {
   font-weight: bold;
 }
 
-.dziekanaty,
-.kola {
-  background-color: transparent;
-  border-color: var(--mainGoldColor);
-  color: var(--mainNavyColorDarker);
-  padding: 1rem 3rem;
-  font-size: 2rem;
-  border-radius: 20px;
-  text-transform: uppercase;
+.dziekanaty, .kola {
+  padding: 2rem;
   margin-top: 1.5rem;
+  font-weight: bold;
 }
 
 .card-kola {
-  margin-bottom: 20px;
-}
-
-.btn-sails {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: var(--whiteColor);
   text-align: center;
 }
-.btn-sail {
-  margin: 20px;
-  padding: 1rem 2rem;
-  font-size: 1.5rem;
-  border-radius: 20px;
-  background-color: transparent;
-  border-color: var(--mainGoldColor);
+
+.card-text {
   color: var(--mainNavyColorDarker);
+  font-weight: normal;
 }
 
-.card-sailing-body, .card-pool-body{
-    text-align: center;
+.btn {
+  background-color: var(--mainNavyColorDarker);
+  border-color: var(--mainNavyColorDarker);
+  color: var(--mainGoldColor);
+  font-size: medium;
+  text-wrap: wrap;
 }
 
-.btn-chory{
-    text-align: center;
+.btn:hover, .btn-chor, .btn-sail {
+    background-color: var(--mainNavyColor);
 }
 
-.btn-chor{
-    margin: 20px;
-    padding: 1rem 2rem;
-    font-size: 1.5rem;
-    border-radius: 20px;
-    background-color: transparent;
-    border-color: var(--mainGoldColor);
-    color: var(--mainNavyColorDarker);
+.btn-chor:hover, .btn-sail:hover {
+  background-color: var(--mainNavyColorDarker);
 }
 
-.card-miejsca{
-    text-align: center;
+.card-miejsca .card-text, .card-sailing .card-text, .card-pool .card-text {
+  color: var(--whiteColor);
+  font-weight: lighter;
+  padding-bottom: 2rem;
 }

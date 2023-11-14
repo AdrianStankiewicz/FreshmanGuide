@@ -1,7 +1,7 @@
 <div class="container">
   <div *ngFor="let document of documents">   
-    <div class="card border-info m-5">
-      <div class="card-header"><i class="bi bi-file-earmark-check m-3" style="color: #0b0f7f;"></i>{{ document.title }}</div>
+    <div class="card m-5 p-2">
+      <div class="card-header border-0">{{ document.title }}</div>
       <div class="card-body">
         <h4 class="card-title"><a href="javascript:void(0)" (click)="downloadDocument(document.id, document.title, document.extension)">Pobierz</a></h4>
       </div>

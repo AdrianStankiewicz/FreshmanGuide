@@ -9,6 +9,11 @@
   transform-style: preserve-3d;
   transition: transform 1s;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  background-color: var(--mainNavyColorDarker);
+}
+
+.card:hover {
+  background: var(--mainNavyColor);
 }
 
 .title {
@@ -20,10 +25,16 @@
 .card-body {
   padding: 2rem;
   margin: 0;
+  color: var(--whiteColor);
+}
+
+.card-text {
+  font-family: sans-serif;
 }
 
 .card-title {
   font-size: 2rem;
+  color: var(--mainGoldColor);
 }
 
 .card-front,
@@ -57,10 +68,16 @@
 hr {
   height: 0.2rem;
   opacity: 0.7;
-  background: black;
+  color: var(--mainGoldColor);
 }
 
 h2.group {
   font-size: 4rem;
   margin-top: 3rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .row {
+    margin: 0 2% 0 2%;
+  }
 }

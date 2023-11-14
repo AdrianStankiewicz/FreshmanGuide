@@ -56,7 +56,7 @@ export class BanerComponent implements DoCheck, OnDestroy {
   private banerTextInternship: string =
     'Znajdziesz tu praktyki polecane przez starszych studentów';
   private banerImageInternship: string = `url('/assets/images/internship1.jpeg')`;
-  private banerTitleShop: string = 'Sklepik UMG';
+  private banerTitleShop: string = 'Sklepik UMG "Kotwica"';
   private banerTextShop: string =
     'Sprawdź co możesz kupić w uczelnianym sklepiku';
   private banerImageShop: string = `url('/assets/images/shop1.jpeg')`;
