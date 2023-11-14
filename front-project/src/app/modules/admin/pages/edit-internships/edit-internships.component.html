@@ -1,5 +1,9 @@
 <div class="first">
   <div class="container">
+    <button class="return" [routerLink]="['/admin']"
+      routerLinkActive="router-link-active"><mat-icon>arrow_back</mat-icon>
+      Panel</button>
+
     <div class="search-box">
       <div class="search-box__searchbar">
         <input [(ngModel)]="searchKeyword" (keyup)="onSearchChange()" type="text" placeholder="Wyszukaj wątek...">
