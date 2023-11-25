@@ -6,8 +6,8 @@ export interface Professor {
   name: string;
   room: string;
   email: string;
-  howToContact: string;
-  typeOfExamination: string;
+  best_contact: string;
+  typeOfPass: string;
   availabilityOfMaterials: string;
   note: string;
   consultations: Consultation[];
