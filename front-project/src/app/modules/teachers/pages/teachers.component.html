@@ -1,3 +1,36 @@
 <div class="container">
-  <p>prowadzacy works!</p>
+  <ng-container *ngFor="let organisationGroup of groupByOrganisation(profesors)">
+    <h2 class="h1 pt-2"><b>{{organisationGroup[0]?.organisation}}</b></h2>
+    <div class="accordion" id="accordionExample">
+      <ng-container *ngFor="let profesor of organisationGroup">
+        <div class="accordion-item my-4 ">
+          <h2 class="accordion-header" id="heading{{profesor.id}}">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse' + profesor.id" [attr.aria-controls]="'collapse' + profesor.id" aria-expanded="false"
+              [attr.aria-labelledby]="'heading' + profesor.id">
+              <h2 class="profesor-title">{{profesor.name}}</h2>
+            </button>
+          </h2>
+          <div id="collapse{{profesor.id}}" class="accordion-collapse collapse" [attr.aria-labelledby]="'heading' + profesor.id"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body text-white">
+              <p><b class="info">Pokój:</b> {{profesor.room}}</p>
+              <p><b class="info">E-mail:</b> {{profesor.email}}</p>
+              <p><b class="info">Najlepiej kontaktować się przez:</b> {{profesor.best_contact}}</p>
+              <p><b class="info">Sposób zaliczenia: </b>{{profesor.typeOfPass}}</p>
+              <p><b class="info">Dostępnośc materiałów: </b>{{profesor.availabilityOfMaterials}}</p>
+              <p><b class="info">Notka na zajęcia: </b>{{profesor.note}}</p>
+              <p>
+                <b class="info">Konsultacje:</b>
+              
+              <ng-container *ngFor="let consultation of profesor.consultations">
+                <p class="ms-4">{{consultation.data}}</p>
+              </ng-container>
+            </p>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
 </div>
