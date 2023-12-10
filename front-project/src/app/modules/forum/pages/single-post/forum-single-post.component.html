@@ -16,7 +16,7 @@
     <div class="last-row">
       <div class="info">
         <span class="last-updated">Utworzono {{postData.createdAt | date: 'dd-MM-yyyy'}}r.</span>
-        <span class="add-reply" (click)="openDialog()">Odpowiedz</span>
+        <span class="add-reply" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Odpowiedz</span>
       </div>
       <span class="category" *ngIf="postCategory">#{{postCategory.name}}</span>
     </div>
@@ -52,6 +52,29 @@
         <mat-paginator (page)="onPageChange($event)" [length]="filteredReplies.length" [pageSize]="pageSize"
           [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
         </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <span>
+          Drogi użytkowniku,
+          <br>
+          <br>
+          Pamiętaj, że na naszym forum obowiązuje zakaz publikowania treści nieodpowiednich lub szkodliwych.
+          <br>
+          <br>
+          Szanujmy siebie nawzajem!
+        </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">Wstecz</button>
+        <button type="button" class="btn btn-main" data-bs-dismiss="modal" (click)="openDialog()">Rozumiem</button>
       </div>
     </div>
   </div>

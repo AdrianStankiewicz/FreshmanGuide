@@ -10,3 +10,9 @@
 </div>
 
 <ngx-loading *ngIf="loading$ | async as isLoading" [show]="isLoading"></ngx-loading>
+
+<div class="loading-overlay" [ngClass]="{'hidden': !showLoadingScreen}" *ngIf="loadingScreen">
+  <div class="arc"></div>
+  <h1>Freshman Guide</h1>
+  <h5><span>ŁADOWANIE</span></h5>
+</div>

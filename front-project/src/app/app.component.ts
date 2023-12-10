@@ -19,6 +19,8 @@ export class AppComponent
 {
   protected title = 'front-project';
   protected loading$ = this.loadingService.getLoading$();
+  protected showLoadingScreen = false;
+  protected loadingScreen = false;
 
   private _subscriptions = new Subscription();
 
@@ -29,12 +31,18 @@ export class AppComponent
 
   ngOnInit(): void {
     this.loadingService.startLoading();
+
+    this.showLoadingScreen = true;
+    this.loadingScreen = true;
+    document.body.style.overflow = 'hidden';
   }
 
   ngAfterViewInit(): void {
     setTimeout((): void => {
       this.loadingService.stopLoading();
-    }, 3000);
+      this.showLoadingScreen = false;
+      this.hideLoadingScreen();
+    }, 2000);
   }
 
   ngAfterViewChecked(): void {
@@ -43,5 +51,12 @@ export class AppComponent
 
   ngOnDestroy(): void {
     this._subscriptions.unsubscribe();
+  }
+
+  private hideLoadingScreen() {
+    setTimeout((): void => {
+      this.loadingScreen = false;
+      document.body.style.overflow = 'auto';
+    }, 800);
   }
 }
