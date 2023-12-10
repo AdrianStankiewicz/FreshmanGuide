@@ -219,7 +219,7 @@ namespace BackProject.Controllers
         [HttpGet("GetAllProfessors")]
         public async Task<IActionResult> GetAllProfessors()
         {
-            var professor = await _dbContext.Professor.ToListAsync();
+            var professor = await _dbContext.Professor.Include(c => c.Consultations).ToListAsync();
             if (professor.Count == 0)
                 return NotFound("No elements found");
             return Ok(professor);
@@ -228,7 +228,7 @@ namespace BackProject.Controllers
         [HttpGet("GetProfessor/{id}")]
         public async Task<IActionResult> GetProfessor(int id)
         {
-            var professor = await _dbContext.Professor.FirstOrDefaultAsync(post => post.Id == id);
+            var professor = await _dbContext.Professor.Include(c => c.Consultations).FirstOrDefaultAsync(post => post.Id == id);
             if (professor == null)
                 return NotFound($"Element not found with Id: {id}");
             return Ok(professor);

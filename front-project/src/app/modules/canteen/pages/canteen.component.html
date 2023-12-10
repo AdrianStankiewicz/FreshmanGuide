@@ -1,6 +1,6 @@
 <div class="container">
   <div class="first my-5">
-    <h2 class="pb-4 text-center font-weight-bold">Godziny otwarcia</h2>
+    <p class="pb-4 h2 text-center font-weight-bold">Godziny otwarcia</p>
     <table class="table mx-auto text-center">
       <tbody>
         <tr>
@@ -34,20 +34,169 @@
 <div class="second">
   <div class="container" style="position: relative;">
     <mat-spinner *ngIf="!dishes || dishes.length === 0"
-      style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;"></mat-spinner>
-    <div *ngIf="dishes"
-      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 gx-4 gy-5 mt-5 py-5 justify-content-center justify-content-lg-start">
-      <div class="col-10" *ngFor="let dish of dishes">
-        <div class="card h-100 min-h dish-hover">
-          <div class="card-header border-0">
-            <p class="card-title pt-4 pl-2 h3 font-weight-bold">{{ dish.name }}</p>
+      style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 50px; height: 50px;">
+    </mat-spinner>
+
+    <h2 class="py-3 h1">Śniadanie</h2>
+
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'sniadanie '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
           </div>
-          <div class="card-body p-4 font-weight-light">
-            <p class="card-text">{{ dish.review }}</p>
-          </div>
-          <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">{{ dish.price }} zł</div>
         </div>
-      </div>
+      </ng-container>
     </div>
+
+    <h2 class="py-3 h1">Drugie danie</h2>
+
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'danie     '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <h2 class="py-3 h1">Pierogi i naleśniki</h2>
+
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'pierogi   '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <h2 class="py-3 h1">Dodatki</h2>
+
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'dodatki   '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <h2 class="py-3 h1">Zupy</h2>
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'zupa      '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <h2 class="py-3 h1">Kawa i herbata</h2>
+
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'kawa      '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <h2 class="py-3 h1">Napoje</h2>
+
+    <div
+      class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 pb-5 gx-4 gy-5 justify-content-center justify-content-lg-start">
+      <ng-container *ngFor="let dish of dishes">
+        <div *ngIf="dish.type === 'napoj     '">
+          <div class="col-12 h-100">
+            <div class="card h-100 min-h dish-hover">
+              <div class="card-header border-0">
+                <h3 class="card-title pt-4 pl-2 font-weight-bold">{{ dish.name }}</h3>
+              </div>
+              <div class="card-body p-4 font-weight-light">
+                <p class="card-text">{{ dish.review }}</p>
+              </div>
+              <div class="card-footer pr-4 pb-4 border-0 text-end font-weight-bold">
+                <p>{{ dish.price }} zł</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+
   </div>
 </div>

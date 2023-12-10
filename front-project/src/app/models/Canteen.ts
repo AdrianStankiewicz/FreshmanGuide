@@ -3,5 +3,6 @@ export interface Canteen {
     name: string;
     price: number;
     review: string;
+    type: string;
   }
   
