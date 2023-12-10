@@ -36,7 +36,8 @@
       </div>
       <div class="search-box__addQuestion">
         <button [ngClass]="{'no-margin': isAdmin}" class="reset" type="button" (click)="onReset()">Resetuj</button>
-        <button *ngIf="!isAdmin" type="button" (click)="openDialog()">Zadaj pytanie</button>
+        <button *ngIf="!isAdmin" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Zadaj
+          pytanie</button>
       </div>
     </div>
   </div>
@@ -56,6 +57,29 @@
         <mat-paginator (page)="onPageChange($event)" [length]="filteredPosts.length" [pageSize]="pageSize"
           [pageSizeOptions]="[3, 5, 10, 15]" aria-label="Select page">
         </mat-paginator>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <span>
+          Drogi użytkowniku,
+          <br>
+          <br>
+          Pamiętaj, że na naszym forum obowiązuje zakaz publikowania treści nieodpowiednich lub szkodliwych.
+          <br>
+          <br>
+          Szanujmy siebie nawzajem!
+        </span>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn" data-bs-dismiss="modal">Wstecz</button>
+        <button type="button" class="btn btn-main" data-bs-dismiss="modal" (click)="openDialog()">Rozumiem</button>
       </div>
     </div>
   </div>
