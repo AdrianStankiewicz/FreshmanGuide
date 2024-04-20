@@ -1,4 +1,5 @@
-## 🚀 FreshmanForce: Unleash Your University Potential
+# 🚀 FreshmanForce: Unleash Your University Potential
+### Group assignment at university to create an app for Freshman
 
 **Topic:**
 
